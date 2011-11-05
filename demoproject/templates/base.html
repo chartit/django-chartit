@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title> Django Chartit Demo - {{title}} </title>
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% get_static_prefix %}styles/nature.css">
+		<link rel="stylesheet" type="text/css" href="{% get_static_prefix %}styles/pygments.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+		<script src="{% get_static_prefix %}js/highcharts/highcharts.js" type="text/javascript"></script>
+		<script src="{% get_static_prefix %}js/highcharts/themes/default.js" type="text/javascript"></script>
+		{% load chartit %}
+		{{ chart_list|load_charts:"c1" }} <script src="{% get_static_prefix %}js/sphinx/underscore.js" type="text/javascript"></script>
+		<script src="{% get_static_prefix %}js/sphinx/doctools.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div class="related">
+			<h3>Navigation</h3>
+			<ul>
+				<li>
+					<a href="/">Django-Chartit Demo </a>
+				</li>
+			</ul>
+		</div>
+		<div class="document">
+			<div class="documentwrapper">
+				<div class="bodywrapper">
+					<div class="body">
+						<div class="source">
+							{% load markup %}
+							<div class="section">
+								<h1> {{ title }}</h1>
+								<div id="c1"></div>
+								{% load markup %}
+								{{ doc|restructuredtext }}
+								<div>
+									{% load syntax_color %}
+									{{ code|colorize:"python"}}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sphinxsidebar">
+				<div class="sphinxsidebarwrapper">
+					<h3>Simple Charts</h3>
+					<ul>
+						<ul>
+						
+						{% for link, title in sidebar_items %}
+    					  <li><a class="reference internal" href="{{link}}">{{ title }}</a></li>
+						{% endfor %}
+						
+						</ul>
+					</ul>
+				</div>
+			</div>
+			<div class="clearer"></div>
+		</div>
+		<div class="related">
+		</div>
+		<div class="footer">
+			© Copyright 2011, Praveen Gollakota.
+			Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+		</div>
+	</body>
+</html>

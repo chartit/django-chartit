@@ -1,0 +1,540 @@
+/*
+ * basic.css
+ * ~~~~~~~~~
+ *
+ * Sphinx stylesheet -- basic theme.
+ *
+ * :copyright: Copyright 2007-2011 by the Sphinx team, see AUTHORS.
+ * :license: BSD, see LICENSE for details.
+ *
+ */
+
+/* -- main layout ----------------------------------------------------------- */
+
+.source > div.clearer {
+    clear: both;
+}
+
+/* -- relbar ---------------------------------------------------------------- */
+
+.source > div.related {
+    width: 100%;
+    font-size: 90%;
+}
+
+.source > div.related h3 {
+    display: none;
+}
+
+.source > div.related ul {
+    margin: 0;
+    padding: 0 0 0 10px;
+    list-style: none;
+}
+
+.source > div.related li {
+    display: inline;
+}
+
+.source > div.related li.right {
+    float: right;
+    margin-right: 5px;
+}
+
+/* -- sidebar --------------------------------------------------------------- */
+
+.source > div.sphinxsidebarwrapper {
+    padding: 10px 5px 0 10px;
+}
+
+.source > div.sphinxsidebar {
+    float: left;
+    width: 230px;
+    margin-left: -100%;
+    font-size: 90%;
+}
+
+.source > div.sphinxsidebar ul {
+    list-style: none;
+}
+
+.source > div.sphinxsidebar ul ul,
+.source > div.sphinxsidebar ul.want-points {
+    margin-left: 20px;
+    list-style: square;
+}
+
+.source > div.sphinxsidebar ul ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.source > div.sphinxsidebar form {
+    margin-top: 10px;
+}
+
+.source > div.sphinxsidebar input {
+    border: 1px solid #98dbcc;
+    font-family: sans-serif;
+    font-size: 1em;
+}
+
+.source > div.sphinxsidebar input[type="text"] {
+    width: 170px;
+}
+
+.source > div.sphinxsidebar input[type="submit"] {
+    width: 30px;
+}
+
+.source > img {
+    border: 0;
+}
+
+/* -- search page ----------------------------------------------------------- */
+
+.source > ul.search {
+    margin: 10px 0 0 20px;
+    padding: 0;
+}
+
+.source > ul.search li {
+    padding: 5px 0 5px 20px;
+    background-image: url(file.png);
+    background-repeat: no-repeat;
+    background-position: 0 7px;
+}
+
+.source > ul.search li a {
+    font-weight: bold;
+}
+
+.source > ul.search li div.context {
+    color: #888;
+    margin: 2px 0 0 30px;
+    text-align: left;
+}
+
+.source > ul.keywordmatches li.goodmatch a {
+    font-weight: bold;
+}
+
+/* -- index page ------------------------------------------------------------ */
+
+.source > table.contentstable {
+    width: 90%;
+}
+
+.source > table.contentstable p.biglink {
+    line-height: 150%;
+}
+
+.source > a.biglink {
+    font-size: 1.3em;
+}
+
+.source > span.linkdescr {
+    font-style: italic;
+    padding-top: 5px;
+    font-size: 90%;
+}
+
+/* -- general index --------------------------------------------------------- */
+
+.source > table.indextable {
+    width: 100%;
+}
+
+.source > table.indextable td {
+    text-align: left;
+    vertical-align: top;
+}
+
+.source > table.indextable dl, table.indextable dd {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.source > table.indextable tr.pcap {
+    height: 10px;
+}
+
+.source > table.indextable tr.cap {
+    margin-top: 10px;
+    background-color: #f2f2f2;
+}
+
+.source > img.toggler {
+    margin-right: 3px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.source > div.modindex-jumpbox {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 1em 0 1em 0;
+    padding: 0.4em;
+}
+
+.source > div.genindex-jumpbox {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 1em 0 1em 0;
+    padding: 0.4em;
+}
+
+/* -- general body styles --------------------------------------------------- */
+
+.source > a.headerlink {
+    visibility: hidden;
+}
+
+.source > h1:hover > a.headerlink,
+.source > h2:hover > a.headerlink,
+.source > h3:hover > a.headerlink,
+.source > h4:hover > a.headerlink,
+.source > h5:hover > a.headerlink,
+.source > h6:hover > a.headerlink,
+.source > dt:hover > a.headerlink {
+    visibility: visible;
+}
+
+.source > div.body p.caption {
+    text-align: inherit;
+}
+
+.source > div.body td {
+    text-align: left;
+}
+
+.source > .field-list ul {
+    padding-left: 1em;
+}
+
+.source > .first {
+    margin-top: 0 !important;
+}
+
+.source > p.rubric {
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.source > img.align-left, .figure.align-left, object.align-left {
+    clear: left;
+    float: left;
+    margin-right: 1em;
+}
+
+.source > img.align-right, .figure.align-right, object.align-right {
+    clear: right;
+    float: right;
+    margin-left: 1em;
+}
+
+.source > img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.source > .align-left {
+    text-align: left;
+}
+
+.source > .align-center {
+    text-align: center;
+}
+
+.source > .align-right {
+    text-align: right;
+}
+
+/* -- sidebars -------------------------------------------------------------- */
+
+.source > div.sidebar {
+    margin: 0 0 0.5em 1em;
+    border: 1px solid #ddb;
+    padding: 7px 7px 0 7px;
+    background-color: #ffe;
+    width: 40%;
+    float: right;
+}
+
+.source > p.sidebar-title {
+    font-weight: bold;
+}
+
+/* -- topics ---------------------------------------------------------------- */
+
+.source > div.topic {
+    border: 1px solid #ccc;
+    padding: 7px 7px 0 7px;
+    margin: 10px 0 10px 0;
+}
+
+.source > p.topic-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* -- admonitions ----------------------------------------------------------- */
+
+.source > div.admonition {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 7px;
+}
+
+.source > div.admonition dt {
+    font-weight: bold;
+}
+
+.source > div.admonition dl {
+    margin-bottom: 0;
+}
+
+.source > p.admonition-title {
+    margin: 0px 10px 5px 0px;
+    font-weight: bold;
+}
+
+.source > div.body p.centered {
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* -- tables ---------------------------------------------------------------- */
+
+.source > table.docutils {
+    border: 0;
+    border-collapse: collapse;
+}
+
+.source > table.docutils td, table.docutils th {
+    padding: 1px 8px 1px 5px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #aaa;
+}
+
+.source > table.field-list td, table.field-list th {
+    border: 0 !important;
+}
+
+.source > table.footnote td, table.footnote th {
+    border: 0 !important;
+}
+
+.source > th {
+    text-align: left;
+    padding-right: 5px;
+}
+
+.source > table.citation {
+    border-left: solid 1px gray;
+    margin-left: 1px;
+}
+
+.source > table.citation td {
+    border-bottom: none;
+}
+
+/* -- other body styles ----------------------------------------------------- */
+
+.source > ol.arabic {
+    list-style: decimal;
+}
+
+.source > ol.loweralpha {
+    list-style: lower-alpha;
+}
+
+.source > ol.upperalpha {
+    list-style: upper-alpha;
+}
+
+.source > ol.lowerroman {
+    list-style: lower-roman;
+}
+
+.source > ol.upperroman {
+    list-style: upper-roman;
+}
+
+.source > dl {
+    margin-bottom: 15px;
+}
+
+.source > dd p {
+    margin-top: 0px;
+}
+
+.source > dd ul, dd table {
+    margin-bottom: 10px;
+}
+
+.source > dd {
+    margin-top: 3px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+}
+
+.source > dt:target, .highlighted {
+    background-color: #fbe54e;
+}
+
+.source > dl.glossary dt {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.source > .field-list ul {
+    margin: 0;
+    padding-left: 1em;
+}
+
+.source > .field-list p {
+    margin: 0;
+}
+
+.source > .refcount {
+    color: #060;
+}
+
+.source > .optional {
+    font-size: 1.3em;
+}
+
+.source > .versionmodified {
+    font-style: italic;
+}
+
+.source > .system-message {
+    background-color: #fda;
+    padding: 5px;
+    border: 3px solid red;
+}
+
+.source > .footnote:target  {
+    background-color: #ffa;
+}
+
+.source > .line-block {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.source > .line-block .line-block {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 1.5em;
+}
+
+.source > .guilabel, .menuselection {
+    font-family: sans-serif;
+}
+
+.source > .accelerator {
+    text-decoration: underline;
+}
+
+.source > .classifier {
+    font-style: oblique;
+}
+
+.source > abbr, acronym {
+    border-bottom: dotted 1px;
+    cursor: help;
+}
+
+/* -- code displays --------------------------------------------------------- */
+
+.source > pre {
+    overflow: auto;
+    overflow-y: hidden;  /* fixes display issues on Chrome browsers */
+}
+
+.source > td.linenos pre {
+    padding: 5px 0px;
+    border: 0;
+    background-color: transparent;
+    color: #aaa;
+}
+
+.source > table.highlighttable {
+    margin-left: 0.5em;
+}
+
+.source > table.highlighttable td {
+    padding: 0 0.5em 0 0.5em;
+}
+
+.source > tt.descname {
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.source > tt.descclassname {
+    background-color: transparent;
+}
+
+.source > tt.xref, a tt {
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.source > h1 tt, h2 tt, h3 tt, h4 tt, h5 tt, h6 tt {
+    background-color: transparent;
+}
+
+.source > .viewcode-link {
+    float: right;
+}
+
+.source > .viewcode-back {
+    float: right;
+    font-family: sans-serif;
+}
+
+.source > div.viewcode-block:target {
+    margin: -1px -10px;
+    padding: 0 10px;
+}
+
+/* -- math display ---------------------------------------------------------- */
+
+.source > img.math {
+    vertical-align: middle;
+}
+
+.source > div.body div.math p {
+    text-align: center;
+}
+
+.source > span.eqno {
+    float: right;
+}
+
+/* -- printout stylesheet --------------------------------------------------- */
+
+@media print {
+    .source > div.document,
+    .source > div.documentwrapper,
+    .source > div.bodywrapper {
+        margin: 0 !important;
+        width: 100%;
+    }
+
+    .source > div.sphinxsidebar,
+    .source > div.related,
+    .source > div.footer,
+    .source > #top-link {
+        display: none;
+    }
+}
