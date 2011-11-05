@@ -1,14 +1,13 @@
-
 ###############
 Django-Chartit 
 ###############
 
-Django-Chartit can be used to plot the data from various models in your Django 
-project directly onto the web pages. The charts are rendered using the 
-``Highcharts`` and ``jQuery`` JavaScript libraries. Data in your database can 
-be plotted as simple line charts, column charts, area charts, scatter plots, and 
-many more chart types. Data can also be plotted as Pivot Charts where the data 
-is grouped and/or pivoted by specific column(s).
+Chartit is a Django app that can be used to easily create charts from the data 
+in your database. The charts are rendered using ``Highcharts`` and ``jQuery`` 
+JavaScript libraries. Data in your database can be plotted as simple line 
+charts, column charts, area charts, scatter plots, and many more chart types. 
+Data can also be plotted as Pivot Charts where the data is grouped and/or 
+pivoted by specific column(s).
 
 ========
 Features
@@ -16,7 +15,8 @@ Features
 
 - Plot charts from models.
 - Plot data from multiple models on the same axis on a chart.
-- Plot pivot charts from models. Data can be pivoted by multiple columns.
+- Plot pivot charts from models. Data can be pivoted by across multiple 
+  columns.
 - Legend pivot charts by multiple columns.
 - Combine data from multiple models to plot on same pivot charts.
 - Plot a pareto chart, paretoed by a specific column.
@@ -55,10 +55,7 @@ How to Create Charts
 ====================
 Here is a short example of how to create a line chart. Let's say we have a 
 simple model with 3 fields - one for month and two for temperatures of Boston 
-and Houston.
-
-.. code-block:: python
-   :linenos:
+and Houston. ::
    
    class MonthlyWeatherByCity(models.Model):
        month = models.IntegerField()
@@ -66,10 +63,7 @@ and Houston.
        houston_temp = models.DecimalField(max_digits=5, decimal_places=1)
 
 And let's say we want to create a simple line chart of month on the x-axis 
-and the temperatures of the two cities on the y-axis. 
-
-.. code-block:: python
-   :linenos:
+and the temperatures of the two cities on the y-axis. ::
    
    from chartit import DataPool, Chart
    
@@ -127,10 +121,7 @@ How to Create Pivot Charts
 ===========================
 
 Here is an example of how to create a pivot chart. Let's say we have the 
-following model. 
-
-.. code-block:: python
-   :linenos:
+following model. ::
 
    class DailyWeather(models.Model):
        month = models.IntegerField()
@@ -142,10 +133,7 @@ following model.
 
 We want to plot a pivot chart of month (along the x-axis) versus the average 
 rainfall (along the y-axis) of the top 3 cities with highest average 
-rainfall in each month.
-
-.. code-block:: python
-   :linenos:
+rainfall in each month. ::
    
    from chartit import PivotDataPool, PivotChart
    
@@ -202,16 +190,15 @@ Demo
 ====
 
 The above examples are just a brief taste of what you can do with 
-Django-Chartit. For more examples and to look at the charts in actions, see 
-the demo website.
+Django-Chartit. For more examples and to look at the charts in actions, check 
+out the `demo website <http://demo.chartit.shutupandship.com/>`_.
 
 ===============
-API Reference
+Documentation
 ===============
-.. toctree::
-   :maxdepth: 3
-   
-   apireference
+
+Full documentation is available 
+`here <http://docs.chartit.shutupandship.com>`_ .
 
 =============================
 Required JavaScript Libraries
