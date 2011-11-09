@@ -26,7 +26,8 @@ def upload_to_pypi():
 
 
 def build_docs():
-    run('cd docs && make html')
+    with prefix('export DJANGO_SETTINGS_MODULE=demoproject.settings'):
+        run('cd docs && make html')
 
 
 def install_requirements():
