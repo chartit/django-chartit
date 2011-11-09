@@ -17,6 +17,8 @@ def _convert_to_rdd(obj):
         return obj
            
 class RecursiveDefaultDict(defaultdict):
+    """The name says it all.
+    """
     def __init__(self, data = None):
         self.default_factory = type(self)
         if data is not None:
@@ -30,7 +32,7 @@ class RecursiveDefaultDict(defaultdict):
     def __setitem__(self, key, item):
         if not isinstance(item, RecursiveDefaultDict):
             super(RecursiveDefaultDict, self).__setitem__(key, 
-                                                          _convert_to_rdd(item))
+                                                        _convert_to_rdd(item))
         else:
             super(RecursiveDefaultDict, self).__setitem__(key, item)
     

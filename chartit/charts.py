@@ -13,6 +13,110 @@ class Chart(object):
     
     def __init__(self, datasource, series_options, chart_options=None,
                  x_sortf_mapf_mts=None):
+        """Chart accept the datasource and some options to create the chart and
+        creates it. 
+        
+        **Arguments**:
+        
+        - **datasource** (**required**) - a ``DataPool`` object that holds the 
+          terms and other information to plot the chart from.
+          
+        - **series_options** (**required**) - specifies the options to plot 
+          the terms on the chart. It is of the form ::
+           
+            [{'options': {
+                #any items from HighChart series. For ex.,
+                'type': 'column'
+               },
+               'terms': {
+                 'x_name': ['y_name', 
+                            {'other_y_name': {
+                               #overriding options}}, 
+                            ...],
+                 ...
+                 },
+               },
+              ... #repeat dicts with 'options' & 'terms'
+              ]
+            
+          Where - 
+          
+          - **options** (**required**) - a ``dict``. Any of the parameters 
+            from the `Highcharts options object - series array
+            <http://www.highcharts.com/ref/#series>`_ are valid as entries in 
+            the ``options`` dict except ``data`` (because data array is 
+            generated from your datasource by chartit). For example, ``type``, 
+            ``xAxis``, etc. are all valid entries here. 
+            
+            .. note:: The items supplied in the options dict are not validated 
+               to make sure that Highcharts actually supports them. Any 
+               invalid options are just passed to Highcharts JS which silently 
+               ignores them.
+               
+          - **terms** (**required**) - a ``dict``. keys are the x-axis terms
+            and the values are lists of y-axis terms for that particular 
+            x-axis term. Both x-axis and y-axis terms must be present in the 
+            corresponding datasource, otherwise an APIInputError is raised.
+            
+            The entries in the y-axis terms list must either be a ``str`` or 
+            a ``dict``. If entries are dicts, the keys need to be valid y-term 
+            names and the values need to be any options to override the 
+            default options. For example, ::
+            
+              [{'options': {
+                  'type': 'column',
+                  'yAxis': 0},
+                'terms': {
+                  'city': [
+                    'temperature',
+                   {'rainfall': {
+                      'type': 'line',
+                      'yAxis': 1}}]}}]
+            
+            plots a column chart of city vs. temperature as a line chart on 
+            yAxis: 0 and city vs. rainfall as a line chart on yAxis: 1. This 
+            can alternatively be expressed as two separate entries: ::
+            
+              [{'options': {
+                  'type': 'column',
+                  'yAxis': 0},
+                'terms': {
+                  'city': [
+                    'temperature']}},
+               {'options': {
+                  'type': 'line',
+                  'yAxis': 1},
+                'terms': {
+                  'city': [
+                    'rainfall']}}]
+                    
+        - **chart_options** (*optional*) - a ``dict``. Any of the options from 
+          the `Highcharts options object <http://www.highcharts.com/ref/>`_ 
+          are valid (except the options in the ``series`` array which are 
+          passed in the ``series_options`` argument. The following 
+          ``chart_options`` for example, set the chart title and the axes 
+          titles. :: 
+          
+              {'chart': {
+                 'title': { 
+                   'text': 'Weather Chart'}},
+               'xAxis': {
+                 'title': 'month'},
+               'yAxis': {
+                 'title': 'temperature'}}
+                 
+          .. note:: The items supplied in the ``chart_options`` dict are not 
+             validated to make sure that Highcharts actually supports them. 
+             Any invalid options are just passed to Highcharts JS which 
+             silently ignores them.
+             
+        **Raises**: 
+        
+        - ``APIInputError`` if any of the terms are not present in the 
+          corresponding datasource or if the ``series_options`` cannot be 
+          parsed.
+        """
+        
         self.user_input = locals()
         if not isinstance(datasource, DataPool):
             raise APIInputError("%s must be an instance of DataPool." 
@@ -200,12 +304,21 @@ class Chart(object):
                                 data = [(x_mapf(x), y) for (x, y) in data]
                             
                         if ptype == 'scatter':
-                            #scatter plot and pie chart
-                            for x_value, y_value_tuple in data:
-                                for opts, y_value in izip(y_hco_list,
-                                                          y_value_tuple):
-                                    opts['data'].append((x_value, y_value))
-                            self.hcoptions['series'].extend(y_hco_list)
+                            if self.series_options[y_term]['type']=='scatter':
+                                #scatter plot
+                                for x_value, y_value_tuple in data:
+                                    for opts, y_value in izip(y_hco_list,
+                                                              y_value_tuple):
+                                        opts['data'].append((x_value, y_value))
+                                self.hcoptions['series'].extend(y_hco_list)
+                            else:
+                                # pie chart
+                                for x_value, y_value_tuple in data:
+                                    for opts, y_value in izip(y_hco_list,
+                                                              y_value_tuple):
+                                        opts['data'].append((str(x_value), 
+                                                             y_value))
+                                self.hcoptions['series'].extend(y_hco_list)
                             
                         if ptype == 'line' and len(x_y_terms_tuples) == 1:
                             # all other chart types - line, area, etc.
@@ -283,12 +396,116 @@ class Chart(object):
 class PivotChart(object):
     
     def __init__(self, datasource, series_options, chart_options=None):
+        """Creates the PivotChart object. 
+        
+        **Arguments**:
+        
+        - **datasource** (**required**) - a ``PivotDataPool`` object that 
+          holds the terms and other information to plot the chart from.
+          
+        - **series_options** (**required**) - specifies the options to plot 
+          the terms on the chart. It is of the form ::
+            [{'options': {
+                #any items from HighChart series. For ex.
+                'type': 'column'
+                },
+              'terms': [
+                'a_valid_term',
+                'other_valid_term': {
+                  #any options to override. For ex.
+                 'type': 'area',
+                  ...
+                  },
+                ...
+                ]
+              },
+              ... #repeat dicts with 'options' & 'terms'
+              ]
+
+          Where - 
+          
+          - **options** (**required**) - a ``dict``. Any of the parameters 
+            from the `Highcharts options object - series array 
+            <http://www.highcharts.com/ref/#series>`_ are valid as entries in 
+            the ``options`` dict except ``data`` (because data array is 
+            generated from your datasource by chartit). For example, ``type``, 
+            ``xAxis``, etc. are all valid entries here. 
+            
+            .. note:: The items supplied in the options dict are not validated 
+               to make sure that Highcharts actually supports them. Any 
+               invalid options are just passed to Highcharts JS which silently 
+               ignores them.
+               
+          - **terms** (**required**) - a ``list``. Only terms that are present 
+            in the corresponding datasource are valid. 
+            
+            .. note:: All the ``terms`` are plotted on the ``y-axis``. The 
+              **categories of the datasource are plotted on the x-axis. There 
+              is no option to override this.**
+             
+            Each of the ``terms`` must either be a ``str`` or a ``dict``. If 
+            entries are dicts, the keys need to be valid terms and the values 
+            need to be any options to override the default options. For 
+            example, ::
+            
+              [{'options': {
+                  'type': 'column',
+                  'yAxis': 0},
+                'terms': [
+                  'temperature',
+                  {'rainfall': {
+                      'type': 'line',
+                      'yAxis': 1}}]}]
+            
+            plots a pivot column chart of temperature on yAxis: 0 and a line 
+            pivot chart of rainfall on yAxis: 1. This can alternatively be 
+            expressed as two separate entries: ::
+            
+              [{'options': {
+                  'type': 'column',
+                  'yAxis': 0},
+                'terms': [
+                    'temperature']},
+               {'options': {
+                  'type': 'line',
+                  'yAxis': 1},
+                'terms': [
+                    'rainfall']}]
+                    
+        - **chart_options** (*optional*) - a ``dict``. Any of the options from 
+          the `Highcharts options object <http://www.highcharts.com/ref/>`_ 
+          are valid (except the options in the ``series`` array which are 
+          passed in the ``series_options`` argument. The following 
+          ``chart_options`` for example, set the chart title and the axes 
+          titles. :: 
+          
+              {'chart': {
+                 'title': { 
+                   'text': 'Weather Chart'}},
+               'xAxis': {
+                 'title': 'month'},
+               'yAxis': {
+                 'title': 'temperature'}}
+                 
+          .. note:: The items supplied in the ``chart_options`` dict are not 
+             validated to make sure that Highcharts actually supports them. 
+             Any invalid options are just passed to Highcharts JS which 
+             silently ignores them.
+             
+        **Raises**: 
+        
+        - ``APIInputError`` if any of the terms are not present in the 
+          corresponding datasource or if the ``series_options`` cannot be 
+          parsed.
+        """
         self.user_input = locals()
         if not isinstance(datasource, PivotDataPool):
             raise APIInputError("%s must be an instance of PivotDataPool." 
                                 %datasource)
         self.datasource = datasource
         self.series_options = clean_pcso(series_options, self.datasource)
+        if chart_options is None:
+            chart_options = HCOptions({})
         self.set_default_hcoptions()
         self.hcoptions.update(chart_options)
         # Now generate the plot

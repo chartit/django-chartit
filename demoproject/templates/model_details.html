@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block welcome %}
+					   <div class="source">
+							{% load markup %}
+							<div class="section">
+								<h1> {{ title }}</h1>
+								{% load markup %}
+								{{ doc|restructuredtext }}
+							</div>
+							
+							{% if code %}
+								<div>
+									{% load syntax_color %}
+									{{ code|colorize:"python"}}
+								</div>
+							{% endif %}
+						</div>
+{% endblock %}

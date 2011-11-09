@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{%block chart_loader_header %}
+		{% load chartit %}
+		{{ chart_list|load_charts:"c1" }} 
+{% endblock %}		
+
+{% block chart_code %}
+					   <div class="source">
+							{% load markup %}
+							<div class="section">
+								<h1> {{ title }}</h1>
+								<div id="c1"></div>
+								{% load markup %}
+								{{ doc|restructuredtext }}
+								{% if code %}
+								<h3> code </h3>
+								<div>
+									{% load syntax_color %}
+									{{ code|colorize:"python"}}
+								</div>
+								{% endif %}
+							</div>
+						</div>
+{% endblock %}

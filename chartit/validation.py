@@ -11,20 +11,20 @@ from .exceptions import APIInputError
 def _validate_field_lookup_term(model, term):
     """Checks whether the term is a valid field_lookup for the model.
     
-    Args:
-        model(django.db.models.Model): a django model for which to check 
-            whether the term is a valid field_lookup.
-        term(str): the term to check whether it is a valid field_lookup for the
-            model supplied.
+    **Args**:
+    - **model** (**required**) - a django model for which to check whether 
+      the term is a valid field_lookup.
+    - **term** (**required**) - the term to check whether it is a valid 
+      field lookup for the model supplied.
             
-    Returns:
-        True if term corresponds to a valid field_lookup for the model.
+    **Returns**:
+    -  The verbose name of the field if the supplied term is a valid field.
     
-    Raises:
-        FieldError: If the term supplied is not a valid field lookup parameter
-            for the model.
+    **Raises**:
+    - APIInputError: If the term supplied is not a valid field lookup 
+      parameter for the model.
     """
-    # TODO: Memoization for speed enchancements
+    # TODO: Memoization for speed enchancements?
     terms = term.split('__')
     model_fields = model._meta.get_all_field_names()
     if terms[0] not in model_fields:

@@ -31,10 +31,9 @@ class DataPool(object):
         
           Where 
           
-          - **options** - is a dict with one key.
-          
-            + **source** - is either a ``Model``, ``Manager`` or a 
-              ``QuerySet``.
+          - **options** (**required**) - a ``dict``. Any of the `series 
+            options <http://www.highcharts.com/ref/#series>`_ for the 
+            Highcharts ``options`` object are valid. 
               
           - **terms** - is a list. Each element in ``terms`` is either 
             
@@ -224,10 +223,10 @@ class PivotDataPool(DataPool):
         - **top_n** (*optional*) - an integer. The number of items for the 
           corresponding ``top_n_term`` that need to be retained. 
          
-          If ``top_n_term`` and ``top_n`` are present, only the ``top_n`` number 
-          of items are going to displayed in the pivot chart. For example, if 
-          you want to plot only the top 5 states with highest average rainfall, 
-          you can do something like this. ::
+          If ``top_n_term`` and ``top_n`` are present, only the ``top_n`` 
+          numberof items are going to displayed in the pivot chart. For 
+          example, if you want to plot only the top 5 states with highest 
+          average rainfall, you can do something like this. ::
             
             PivotDataPool(
               series = [
@@ -239,7 +238,7 @@ class PivotDataPool(DataPool):
               top_n_term = 'avg_rain',
               top_n = 5)
           
-          Note that the ``top_n_term`` is ``'avg_rain'`` and **not** ``state`` ; 
+          Note that the ``top_n_term`` is ``'avg_rain'`` and **not** ``state``; 
           because we want to limit by the average rainfall.
         
         - **pareto_term** (*optional*) - the term with respect to which the 
