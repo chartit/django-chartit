@@ -5,23 +5,23 @@
     <div class="related">
       <h3>{{ _('Navigation') }}</h3>
       <ul>
-      
-        <li class="right" style="margin-right: 10px" > 
-          <a href="../feedback" title = "Feedback">Feedback</a>
+
+        <li class="right" style="margin-right: 10px" >
+          <a href="/feedback" title = "Feedback">Feedback</a>
         </li>
-        <li class="right" style="margin-right: 10px" > 
-          <a href="http://github.com/pgollakota/django-chartit/> title = "Code">Code</a> |
+        <li class="right" style="margin-right: 10px" >
+          <a href="http://github.com/pgollakota/django-chartit" title="Code">Code</a> |
         </li>
-        <li class="right" style="margin-right: 10px" > 
-          <a href="../docs" title = "Docs">Docs</a> |
+        <li class="right" style="margin-right: 10px" >
+          <a href="/docs" title = "Docs">Docs</a> |
         </li>
-        <li class="right" style="margin-right: 10px" > 
-          <a href="../demo" title = "Demo">Demo</a> |
+        <li class="right" style="margin-right: 10px" >
+          <a href="/demo" title = "Demo">Demo</a> |
         </li>
-        <li class="right" style="margin-right: 10px" > 
-          <a href="../" title = "Home"> Home</a> | 
+        <li class="right" style="margin-right: 10px" >
+          <a href="/" title = "Home"> Home</a> |
         </li>
-        
+
         {%- block rootrellink %}
         <li><a href="{{ pathto(master_doc) }}">{{ shorttitle|e }}</a>{{ reldelim1 }}</li>
         {%- endblock %}
