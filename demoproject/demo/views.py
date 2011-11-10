@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response, redirect
 from demoproject.utils.decorators import add_source_code_and_doc
 
 @add_source_code_and_doc
-def welcome(request, title, code, doc, sidebar_items):
+def demohome(request, title, code, doc, sidebar_items):
     """
     Welcome to the Django-Chartit Demo. This demo has a lot of sample charts 
     along with the code to help you get familiarized with the Chartit API. 
@@ -21,12 +21,9 @@ def welcome(request, title, code, doc, sidebar_items):
     
     Thank you and have fun exploring! 
     """
-    return render_to_response('welcome.html', 
+    return render_to_response('demohome.html', 
                               {'chart_list': None,
                                'code': None,
                                'title': title,
                                'doc': doc,
                                'sidebar_items': sidebar_items})
-
-def homepage(request):
-    return redirect('/home/')

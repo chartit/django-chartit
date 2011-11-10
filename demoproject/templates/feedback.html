@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Django Chartit - Welcome!</title>
+ 
+  {% load static %}
+  <!-- [template css] begin -->
+  <link rel="stylesheet" href="{% get_static_prefix %}home/css/screen.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="{% get_static_prefix %}home/css/960.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="{% get_static_prefix %}home/css/print.css" type="text/css" media="print" /> 
+  <!--[if IE]>
+    <link rel="stylesheet" href="{% get_static_prefix %}home/css/ie.css" type="text/css" media="screen, projection" />
+  <![endif]-->
+  <!-- [template css] end -->
+  
+  <!-- [template css javascript] begin -->
+  <link rel="stylesheet" href="{% get_static_prefix %}home/css/project.css" type="text/css" media="screen, projection" />
+  <!-- [template css javascript] end -->
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+  <script src="{% get_static_prefix %}js/highcharts/highcharts.js" 
+		        type="text/javascript"></script>
+  <script src="{% get_static_prefix %}js/highcharts/themes/gray.js" 
+		        type="text/javascript"></script>
+		        
+</head>
+
+<body>
+  
+  <!-- START TOP SECTION -->
+  <div class="container_12">
+  
+    <!-- START LOGO -->
+    <div class="grid_4 header" style="font:"Bookman Old Style"">
+      <img src="{% get_static_prefix %}home/images/drawing.png" />
+    </div>
+    <!-- END LOGO -->
+    
+    <!-- START NAVIGATION -->
+       <div class="grid_8 header">
+         <div id="navigation">
+        <ul id="nav">
+          <li id="demo"><a href="../demo"><b> Demo </b></a></li>
+          <li id="docs"><a href="../docs"><b>Docs</b></a></li>
+          <li id="code"><a href="http://github.com/pgollakota/django-chartit"><b>Code</b></a></li>
+          <li id="feedback"><a href="."><b>Feedback</b></a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- END NAVIGATION -->
+    
+    <div class="clear"></div>
+  </div>
+  <!-- END TOP SECTION -->
+   
+  <!-- START MEDIUM SECTION -->
+  <div class="container_12 medium">
+   
+    <!-- Start featured -->
+    <div id="featured">
+      <!-- The slider -->
+      <div id="slider">
+        <div id="sliderc" class="csw">
+          <div class="panelContainer">
+          
+            <div class="panel">
+              <div class="projectImage" id="c1" style="width:400px; height:200px">
+                   
+              </div>
+              <div class="projectDescription">
+                <h1>Create charts from your Django models effortlessly</h1>
+                <p>
+                  Do you need to plot charts in your django websites? Are you 
+                  using boring static chart images and do you like your charts 
+                  to be more interactive and interesting? Do you have to write 
+                  a lot of boilerplate code just to convert the data to the 
+                  right format before you can plot? 
+                  
+                  Django-Chartit helps to ease the pain of creating interactive
+                  charts on the webpages. Charts are rendered using Highcharts 
+                  JS library and jQuery. 
+                  
+                  Get started with the <a href="./demo">demo</a>!
+                </p>
+              </div>
+            </div>
+            
+          </div><!-- .panelContainer -->
+        </div><!-- #slider1 -->
+      </div> <!--end slider -->
+    </div>
+    <!-- End featured -->
+    
+  </div>
+  <!-- END MEDIUM SECTION -->
+   
+  <!-- START BOTTOM SECTION -->
+  <div class="container_12 bottom">
+  
+    <!-- START TWITTER SECTION -->
+    <div class="grid_4">
+    
+      <h2>My last <span class="orange">tweets</span></h2>
+      
+      <div> 
+        Blah blah blah ....
+      </div>
+      
+      
+       </div>
+       <!-- END TWITTER SECTION -->
+
+       <!-- START TESTIMONIAL SECTION -->
+       <div class="grid_4">
+       
+         <h2>Listen my <span class="orange">testimonials</span></h2>
+         
+         <p>
+           <img src="{% get_static_prefix %}images/bg/quote.gif" alt=""/>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+           Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum has been the 
+           industry's standard dummy text  I’m very happy! <span class="greyRight">[Annette Lewis]</span>
+         </p>
+         
+       </div>
+    <!-- END TESTIMONIAL SECTION -->    
+     
+    <!-- START CONTACT SECTION -->
+       <div class="grid_4">
+         <h2>Do you like my work?<span class="orange"> Hire me</span></h2>
+         <img src="{% get_static_prefix %}home/images/contact/phone.gif" alt="" />
+         <a href="#"><img src="{% get_static_prefix %}home/images/contact/email.gif" alt="" /></a>
+       </div>
+       <!-- END CONTACT SECTION -->
+       
+       <div class="clear"></div>
+     </div>
+     <!-- END BOTTOM SECTION -->
+   
+     <!-- START FOOTER -->
+     <div class="container_12">
+       <p class="footer">
+         &copy; Copyright 2011, Praveen Gollakota.
+         <br>
+         CSS template by <a href="http://yim.yourinspirationweb.com/index.htm">Your Inspiration Web</a> licensed under Creative Commons Attribution 3.0 license.
+    </p>
+  </div>
+  <!-- END FOOTER -->
+
+</body>
+</html>

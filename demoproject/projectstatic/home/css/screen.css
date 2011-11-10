@@ -1,0 +1,169 @@
+/* -----------------------------------------------------------------------
+
+
+ Blueprint CSS Framework 0.7.1
+ Edi Group snc - Web & business consulting
+
+   * Copyright (c) 2007-2008. See LICENSE for more info.
+
+----------------------------------------------------------------------- */
+
+/***********************************************************************
+******************* reset.css ******************************************
+************************************************************************/
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
+body { line-height:1.5;}
+table { border-collapse:separate; border-spacing:0; }
+caption, th, td { text-align:left; font-weight:normal; }
+table, td, th { vertical-align: middle; }
+blockquote:before, blockquote:after, q:before, q:after { content:""; }
+blockquote, q { quotes:"" ""; }
+a img { border:none!important; }
+.clearer { height: 0px; overflow: hidden; margin: 0px; clear: both; }
+
+/***********************************************************************
+******************* typography *****************************************
+************************************************************************/
+
+/* Titoli */
+h1, h2, h3, h4, h5, h6 { font-weight: bold; color:#111;}
+h1 { font-size:30px; line-height:1; margin-bottom:0.5em; }
+h2 { font-size:190%; font-weight: normal;margin-bottom:0.75em; letter-spacing: -0.5px;}
+h3 { font-size:100%; line-height:1; margin-bottom:1em; }
+h4 { font-size:1.2em; line-height:1.25; margin-bottom:1.25em; }
+h5 { font-size:1em; margin-bottom:1.5em; }
+h6 { font-size:1em; }
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img { margin:0;}
+
+/* Paragrafi */
+p { padding: 4px 0 4px 0; line-height: 22px; font-size: 13px;}
+p img.left { float:left;margin:1.5em 1.5em 1.5em 0;padding:0;}
+p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
+
+/* Link */
+a { color:#c55805; text-decoration:none;}
+a:link, a:visited { color: #c55805; text-decoration: none; }
+a:active, a:hover { color: #621303; text-decoration: underline }
+
+
+/* Formattazione */
+blockquote {margin:1.5em;color:#666;font-style:italic;}
+strong { font-weight:bold; } 
+em, dfn { font-style:italic; } 
+dfn { font-weight:bold; }
+sup, sub { line-height:0; }
+abbr, acronym { border-bottom:1px dotted #666; }
+address { margin:0 0 1.5em; font-style:italic; }
+del { color:#666;}
+pre { margin:1.5em 0; white-space:pre;}
+pre, code, tt { font:1em 'andale mono', 'lucida console', monospace; line-height:1.5; }
+caption {background:#eee;}
+.small { font-size:.9em; margin-bottom:1.875em; line-height:1.875em;}
+.large { font-size:1.2em; line-height:2.5em; margin-bottom:1.25em;}
+.hide { display:none; }
+.quiet { color:#666; }
+.loud { color:#000; }
+.highlight { background:#ff0;}
+.added { background:#060; color:#fff; }
+.removed { background:#900; color:#fff; }
+.first { margin-left:0; padding-left:0; }
+.last { margin-right:0; padding-right:0; }
+.top { margin-top:0; padding-top:0; }
+.bottom { margin-bottom:0; padding-bottom:0; }
+.center { text-align: center; }
+
+/*liste e tabelle*/
+li { margin: 0; line-height: 22px; }
+ul, ol {margin:0; }
+ul { list-style-type: disc; }
+ol { list-style-type:decimal; }
+dl { margin:0 0 1.5em 0; }
+dl dt { font-weight:bold; }
+dd { margin-left:1.5em; }
+table { margin-bottom:1.4em; width:100%; }
+th { font-weight: bold; background:#C3D9FF; }
+
+tr.even td {background:#E5ECF9;}
+tfoot {font-style:italic;}
+
+/*******************************************************************************
+*************************   web site    ****************************************
+*******************************************************************************/
+body  {background:url('../images/bg/bg.gif') repeat-x #fff;;font-size: 75%; color: #222; font-family: Georgia, serif; }
+.header {margin-top: 20px;}
+
+/*navigation*/
+#navigation {height:80px; width:550px;margin:5px 0 0 0;padding:0 0 0 0; font-size: 13px;}
+#navigation a {color:#000;}
+ul#nav {width: 550px;height:46px;padding:0 0 0 0;margin:0 0 0 15px;}
+ul#nav li {line-height: 32px;width: 98px;margin-top: 20px;padding:30px 30px 0 0;margin:0;display:block;float:left; text-align: center;/*text-indent:-9999px;*/}
+ul#nav li a {height:46px;border:0;display:block;text-decoration:none;overflow:hidden;padding:0;margin:0;}
+li#home a, li#about a, li#portfolio a, li#, li#contact a{height:46px;}
+li#home a:hover, li#home a:focus, li#about a:hover, li#about a:focus,
+li#portfolio a:hover, li#portfolio a:focus, li#contact a:hover, 
+li#contact a:focus{color: #000;height:46px; width:98px;background-image:url('../images/bg/toolbar.gif');background-repeat:no-repeat;background-position:0px -46px;}
+/*current page*/
+.currentPage {background-image:url('../images/bg/toolbar.gif');background-repeat:no-repeat;background-position:0px 0px;}
+a.currentPage{color:#fff!important;}
+
+/*slider*/
+.project {background:#b5b5b4; padding: 7px; font-size: 13px; color: #fff; font-style: italic;}
+.site {background:#8d8d8d; padding: 7px; font-size: 13px; color: #fff; font-style: italic;}
+.site a {color: #fff;}
+
+/*section*/
+.medium {height: 320px;}
+.bottom {margin: 20px 0 0 0;}
+.footer {border-top: 1px #d0d0cf solid; text-align: center; margin: 40px 0 0 0;}
+
+/*colors*/
+.orange {color: #f56b06;}
+.darkorange {color: #c35d02;}
+.grey, .greyRight {color: #6b6c69;}
+.greyRight {float: right;}
+
+/*about*/
+#baloon {width: 556px; height:180px; background-image:url('../images/bg/baloon.gif');background-repeat:no-repeat; margin-top: 80px;}
+#baloon p {font-size: 26px; line-height: 40px; letter-spacing: -1px; margin: 0 0 0 50px; padding: 30px 0 0 0;}
+
+/*contact*/
+.skype, .contactform {margin: 10px 0 0 0}
+.mascotte {margin: 30px 0 0 0;}
+
+/*portfolio*/
+#lastWork, .work, .getTouch {margin: 40px 0 0 0;}
+.screenshot {width: 420px; height: 250px; background-image:url('../images/bg/screen.png');background-repeat:no-repeat; margin-top: 30px;}
+.screenshot img {margin: 25px 0 0 31px;padding: 0; border: 1px green solid;}
+.separator {width: 960px; margin: 40px auto 0 auto;height: 2px; border-top: 1px #b8b8b8 dashed;}
+#social img {margin: 20px 5px 0 0;}
+
+/*contact form*/
+#contactForm{margin:15px 0;padding-bottom:15px;}
+#contactForm .formContent{width:430px;}
+label{padding:8px 0 0 10px;display:block;background:url('../images/arrow.jpg') no-repeat 0 15px;}
+label span.name{padding:0 0 0 15px;font-style:italic;color:#d81614;font-size:10px;}
+label span.email{padding:0 0 0 15px;font-style:italic;color:#d81614;font-size:10px;}
+label.optional{font-weight:normal;}
+input{border:1px solid #aaa5a2;}
+.input{padding:6px;display:block;border:1px solid #aaa5a2;width:280px;}		
+.submit{font-family: Georgia;display:block;cursor:pointer;background:#000;text-align:center;color:#fff;padding:7px 10px;border:none;margin-top:10px;}	
+textarea{border:1px solid #aaa5a2;padding:7px;width:415px;overflow:auto;height:80px;font-family:"Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;font-size:11px;font-weight:normal;}	
+fieldset{border:none;margin:0 0 25px 0;clear:both;}	
+input.inputError{border:1px solid #E22221;}	
+label.inputError{display:none!important;}
+textarea.inputError{border: 1px solid #EFBF18 !important;}
+select{padding:10px;margin-bottom:15px;border:1px solid #aaa5a2;}
+option{padding:2px 0 0 5px;}
+.responseMessage{display:block;padding:8px;background:#e0e0e0;color:#9c5203;}
+
+/*twitter*/
+ul#twitter_update_list li {list-style-type:none;padding: 0 0 10px 0;color:#000;}
+ul#twitter_update_list .divisor {height:1px;border-bottom:1px solid #f1f0f0;}
+ul#twitter_update_list .data {color:#6b6c69;}
+ul#twitter_update_list .data:before {content:"#[";}
+ul#twitter_update_list .data:after {content:"]";}
+ul#twitter_update_list a:link, ul#twitter_update_list a:visited {color:#ab4b05;text-decoration:none;}
+ul#twitter_update_list a:hover, ul#twitter_update_list a:active {color:#ab4b05;text-decoration:underline;}
+
+
