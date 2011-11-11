@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import patterns
+from django.views.generic.simple import redirect_to
 
 home_view_title = [
     (r'demo/', 'demohome', 
@@ -84,9 +85,13 @@ pivot_pattern_tuples = [(r'^' + url + r'$',
 
 homepatterns = patterns('homepage.views', 
                         (r'^$', 'homepage'),)
+homepatterns += patterns('',
+                         (r'^favicon\.ico$',
+                          'django.views.generic.simple.redirect_to',
+                          {'url': '/static/home/images/favicon.ico'}))
+
 demopatterns = patterns('demo.views', *home_pattern_tuples)
 chartpatterns = patterns('chartdemo.views', *chart_pattern_tuples)
 pivotpatterns = patterns('pivotdemo.views', *pivot_pattern_tuples)
 
 urlpatterns = homepatterns + demopatterns + chartpatterns + pivotpatterns
-
