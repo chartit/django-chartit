@@ -236,6 +236,12 @@ def _convert_dps_to_dict(series_list):
                         else:
                             raise APIInputError("Expecting a basestring or "
                                                 "dict in place of: %s" %tv)
+                elif isinstance(term,tuple):
+                            t,fn = term
+                            opt = copy.deepcopy(options)
+                            opt['fn'] = fn
+                            series_dict[t] = opt 
+         
         elif isinstance(terms, dict):
             for tk, tv in terms.items():
                 if isinstance(tv, basestring):
