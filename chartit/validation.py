@@ -84,7 +84,10 @@ def _clean_categories(categories, source):
                             %(categories, type(categories)))
     field_aliases = {}
     for c in categories:
-        field_aliases[c] = _validate_field_lookup_term(source.model, c)
+        if c in source.query.aggregates.keys():
+            field_aliases[c] = c
+        else:
+            field_aliases[c] = _validate_field_lookup_term(source.model, c)
     return categories, field_aliases
 
 def _clean_legend_by(legend_by, source):
