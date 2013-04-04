@@ -84,7 +84,7 @@ def _clean_categories(categories, source):
                             %(categories, type(categories)))
     field_aliases = {}
     for c in categories:
-        if c in source.query.aggregates.keys():
+        if c in source.query.aggregates.keys() or c in source.query.extra.keys():
             field_aliases[c] = c
         else:
             field_aliases[c] = _validate_field_lookup_term(source.model, c)
