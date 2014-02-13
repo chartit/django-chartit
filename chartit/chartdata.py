@@ -561,6 +561,8 @@ class PivotDataPool(DataPool):
                 self.cv_raw.sort(key=self.sortf)
                 self.cv = self.cv_raw
             else:
+                if not self.mts:
+                    self.cv_raw.sort(key=self.sortf)
                 self.cv = [self.mapf(cv) for cv in self.cv_raw]
                 if self.mts: 
                     combined = sorted(zip(self.cv, self.cv_raw),key=self.sortf)
