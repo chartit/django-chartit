@@ -124,7 +124,14 @@ class DataPool(object):
         for tk_td_tuples in self.query_groups:
             src = tk_td_tuples[0][1]['source']
             vqs = src.values(*(td['field'] for (tk, td) in tk_td_tuples))
-            yield tk_td_tuples, vqs
+            vqs2 = []
+            for v in vqs:
+                for (tk, td) in tk_td_tuples:
+                    f = td.get('fn')
+                    if(f):
+                        v[td['field']] = f(v[td['field']])
+                vqs2.append(v)
+            yield tk_td_tuples, vqs2
     
     def _get_data(self):
         for tk_td_tuples, vqs in self._generate_vqs():
