@@ -16,7 +16,7 @@ def assertOptionDictsEqual(self, first, second):
         v2 = second[k1]
         if isinstance(v1, Aggregate):
             if isinstance(v2, Aggregate):
-                if v1.name == v2.name and v1.lookup == v2.lookup:
+                if v1.name == v2.name:
                     return
                 else:
                     msg = "Aggregates don't match"
