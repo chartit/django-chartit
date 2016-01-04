@@ -1,8 +1,10 @@
-###############
-Django-Chartit
-###############
+################
+Django-Chartit 2
+################
 
-Chartit is a Django app that can be used to easily create charts from the data
+The fork of Django Charit that adds compatibility to Django 1.7+!
+
+Django Chartit is a Django app that can be used to easily create charts from the data
 in your database. The charts are rendered using ``Highcharts`` and ``jQuery``
 JavaScript libraries. Data in your database can be plotted as simple line
 charts, column charts, area charts, scatter plots, and many more chart types.
@@ -28,7 +30,7 @@ Installation
 
 You can install Django-Chartit from PyPI. Just do ::
 
-    $ pip install django_chartit
+    $ pip install django_chartit2
 
 You also need supporting JavaScript libraries. See the
 `Required JavaScript Libraries`_ section for more details.
@@ -184,14 +186,6 @@ the chart. ::
   <body>
       <div id='container'> Chart will be rendered here </div>
   </body>
-
-====
-Demo
-====
-
-The above examples are just a brief taste of what you can do with
-Django-Chartit. For more examples and to look at the charts in actions, check
-out the `demo website <http://chartit.shutupandship.com/demo>`_.
 
 ===============
 Documentation
