@@ -112,7 +112,7 @@ class DataPool(object):
         # where sclt is a source, category, legend_by tuple
         qg = groupby(s, sort_grp_fn)
         if sort_by_term is not None:
-            sort_by_fn = lambda (tk, td): -1*(abs(td[sort_by_term]))
+            sort_by_fn = lambda td_tk: -1*(abs(td_tk[1][sort_by_term]))
         else:
             sort_by_fn = None
         qg = [sorted(itr, key=sort_by_fn) for (grp, itr) in qg]
