@@ -1,6 +1,6 @@
 import copy
 from collections import defaultdict, OrderedDict
-from itertools import groupby, izip
+from itertools import groupby
 
 from .highcharts import HCOptions
 from .validation import clean_pcso, clean_cso, clean_x_sortf_mapf_mts
@@ -306,15 +306,15 @@ class Chart(object):
                             if self.series_options[y_term]['type'] == 'scatter':
                                 # scatter plot
                                 for x_value, y_value_tuple in data:
-                                    for opts, y_value in izip(y_hco_list,
-                                                              y_value_tuple):
+                                    for opts, y_value in zip(y_hco_list,
+                                                             y_value_tuple):
                                         opts['data'].append((x_value, y_value))
                                 self.hcoptions['series'].extend(y_hco_list)
                             else:
                                 # pie chart
                                 for x_value, y_value_tuple in data:
-                                    for opts, y_value in izip(y_hco_list,
-                                                              y_value_tuple):
+                                    for opts, y_value in zip(y_hco_list,
+                                                             y_value_tuple):
                                         opts['data'].append((str(x_value),
                                                              y_value))
                                 self.hcoptions['series'].extend(y_hco_list)
@@ -331,8 +331,8 @@ class Chart(object):
                             for x_value, y_value_tuple in data:
                                 hco_x_axis[x_axis_num]['categories']\
                                   .append(x_value)
-                                for opts, y_value in izip(y_hco_list,
-                                                          y_value_tuple):
+                                for opts, y_value in zip(y_hco_list,
+                                                         y_value_tuple):
                                     opts['data'].append(y_value)
                             self.hcoptions['series'].extend(y_hco_list)
                     else:
@@ -364,7 +364,7 @@ class Chart(object):
                     hco_x_axis = self.hcoptions['xAxis']
                     if len(hco_x_axis) - 1 < x_axis_num:
                             hco_x_axis\
-                              .extend([HCOptions({})]*
+                              .extend([HCOptions({})] *
                                       (x_axis_num - (len(hco_x_axis)-1)))
                     hco_x_axis[x_axis_num]['categories'] = []
 
@@ -387,7 +387,7 @@ class Chart(object):
                     for x_value, y_vals in data:
                         hco_x_axis[x_axis_num]['categories']\
                           .append(x_value)
-                        for opts, y_value in izip(y_hco_list_multi, y_vals):
+                        for opts, y_value in zip(y_hco_list_multi, y_vals):
                             opts['data'].append(y_value)
                     self.hcoptions['series'].extend(y_hco_list_multi)
 
