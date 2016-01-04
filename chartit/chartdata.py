@@ -105,7 +105,7 @@ class DataPool(object):
         # to compare whether two sources are exactly same. Need to figure out
         # if there is a better way. - PG
         sort_grp_fn = lambda (tk, td): tuple(chain(str(td['source'].query),
-                                              [td[t] for t in addl_grp_terms]))
+                                             [td[t] for t in addl_grp_terms]))
         s = sorted(self.series.items(), key=sort_grp_fn)
         # The following groupby will create an iterator which returns
         # <(grp-1, <(tk, td), ...>), (grp-2, <(tk, td), ...>), ...>
@@ -401,7 +401,7 @@ class PivotDataPool(DataPool):
         self.sortf, self.mapf, self.mts = clean_sortf_mapf_mts(sortf_mapf_mts)
         # query groups and data
         self.query_groups = \
-          self._group_terms_by_query('top_n_per_cat','categories','legend_by')
+            self._group_terms_by_query('top_n_per_cat', 'categories', 'legend_by')
         self._get_data()
 
     def _generate_vqs(self):
@@ -421,8 +421,8 @@ class PivotDataPool(DataPool):
             values_terms = chain(categories, legend_by)
             vqs = qs.values(*values_terms)
             # NOTE: Order of annotation is important!!!
-            # So need an SortedDict. Can't use a regular dict.
-            ann_terms = SortedDict((k, d['func']) for k, d in tk_td_tuples)
+            # So need an OrderedDict. Can't use a regular dict.
+            ann_terms = OrderedDict((k, d['func']) for k, d in tk_td_tuples)
             vqs = vqs.annotate(**ann_terms)
             # Now order by
             top_n_per_cat = td['top_n_per_cat']
@@ -486,7 +486,7 @@ class PivotDataPool(DataPool):
                     # sort order. Don't sort in this case.
                     if i != 0 and td['top_n_per_cat'] != 0:
                         g_vqs_by_cv.sort(key=itemgetter(tk),
-                                         reverse=(td['top_n_per_cat']> 0))
+                                         reverse=(td['top_n_per_cat'] > 0))
                     # g_vqs_by_cv_dfv: Grouped Value QuerySet (grouped by
                     # category and then by datafunc value.
                     # alias = 'population__sum'
@@ -499,12 +499,12 @@ class PivotDataPool(DataPool):
                     # not just 10, 10, 9. A simple list slice will only retain
                     # 10, 10, 9. So it is not useful. An alternative is to
                     # group_by and then slice.
-                    g_vqs_by_cv_dfv = groupby(g_vqs_by_cv,itemgetter(tk))
+                    g_vqs_by_cv_dfv = groupby(g_vqs_by_cv, itemgetter(tk))
                     # Now that this is grouped by datafunc value, slice off
                     # if we only need the top few per each category
                     if td['top_n_per_cat'] != 0:
-                        g_vqs_by_cv_dfv = islice(g_vqs_by_cv_dfv,0,
-                                               abs(td['top_n_per_cat']))
+                        g_vqs_by_cv_dfv = islice(g_vqs_by_cv_dfv, 0,
+                                                 abs(td['top_n_per_cat']))
                     # Now build the result dictionary
                     # dfv = datafunc value
                     # vqs_by_c_dfv =  ValuesQuerySet by cat. and datafunc value

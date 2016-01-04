@@ -1,2 +1,2 @@
-django>=1.7
+coverage
 simplejson

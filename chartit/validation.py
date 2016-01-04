@@ -47,7 +47,7 @@ def _validate_field_lookup_term(model, term):
         field_details = model._meta.get_field_by_name(terms[0])
         # if the field is direct field
         if field_details[2]:
-            m = field_details[0].related.parent_model
+            m = field_details[0].related.model
         else:
             m = field_details[0].model
 
