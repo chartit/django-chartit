@@ -1301,15 +1301,6 @@ class BadChartOptionsTests(TestCase):
             }]
         self.assertRaises(APIInputError, clean_cso, so_input, self.ds)
 
-    def test_x_and_y_not_in_same_table(self):
-        so_input = \
-          [{'options': {
-              'type': 'column'},
-            'terms': {
-              'month_seattle':['new_york_temp']}
-            }]
-        self.assertRaises(APIInputError, clean_cso, so_input, self.ds)
-
     def test_yterms_not_a_list(self):
         so_input = \
           [{'options': {
