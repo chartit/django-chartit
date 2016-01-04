@@ -4,6 +4,7 @@ from django.db.models.aggregates import Aggregate
 from django.db.models.base import ModelBase
 from django.db.models.manager import Manager
 from django.db.models.query import QuerySet
+from django.utils import six
 
 from .exceptions import APIInputError
 
@@ -73,7 +74,7 @@ def _validate_func(func):
 
 
 def _clean_categories(categories, source):
-    if isinstance(categories, basestring):
+    if isinstance(categories, six.string_types):
         categories = [categories]
     elif isinstance(categories, (tuple, list)):
         if not categories:
@@ -95,7 +96,7 @@ def _clean_categories(categories, source):
 
 
 def _clean_legend_by(legend_by, source):
-    if isinstance(legend_by, basestring):
+    if isinstance(legend_by, six.string_types):
         legend_by = [legend_by]
     elif isinstance(legend_by, (tuple, list)):
         pass
@@ -232,11 +233,11 @@ def _convert_dps_to_dict(series_list):
             raise APIInputError("%s is missing the 'terms' key." % sd)
         if isinstance(terms, list):
             for term in terms:
-                if isinstance(term, basestring):
+                if isinstance(term, six.string_types):
                     series_dict[term] = copy.deepcopy(options)
                 elif isinstance(term, dict):
                     for tk, tv in term.items():
-                        if isinstance(tv, basestring):
+                        if isinstance(tv, six.string_types):
                             opts = copy.deepcopy(options)
                             opts['field'] = tv
                             series_dict[tk] = opts
@@ -255,7 +256,7 @@ def _convert_dps_to_dict(series_list):
 
         elif isinstance(terms, dict):
             for tk, tv in terms.items():
-                if isinstance(tv, basestring):
+                if isinstance(tv, six.string_types):
                     opts = copy.deepcopy(options)
                     opts['field'] = tv
                     series_dict[tk] = opts
@@ -314,7 +315,7 @@ def _convert_pcso_to_dict(series_options):
             raise APIInputError("%s is missing the 'terms' key." % stod)
         if isinstance(terms, list):
             for term in terms:
-                if isinstance(term, basestring):
+                if isinstance(term, six.string_types):
                     opts = copy.deepcopy(options)
                     series_options_dict.update({term: opts})
                 elif isinstance(term, dict):
@@ -377,7 +378,7 @@ def _convert_cso_to_dict(series_options):
             for tk, td in terms.items():
                 if isinstance(td, list):
                     for yterm in td:
-                        if isinstance(yterm, basestring):
+                        if isinstance(yterm, six.string_types):
                             opts = copy.deepcopy(options)
                             opts['_x_axis_term'] = tk
                             series_options_dict[yterm] = opts
