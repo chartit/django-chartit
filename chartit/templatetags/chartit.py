@@ -1,9 +1,9 @@
-from itertools import izip_longest
+from itertools import zip_longest
+import posixpath
 
 from django import template
 from django.utils.safestring import mark_safe
 from django.conf import settings
-import posixpath
 import simplejson
 
 from ..charts import Chart, PivotChart
@@ -77,5 +77,5 @@ def load_charts(chart_list=None, render_to=''):
                                                          default=date_format),
                                         CHART_LOADER_URL))
     else:
-        embed_script = embed_script %((), CHART_LOADER_URL)
+        embed_script = embed_script % ((), CHART_LOADER_URL)
     return mark_safe(embed_script)

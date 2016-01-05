@@ -2,8 +2,9 @@ from django.test import TestCase
 from django.db.models import Avg
 
 from chartit import PivotDataPool, DataPool
-from chartit.validation import clean_pdps, clean_dps, clean_pcso, clean_cso
 from chartit.exceptions import APIInputError
+from chartit.templatetags import chartit
+from chartit.validation import clean_pdps, clean_dps, clean_pcso, clean_cso
 
 from .models import SalesHistory, MonthlyWeatherByCity, MonthlyWeatherSeattle
 from .utils import assertOptionDictsEqual
@@ -1311,3 +1312,8 @@ class BadChartOptionsTests(TestCase):
               'month':'new_york_temp'}
             }]
         self.assertRaises(APIInputError, clean_cso, so_input, self.ds)
+
+
+class ChartitTemplateTagTests(TestCase):
+
+    pass

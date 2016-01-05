@@ -2,6 +2,10 @@
 Django-Chartit 2
 ################
 
+.. image:: https://readthedocs.org/projects/django-chartit2/badge/?version=latest
+    :target: http://django-chartit2.readthedocs.org/en/latest/?badge=latest
+    :alt: Documentation Status
+
 .. image:: https://travis-ci.org/grantmcconnaughey/django-chartit2.svg?branch=master
     :target: https://travis-ci.org/grantmcconnaughey/django-chartit2
 
@@ -30,6 +34,16 @@ Features
 - Combine data from multiple models to plot on same pivot charts.
 - Plot a pareto chart, paretoed by a specific column.
 - Plot only a top few items per category in a pivot chart.
+
+=============================================
+Improvements from the original Django-Chartit
+=============================================
+
+- Added Python 3 compatibility
+- Added Django 1.8 and 1.9 compatibility
+- Added documentation to ReadTheDocs
+- Added automated testing via Travis CI
+- Added test coverage tracking via Coveralls
 
 ============
 Installation
