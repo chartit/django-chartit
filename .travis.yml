@@ -10,9 +10,9 @@ before_install:
   - pip install coveralls
 
 install:
+  - pip install Django==${DJANGO}
   - pip install -e .
   - pip install -r requirements.txt
-  - pip install Django==${DJANGO}
 
 script: coverage run --source chartit runtests.py chartit_tests
 
