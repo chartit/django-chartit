@@ -384,9 +384,9 @@ def _convert_cso_to_dict(series_options):
                             series_options_dict[yterm] = opts
                         elif isinstance(yterm, dict):
                             opts = copy.deepcopy(options)
-                            opts.update(yterm.values()[0])
+                            opts.update(list(yterm.values())[0])
                             opts['_x_axis_term'] = tk
-                            series_options_dict[yterm.keys()[0]] = opts
+                            series_options_dict[list(yterm.keys())[0]] = opts
                         else:
                             raise APIInputError("Expecting a basestring or "
                                                 "dict in place of: %s." % yterm)

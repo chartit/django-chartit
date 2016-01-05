@@ -112,7 +112,7 @@ class DataPool(object):
         # where sclt is a source, category, legend_by tuple
         qg = groupby(s, sort_grp_fn)
         if sort_by_term is not None:
-            sort_by_fn = lambda td_tk: -1*(abs(td_tk[1][sort_by_term]))
+            sort_by_fn = lambda td_tk: -1 * (abs(td_tk[1][sort_by_term]))
         else:
             sort_by_fn = None
         qg = [sorted(itr, key=sort_by_fn) for (grp, itr) in qg]
@@ -127,7 +127,7 @@ class DataPool(object):
             for v in vqs:
                 for (tk, td) in tk_td_tuples:
                     f = td.get('fn')
-                    if(f):
+                    if f:
                         v[td['field']] = f(v[td['field']])
                 vqs2.append(v)
             yield tk_td_tuples, vqs2
