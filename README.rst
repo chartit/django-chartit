@@ -2,7 +2,14 @@
 Django-Chartit 2
 ################
 
-The fork of Django Charit that adds compatibility to Django 1.7+!
+.. image:: https://travis-ci.org/grantmcconnaughey/django-chartit2.svg?branch=master
+    :target: https://travis-ci.org/grantmcconnaughey/django-chartit2
+
+.. image:: https://coveralls.io/repos/grantmcconnaughey/django-chartit2/badge.svg?branch=master&service=github
+  :target: https://coveralls.io/github/grantmcconnaughey/django-chartit2?branch=master
+
+
+The fork of Django Charit that adds support for Python 3 and Django 1.8+!
 
 Django Chartit is a Django app that can be used to easily create charts from the data
 in your database. The charts are rendered using ``Highcharts`` and ``jQuery``
@@ -28,7 +35,7 @@ Features
 Installation
 ============
 
-You can install Django-Chartit from PyPI. Just do ::
+You can install Django-Chartit 2 from PyPI. Just do ::
 
     $ pip install django_chartit2
 
@@ -198,12 +205,12 @@ Full documentation is available
 Required JavaScript Libraries
 =============================
 
-The following JavaScript Libraries are required for using Django-Chartit.
+The following JavaScript Libraries are required for using Django-Chartit 2.
 
 - `jQuery <http://jquery.com>`_
 - `Highcharts <http://highcharts.com>`_
 
-.. note:: While ``Django-Chartit`` itself is licensed under the BSD license,
+.. note:: While ``Django-Chartit 2`` itself is licensed under the BSD license,
    ``Highcharts`` is licensed under the `Highcharts license
    <http://www.highcharts.com/license>`_ and ``jQuery`` is licensed under both
    MIT License and GNU General Public License (GPL) Version 2. It is your own
