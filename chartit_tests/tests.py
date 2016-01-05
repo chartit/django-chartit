@@ -833,6 +833,7 @@ class BadPivotSeriesListInputTests(TestCase):
                 'legend_by': 10}}}]
         self.assertRaises(APIInputError, clean_pdps, series_input)
 
+
 class GoodDataSeriesListInputTests(TestCase):
 
     def test_all_terms(self):

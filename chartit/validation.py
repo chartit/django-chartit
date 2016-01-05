@@ -285,8 +285,7 @@ def clean_dps(series):
             except KeyError:
                 raise APIInputError("%s is missing the 'source' key." % td)
             td.setdefault('field', tk)
-            fa = _validate_field_lookup_term(td['source'].model, td['field'])\
-                   .title()
+            fa = _validate_field_lookup_term(td['source'].model, td['field'])
             # If the user supplied term is not a field name, use it as an alias
             if tk != td['field']:
                 fa = tk
