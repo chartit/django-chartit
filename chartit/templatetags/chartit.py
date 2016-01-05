@@ -1,8 +1,8 @@
-from itertools import zip_longest
 import posixpath
 
 from django import template
 from django.utils.safestring import mark_safe
+from django.utils import six
 from django.conf import settings
 import simplejson
 
@@ -69,7 +69,7 @@ def load_charts(chart_list=None, render_to=''):
             chart_list = [chart_list]
         chart_list = [c.hcoptions for c in chart_list]
         render_to_list = [s.strip() for s in render_to.split(',')]
-        for hco, render_to in izip_longest(chart_list, render_to_list):
+        for hco, render_to in six.moves.zip_longest(chart_list, render_to_list):
             if render_to:
                 hco['chart']['renderTo'] = render_to
         embed_script = (embed_script % (simplejson.dumps(chart_list,
