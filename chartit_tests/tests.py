@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.db.models import Avg
 
-from chartit import PivotDataPool, DataPool
+from chartit import PivotDataPool, DataPool, Chart
 from chartit.exceptions import APIInputError
 from chartit.templatetags import chartit
 from chartit.validation import clean_pdps, clean_dps, clean_pcso, clean_cso
@@ -1316,4 +1316,37 @@ class BadChartOptionsTests(TestCase):
 
 class ChartitTemplateTagTests(TestCase):
 
-    pass
+    def test_load_charts_with_None_chart(self):
+        html = chartit.load_charts(None, 'my_chart')
+
+        self.assertIn('<script type="text/javascript">', html)
+        self.assertIn('var _chartit_hco_array = ();', html)
+        self.assertIn('<script src="/static/chartit/js/chartloader.js" type="text/javascript">', html)
+
+    def test_load_charts_with_single_chart(self):
+        chart_data = DataPool(series=[{'options': {
+            'source': SalesHistory.objects.all()},
+            'terms': ['price', 'sale_date']
+        }])
+
+        chart = Chart(
+            datasource=chart_data,
+            series_options=[{
+                'options': {
+                    'type': 'column',
+                    'stacking': False
+                },
+                'terms': {'sale_date': ['price']}}])
+
+        html = chartit.load_charts(chart, 'my_chart')
+
+        self.assertIn('<script type="text/javascript">', html)
+        self.assertIn('"stacking": false', html)
+        self.assertIn('"data": []', html)
+        self.assertIn('"type": "column"', html)
+        self.assertIn('"name": "price"', html)
+        self.assertIn('{"renderTo": "my_chart"}', html)
+        self.assertIn('"title": {"text": "Price vs. Sale Date"}', html)
+        self.assertIn('<script src="/static/chartit/js/chartloader.js" type="text/javascript">', html)
+
+    # def test_load_charts_with_list_of_charts(self):

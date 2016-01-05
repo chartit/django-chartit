@@ -119,7 +119,7 @@ class Chart(object):
         self.user_input = locals()
         if not isinstance(datasource, DataPool):
             raise APIInputError("%s must be an instance of DataPool."
-                                %datasource)
+                                % datasource)
         self.datasource = datasource
         self.series_options = clean_cso(series_options, self.datasource)
         self.x_sortf_mapf_mts = clean_x_sortf_mapf_mts(x_sortf_mapf_mts)
@@ -176,10 +176,10 @@ class Chart(object):
         # Set title
         title = ''
         for x_axis_num, vqs_group in self.x_axis_vqs_groups.items():
-            for vqs_num, x_y_terms in  vqs_group.items():
+            for vqs_num, x_y_terms in vqs_group.items():
                 for x_term, y_terms in x_y_terms.items():
                     title += ', '.join([dss[y_term]['field_alias'].title()
-                              for y_term in y_terms])
+                                        for y_term in y_terms])
                     title += ' vs. '
                     title += dss[x_term]['field_alias'].title()
                 title += ' & '
@@ -244,7 +244,7 @@ class Chart(object):
                 x_sortf, x_mapf, x_mts = (None, None, False)
             ptype_x_y_terms = defaultdict(list)
             for vqs_group in vqs_groups.values():
-                x_term, y_terms_all = vqs_group.items()[0]
+                x_term, y_terms_all = tuple(vqs_group.items())[0]
                 y_terms_by_type = defaultdict(list)
                 for y_term in y_terms_all:
                     y_terms_by_type[cht_typ_grp(y_term)].append(y_term)
@@ -529,7 +529,7 @@ class PivotChart(object):
             if not lg:
                 title += "%s, " % t
             else:
-                title += "%s (lgnd. by %s), "  %(t, lg)
+                title += "%s (lgnd. by %s), " % (t, lg)
         categories = dss[terms[0]]['categories']
         categories_vnames = [dss[terms[0]]['field_aliases'][c].title()
                              for c in categories]

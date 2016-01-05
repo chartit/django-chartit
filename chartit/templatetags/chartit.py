@@ -12,14 +12,12 @@ try:
     CHARTIT_JS_REL_PATH = settings.CHARTIT_JS_REL_PATH
     if CHARTIT_JS_REL_PATH[0] == '/':
         CHARTIT_JS_REL_PATH = CHARTIT_JS_REL_PATH[1:]
-    CHART_LOADER_URL = posixpath.join(settings.STATIC_URL,
-                                      CHARTIT_JS_REL_PATH,
-                                      'chartloader.js')
 except AttributeError:
     CHARTIT_JS_REL_PATH = 'chartit/js/'
-    CHART_LOADER_URL = posixpath.join(settings.STATIC_URL,
-                                      CHARTIT_JS_REL_PATH,
-                                      'chartloader.js')
+
+CHART_LOADER_URL = posixpath.join(settings.STATIC_URL,
+                                  CHARTIT_JS_REL_PATH,
+                                  'chartloader.js')
 
 
 def date_format(obj):
