@@ -105,7 +105,7 @@ class DataPool(object):
         # to compare whether two sources are exactly same. Need to figure out
         # if there is a better way. - PG
         sort_grp_fn = lambda td_tk: tuple(chain(str(td_tk[1]['source'].query),
-                                          [td_tk[1][t] for t in addl_grp_terms]))
+                                          [list(td_tk[1][t]) for t in addl_grp_terms]))
         s = sorted(self.series.items(), key=sort_grp_fn)
         # The following groupby will create an iterator which returns
         # <(grp-1, <(tk, td), ...>), (grp-2, <(tk, td), ...>), ...>

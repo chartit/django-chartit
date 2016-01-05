@@ -3,3 +3,5 @@ directly from models.
 """
 from .chartdata import PivotDataPool, DataPool
 from .charts import PivotChart, Chart
+
+__version__ = '0.1'

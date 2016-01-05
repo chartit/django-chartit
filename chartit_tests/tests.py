@@ -917,6 +917,7 @@ class GoodDataSeriesListInputTests(TestCase):
         self.assertOptionDictsEqual(clean_dps(series_input),
                                     series_cleaned)
 
+
 class BadDataSeriesListInputTests(TestCase):
     def test_source_missing(self):
         series_input = \
