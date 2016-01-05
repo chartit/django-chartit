@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 import chartit
 
 setup(
-    name='django_chartit',
+    name='django_chartit2',
     version=chartit.__version__,
     packages=find_packages(exclude=["chartit_tests.*", "demoproject.*",
                                     "chartit_tests", "demoproject",
