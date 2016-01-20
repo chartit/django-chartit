@@ -3,6 +3,12 @@ from setuptools import setup, find_packages
 import chartit
 
 
+def read(*parts):
+    filename = path.join(path.dirname(__file__), *parts)
+    with codecs.open(filename, encoding='utf-8') as fp:
+        return fp.read()
+
+
 def get_version(*file_paths):
     """Get the django-chartit2 version without importing the module."""
     version_file = read(*file_paths)
