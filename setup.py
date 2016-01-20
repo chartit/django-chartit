@@ -2,9 +2,20 @@ from setuptools import setup, find_packages
 
 import chartit
 
+
+def get_version(*file_paths):
+    """Get the django-chartit2 version without importing the module."""
+    version_file = read(*file_paths)
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
+                              version_file, re.M)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError("Unable to find version string.")
+
+
 setup(
     name='django_chartit2',
-    version=chartit.__version__,
+    version=get_version('chartit', '__init__.py'),
     packages=find_packages(exclude=["chartit_tests.*", "demoproject.*",
                                     "chartit_tests", "demoproject",
                                     "docs.*", "docs"]),
@@ -31,7 +42,9 @@ setup(
         'Topic :: Software Development',
     ],
     platforms='any',
-    install_requires=["simplejson"],
+    install_requires=[
+        'simplejson',
+    ],
     keywords='django charts',
     author='Praveen Gollakota',
     author_email='pgollakota@gmail.com',
