@@ -1,3 +1,6 @@
+import codecs
+import re
+from os import path
 from setuptools import setup, find_packages
 
 import chartit
