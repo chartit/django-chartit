@@ -3,8 +3,6 @@ import re
 from os import path
 from setuptools import setup, find_packages
 
-import chartit
-
 
 def read(*parts):
     filename = path.join(path.dirname(__file__), *parts)
