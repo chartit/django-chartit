@@ -6,9 +6,33 @@ from .highcharts import HCOptions
 from .validation import clean_pcso, clean_cso, clean_x_sortf_mapf_mts
 from .exceptions import APIInputError
 from .chartdata import PivotDataPool, DataPool
+import simplejson
 
 
-class Chart(object):
+class BaseChart(object):
+    """
+        Common ancestor class for all charts to avoid code duplication.
+    """
+    def __init__(self, datasource, series_options, chart_options=None):
+        self.hcoptions = HCOptions({})
+
+    def to_json(self):
+        """Load Chart's data as JSON
+        Useful in Ajax requests. Example:
+
+        Return JSON from this method and response to client:
+        return JsonResponse(cht.to_JSON(), safe=False)
+
+        Then use jQuery load data and create Highchart:
+        $(function(){
+        $.getJSON("/data",function(data){
+            $('#container').highcharts(JSON.parse(data));
+            });
+        });"""
+        return simplejson.dumps(self.hcoptions)
+
+
+class Chart(BaseChart):
 
     def __init__(self, datasource, series_options, chart_options=None,
                  x_sortf_mapf_mts=None):
@@ -399,7 +423,7 @@ class Chart(object):
                     self.hcoptions['series'].extend(y_hco_list_multi)
 
 
-class PivotChart(object):
+class PivotChart(BaseChart):
 
     def __init__(self, datasource, series_options, chart_options=None):
         """Creates the PivotChart object.

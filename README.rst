@@ -29,6 +29,7 @@ Changelog
 =========
 
 * master:
+    * New to_json() method for charts. Useful for creating Highcharts in AJAX
     * Merged with Grant McConnaughey's django-chartit2 fork
     * Allow dictionary fields in conjunction with lambda fields. Closes #26
     * Minor documentation improvements
