@@ -186,6 +186,34 @@ the chart. ::
   </body>
 
 ====
+Rendering multiple charts
+====
+
+It is possible to render multiple charts in the same template. The first
+argument to ``load_charts`` is the Chart object or a list of Chart objects,
+and the second is a comma separated list of HTML IDs where the charts will
+be rendered.
+
+When calling Django's ``render`` you have to pass all you charts as a list::
+
+    return render(request, 'index.html',
+                 {
+                    'chart_list' : [chart_1, chart_2],
+                 }
+            )
+
+Then in your template you have to use the proper syntax::
+
+    <head>
+        {% load chartit %}
+        {{ chart_list|load_charts:"chart_1,chart_2" }}
+    </head>
+    <body>
+        <div id="chart_1">First chart will be rendered here</div>
+        <div id="chart_2">Second chart will be rendered here</div>
+    </body>
+
+====
 Demo
 ====
 
