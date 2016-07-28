@@ -33,8 +33,9 @@ class RecursiveDefaultDict(defaultdict):
 
     def __setitem__(self, key, item):
         if not isinstance(item, RecursiveDefaultDict):
-            super(RecursiveDefaultDict, self).__setitem__(key,
-                                                          _convert_to_rdd(item))
+            super(RecursiveDefaultDict, self).__setitem__(
+                                                key,
+                                                _convert_to_rdd(item))
         else:
             super(RecursiveDefaultDict, self).__setitem__(key, item)
 

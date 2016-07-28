@@ -104,15 +104,20 @@ class DataPool(object):
         # TODO: using str(source.query) was the only way that I could think of
         # to compare whether two sources are exactly same. Need to figure out
         # if there is a better way. - PG
-        sort_grp_fn = lambda td_tk: tuple(chain(str(td_tk[1]['source'].query),
-                                          [list(td_tk[1][t]) for t in addl_grp_terms]))
+        def sort_grp_fn(td_tk):
+            return tuple(chain(str(td_tk[1]['source'].query),
+                               [list(td_tk[1][t]) for t in addl_grp_terms]))
+
+        def sort_by_term_fn(td_tk):
+            return -1 * (abs(td_tk[1][sort_by_term]))
+
         s = sorted(self.series.items(), key=sort_grp_fn)
         # The following groupby will create an iterator which returns
         # <(grp-1, <(tk, td), ...>), (grp-2, <(tk, td), ...>), ...>
         # where sclt is a source, category, legend_by tuple
         qg = groupby(s, sort_grp_fn)
         if sort_by_term is not None:
-            sort_by_fn = lambda td_tk: -1 * (abs(td_tk[1][sort_by_term]))
+            sort_by_fn = sort_by_term_fn
         else:
             sort_by_fn = None
         qg = [sorted(itr, key=sort_by_fn) for (grp, itr) in qg]
@@ -400,8 +405,9 @@ class PivotDataPool(DataPool):
                             self.series.keys() else None)
         self.sortf, self.mapf, self.mts = clean_sortf_mapf_mts(sortf_mapf_mts)
         # query groups and data
-        self.query_groups = \
-            self._group_terms_by_query('top_n_per_cat', 'categories', 'legend_by')
+        self.query_groups = self._group_terms_by_query(
+                                'top_n_per_cat', 'categories', 'legend_by'
+                            )
         self._get_data()
 
     def _generate_vqs(self):

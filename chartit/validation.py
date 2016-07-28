@@ -88,7 +88,8 @@ def _clean_categories(categories, source):
                             % (categories, type(categories)))
     field_aliases = {}
     for c in categories:
-        if c in source.query.aggregates.keys() or c in source.query.extra.keys():
+        if c in source.query.aggregates.keys() or \
+           c in source.query.extra.keys():
             field_aliases[c] = c
         else:
             field_aliases[c] = _validate_field_lookup_term(source.model, c)
@@ -210,7 +211,8 @@ def clean_pdps(series):
                                                        fa_cat,
                                                        fa_lgby)
     else:
-        raise APIInputError("Expecting a dict or list in place of: %s" % series)
+        raise APIInputError("Expecting a dict or list in place of: %s" %
+                            series)
     return series
 
 
@@ -249,7 +251,7 @@ def _convert_dps_to_dict(series_list):
                             raise APIInputError("Expecting a basestring or "
                                                 "dict in place of: %s" % tv)
                 elif isinstance(term, tuple):
-                    t,fn = term
+                    t, fn = term
                     if isinstance(t, dict):
                         for tk, tv in t.items():
                             opt = copy.deepcopy(options)
@@ -301,7 +303,8 @@ def clean_dps(series):
         series = _convert_dps_to_dict(series)
         clean_dps(series)
     else:
-        raise APIInputError("Expecting a dict or list in place of: %s" % series)
+        raise APIInputError("Expecting a dict or list in place of: %s" %
+                            series)
     return series
 
 
@@ -395,7 +398,8 @@ def _convert_cso_to_dict(series_options):
                             series_options_dict[list(yterm.keys())[0]] = opts
                         else:
                             raise APIInputError("Expecting a basestring or "
-                                                "dict in place of: %s." % yterm)
+                                                "dict in place of: %s." %
+                                                yterm)
                 else:
                     raise APIInputError("Expecting a list instead of: %s"
                                         % td)
@@ -423,14 +427,14 @@ def clean_cso(series_options, ds):
                 if _x_axis_term not in ds.series.keys():
                     raise APIInputError("%s is not one of the keys of the "
                                         "datasource series. Allowed values "
-                                        "are: %s"
-                                        %(_x_axis_term,
-                                          ', '.join(ds.series.keys())))
+                                        "are: %s" %
+                                        (_x_axis_term,
+                                         ', '.join(ds.series.keys())))
             except KeyError:
                 raise APIInputError("Expecting a '_x_axis_term' for %s." % sod)
             if ds.series[sok]['_data'] != ds.series[_x_axis_term]['_data']:
                 raise APIInputError("%s and %s do not belong to the same "
-                                    "table." %(sok, _x_axis_term))
+                                    "table." % (sok, _x_axis_term))
                 sod['_data'] = ds.series[sok]['_data']
     elif isinstance(series_options, list):
         series_options = _convert_cso_to_dict(series_options)

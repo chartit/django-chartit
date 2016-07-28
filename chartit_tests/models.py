@@ -72,7 +72,9 @@ class SalesHistory(models.Model):
     book = models.ForeignKey(Book, db_column='book')
     sale_date = models.DateField(db_column='sale_date')
     sale_qty = models.IntegerField(db_column='sale_qty')
-    price = models.DecimalField(max_digits=5, decimal_places=2, db_column='price')
+    price = models.DecimalField(
+        max_digits=5, decimal_places=2, db_column='price'
+    )
 
     def __unicode__(self):
         return '%s %s %s' % (self.bookstore, self.book, self.sale_date)

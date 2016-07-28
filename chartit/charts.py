@@ -149,15 +149,19 @@ class Chart(object):
         - term-1-*-* all have same xAxis.
         - term-*-A-* all are from same ValueQuerySet (table)
         """
+        def sort_fn(td_tk):
+            return td_tk[1].get('xAxis', 0)
+
+        def sort2_fn(td_tk):
+            return dss[td_tk[1]['_x_axis_term']]['_data']
+
         dss = self.datasource.series
         x_axis_vqs_groups = defaultdict(dict)
-        sort_fn = lambda td_tk: td_tk[1].get('xAxis', 0)
         so = sorted(self.series_options.items(), key=sort_fn)
         x_axis_groups = groupby(so, sort_fn)
         for (x_axis, itr1) in x_axis_groups:
-            sort_fn = lambda td_tk: dss[td_tk[1]['_x_axis_term']]['_data']
-            itr1 = sorted(itr1, key=sort_fn)
-            for _vqs_num, (_, itr2) in enumerate(groupby(itr1, sort_fn)):
+            itr1 = sorted(itr1, key=sort2_fn)
+            for _vqs_num, (_, itr2) in enumerate(groupby(itr1, sort2_fn)):
                 x_axis_vqs_groups[x_axis][_vqs_num] = _x_vqs = {}
                 for tk, td in itr2:
                     _x_vqs.setdefault(td['_x_axis_term'], []).append(tk)
@@ -213,7 +217,7 @@ class Chart(object):
                 axis_title = set(t[0] for t in term_x_axis if t[1] == i)
                 x_axis['title']['text'] = ' & '.join(axis_title)
         if max_x_axis == 1:
-            if self.hcoptions['xAxis'][1]['opposite'] != False:
+            if self.hcoptions['xAxis'][1]['opposite'] is not False:
                 self.hcoptions['xAxis'][1]['opposite'] = True
 
         if max_y_axis >= y_axis_len:
@@ -224,18 +228,19 @@ class Chart(object):
                 axis_title = set(t[0] for t in term_y_axis if t[1] == i)
                 y_axis['title']['text'] = ' & '.join(axis_title)
         if max_y_axis == 1:
-            if self.hcoptions['yAxis'][1]['opposite'] != False:
+            if self.hcoptions['yAxis'][1]['opposite'] is not False:
                 self.hcoptions['yAxis'][1]['opposite'] = True
 
     def generate_plot(self):
+        # find all x's from different datasources that need to be plotted on
+        # same xAxis and also find their corresponding y's
+        def cht_typ_grp(y_term):
+            return ('scatter' if self.series_options[y_term]['type'] in
+                    ['scatter', 'pie'] else 'line')
+
         # reset the series
         self.hcoptions['series'] = []
         dss = self.datasource.series
-        # find all x's from different datasources that need to be plotted on
-        # same xAxis and also find their corresponding y's
-        cht_typ_grp = lambda y_term: ('scatter' if
-                                      self.series_options[y_term]['type']
-                                      in ['scatter', 'pie'] else 'line')
         for x_axis_num, vqs_groups in self.x_axis_vqs_groups.items():
             y_hco_list = []
             try:
@@ -267,13 +272,16 @@ class Chart(object):
                     y_fields = [dss[y_term]['field'] for y_term in y_terms]
                     y_aliases = [dss[y_term]['field_alias'] for y_term
                                  in y_terms]
-                    y_types = [self.series_options[y_term].get('type','line')
+                    y_types = [self.series_options[y_term].get('type', 'line')
                                for y_term in y_terms]
                     y_hco_list = [HCOptions(
                                     copy.deepcopy(
                                         self.series_options[y_term])) for
                                   y_term in y_terms]
-                    for opts, alias, typ in zip(y_hco_list,y_aliases,y_types):
+                    for opts, alias, typ in zip(
+                                                y_hco_list,
+                                                y_aliases,
+                                                y_types):
                         opts.pop('_x_axis_term')
                         opts['name'] = alias
                         opts['type'] = typ
@@ -303,7 +311,7 @@ class Chart(object):
                                 data = [(x_mapf(x), y) for (x, y) in data]
 
                         if ptype == 'scatter':
-                            if self.series_options[y_term]['type'] == 'scatter':
+                            if self.series_options[y_term]['type'] == 'scatter': # noqa
                                 # scatter plot
                                 for x_value, y_value_tuple in data:
                                     for opts, y_value in zip(y_hco_list,
@@ -355,8 +363,7 @@ class Chart(object):
                                 cur_y.extend(y_value_tuple)
                             except KeyError:
                                 y_values_multi[x_value] = [None]*ext_len
-                                y_values_multi[x_value]\
-                                  .extend(y_value_tuple)
+                                y_values_multi[x_value].extend(y_value_tuple)
                         for _y_vals in y_values_multi.values():
                             if len(_y_vals) != len_y_terms_multi:
                                 _y_vals.extend([None]*len(y_terms))
@@ -364,7 +371,7 @@ class Chart(object):
                     hco_x_axis = self.hcoptions['xAxis']
                     if len(hco_x_axis) - 1 < x_axis_num:
                         hco_x_axis.extend([HCOptions({})] *
-                                  (x_axis_num - (len(hco_x_axis)-1)))
+                                          (x_axis_num - (len(hco_x_axis)-1)))
                     hco_x_axis[x_axis_num]['categories'] = []
 
                     if x_mts:
@@ -372,8 +379,9 @@ class Chart(object):
                             data = ((x_mapf(x_value), y_vals) for
                                     (x_value, y_vals) in
                                     y_values_multi.iteritems())
-                            sort_key = ((lambda x_y: x_sortf(x_y[1])) if x_sortf
-                                        is not None else None)
+                            sort_key = ((lambda x_y: x_sortf(x_y[1]))
+                                        if x_sortf is not None
+                                        else None)
                             data = sorted(data, key=sort_key)
                     else:
                         data = y_values_multi.iteritems()
@@ -498,8 +506,8 @@ class PivotChart(object):
         """
         self.user_input = locals()
         if not isinstance(datasource, PivotDataPool):
-            raise APIInputError("%s must be an instance of PivotDataPool."
-                                %datasource)
+            raise APIInputError("%s must be an instance of PivotDataPool." %
+                                datasource)
         self.datasource = datasource
         self.series_options = clean_pcso(series_options, self.datasource)
         if chart_options is None:
