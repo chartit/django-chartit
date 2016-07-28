@@ -6,6 +6,7 @@ help:
 	@echo "lint - check style with flake8"
 	@echo "test - run tests quickly with the default Python"
 	@echo "coverage - check code coverage quickly with the default Python"
+	@echo "coverage-html - generate HTML coverage report and open it in browser"
 	@echo "docs - generate Sphinx HTML documentation, including API docs"
 	@echo "release - package and upload a release"
 	@echo "sdist - package"
@@ -25,12 +26,14 @@ clean-pyc:
 lint:
 	flake8 chartit chartit_tests
 
-test:
+test: lint
 	python runtests.py chartit_tests
 
-coverage:
+coverage: lint
 	coverage run --source chartit runtests.py chartit_tests
 	coverage report -m
+
+coverage-html: coverage
 	coverage html
 	open htmlcov/index.html
 
