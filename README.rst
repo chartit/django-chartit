@@ -40,8 +40,8 @@ Changelog
 * 0.2.0 as django-chartit2 (January 20, 2016):
     * Fixed issue that could prevent installation via PyPI
 
-* 0.1 (January 5, 2016)
-    * Initial release
+* 0.1 (November 5, 2011)
+    * Initial release of django-chartit
 
 ========
 Features
