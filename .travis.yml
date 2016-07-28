@@ -10,20 +10,20 @@ before_install:
   - pip install coveralls
 
 install:
-  - pip install Django==${DJANGO}
+  - pip install Django==$_DJANGO
   - pip install -e .
   - pip install -r requirements.txt
 
 script: make coverage
 
 env:
-  - DJANGO=1.8.8
-  - DJANGO=1.9.1
+  - _DJANGO=1.8.14
+  - _DJANGO=1.9.8
 
 matrix:
   exclude:
     - python: 3.3
-      env: DJANGO=1.9.1
+      env: _DJANGO=1.9.8
 
 after_success:
   - coveralls
