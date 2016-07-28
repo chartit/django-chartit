@@ -1,13 +1,13 @@
-﻿.. Django-Chartit 2 documentation master file, created by
+﻿.. Django-Chartit documentation master file, created by
    sphinx-quickstart on Thu Nov 03 09:33:01 2011.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
 ################
-Django-Chartit 2
+Django-Chartit
 ################
 
-Django-Chartit 2 can be used to plot the data on web pages from various models.
+Django-Chartit can be used to plot the data on web pages from various models.
 The charts are rendered using the ``Highcharts`` and ``jQuery`` JavaScript
 libraries. Data in your database can be plotted as simple line charts, column
 charts, area charts, scatter plots, and many more chart types. Data can also
@@ -30,7 +30,7 @@ Features
 Installation
 ============
 
-You can install Django-Chartit 2 from PyPI. Just do ::
+You can install Django-Chartit from PyPI. Just do ::
 
     $ pip install django_chartit
 
@@ -234,7 +234,7 @@ Demo
 ====
 
 The above examples are just a brief taste of what you can do with
-Django-Chartit 2. For more examples and to look at the charts in actions, see `the demo website </demo>`_.
+Django-Chartit. For more examples and to look at the charts in actions, see `the demo website </demo>`_.
 
 ===============
 API Reference
@@ -248,12 +248,12 @@ API Reference
 Required JavaScript Libraries
 =============================
 
-The following JavaScript Libraries are required for using Django-Chartit 2.
+The following JavaScript Libraries are required for using Django-Chartit.
 
 - `jQuery <http://jquery.com>`_
 - `Highcharts <http://highcharts.com>`_
 
-.. note:: While ``Django-Chartit 2`` itself is licensed under the BSD license,
+.. note:: While ``Django-Chartit`` itself is licensed under the BSD license,
    ``Highcharts`` is licensed under the `Highcharts license
    <http://www.highcharts.com/license>`_ and ``jQuery`` is licensed under both
    MIT License and GNU General Public License (GPL) Version 2. It is your own

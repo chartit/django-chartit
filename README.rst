@@ -1,19 +1,17 @@
 ################
-Django-Chartit 2
+Django-Chartit
 ################
 
-.. image:: https://readthedocs.org/projects/django-chartit2/badge/?version=latest
-    :target: http://django-chartit2.readthedocs.org/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/django-chartit/badge/?version=latest
+    :target: http://django-chartit.readthedocs.org/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. image:: https://travis-ci.org/grantmcconnaughey/django-chartit2.svg?branch=master
-    :target: https://travis-ci.org/grantmcconnaughey/django-chartit2
+.. image:: https://travis-ci.org/chartit/django-chartit.svg?branch=master
+    :target: https://travis-ci.org/chartit/django-chartit
 
-.. image:: https://coveralls.io/repos/grantmcconnaughey/django-chartit2/badge.svg?branch=master&service=github
-  :target: https://coveralls.io/github/grantmcconnaughey/django-chartit2?branch=master
+.. image:: https://coveralls.io/repos/chartit/django-chartit/badge.svg?branch=master&service=github
+  :target: https://coveralls.io/github/chartit/django-chartit?branch=master
 
-
-The fork of Django Charit that adds support for Python 3 and Django 1.8+!
 
 Django Chartit is a Django app that can be used to easily create charts from the data
 in your database. The charts are rendered using ``Highcharts`` and ``jQuery``
@@ -34,24 +32,19 @@ Features
 - Combine data from multiple models to plot on same pivot charts.
 - Plot a pareto chart, paretoed by a specific column.
 - Plot only a top few items per category in a pivot chart.
-
-=============================================
-Improvements from the original Django-Chartit
-=============================================
-
-- Added Python 3 compatibility
-- Added Django 1.8 and 1.9 compatibility
-- Added documentation to ReadTheDocs
-- Added automated testing via Travis CI
-- Added test coverage tracking via Coveralls
+- Python 3 compatibility
+- Django 1.8 and 1.9 compatibility
+- Documentation to ReadTheDocs
+- Automated testing via Travis CI
+- Test coverage tracking via Coveralls
 
 ============
 Installation
 ============
 
-You can install Django-Chartit 2 from PyPI. Just do ::
+You can install Django-Chartit from PyPI. Just do ::
 
-    $ pip install django_chartit2
+    $ pip install django_chartit
 
 You also need supporting JavaScript libraries. See the
 `Required JavaScript Libraries`_ section for more details.
@@ -76,6 +69,7 @@ It is easier to explain the steps above with examples. So read on.
 ====================
 How to Create Charts
 ====================
+
 Here is a short example of how to create a line chart. Let's say we have a
 simple model with 3 fields - one for month and two for temperatures of Boston
 and Houston. ::
@@ -249,7 +243,7 @@ Documentation
 ===============
 
 Full documentation is available
-`here <http://chartit.shutupandship.com/docs>`_ .
+`here <http://django-chartit.readthedocs.org/en/latest/?badge=latest>`_ .
 
 =============================
 Required JavaScript Libraries
@@ -260,10 +254,9 @@ The following JavaScript Libraries are required for using Django-Chartit 2.
 - `jQuery <http://jquery.com>`_
 - `Highcharts <http://highcharts.com>`_
 
-.. note:: While ``Django-Chartit 2`` itself is licensed under the BSD license,
+.. note:: While ``Django-Chartit`` itself is licensed under the BSD license,
    ``Highcharts`` is licensed under the `Highcharts license
    <http://www.highcharts.com/license>`_ and ``jQuery`` is licensed under both
    MIT License and GNU General Public License (GPL) Version 2. It is your own
    responsibility to abide by respective licenses when downloading and using
    the supporting JavaScript libraries.
-

@@ -21,7 +21,7 @@ def get_version(*file_paths):
 
 
 setup(
-    name='django_chartit2',
+    name='django_chartit',
     version=get_version('chartit', '__init__.py'),
     packages=find_packages(exclude=["chartit_tests.*", "demoproject.*",
                                     "chartit_tests", "demoproject",
@@ -57,7 +57,7 @@ setup(
     author_email='pgollakota@gmail.com',
     maintainer='Grant McConnaughey',
     maintainer_email='grantmcconnaughey@gmail.com',
-    url='https://github.com/grantmcconnaughey/django-chartit2',
+    url='https://github.com/chartit/django-chartit',
     license='BSD',
     include_package_data=True,
     zip_safe=False,
