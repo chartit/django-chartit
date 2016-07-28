@@ -1,3 +1,5 @@
+# used for testing
+flake8
 coverage
-simplejson
+# used for releases
 wheel
