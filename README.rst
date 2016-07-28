@@ -24,6 +24,25 @@ charts, column charts, area charts, scatter plots, and many more chart types.
 Data can also be plotted as Pivot Charts where the data is grouped and/or
 pivoted by specific column(s).
 
+=========
+Changelog
+=========
+
+* master:
+    * Merged with Grant McConnaughey's django-chartit2 fork
+    * Allow dictionary fields in conjunction with lambda fields. Closes #26
+    * Minor documentation improvements
+    * Lots of code cleanups
+
+* 0.2.2 as django-chartit2 (January 28, 2016)
+    * Fixed another issue that prevented installation via PyPI
+
+* 0.2.0 as django-chartit2 (January 20, 2016):
+    * Fixed issue that could prevent installation via PyPI
+
+* 0.1 (January 5, 2016)
+    * Initial release
+
 ========
 Features
 ========
