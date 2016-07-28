@@ -560,14 +560,14 @@ class PivotDataPool(DataPool):
                                          reverse=True)
             pareto_cv = [cv_dfv[0] for cv_dfv in pareto_cv_dfv_items]
             if self.top_n_term:
-                self.cv_raw = [cv for cv in pareto_cv if cv in self.cv_raw]
+                self.cv_raw = [_cv for _cv in pareto_cv if cv in self.cv_raw]
             else:
                 self.cv_raw = pareto_cv
 
             if self.mapf is None:
                 self.cv = self.cv_raw
             else:
-                self.cv = [self.mapf(cv) for cv in self.cv_raw]
+                self.cv = [self.mapf(_cv) for _cv in self.cv_raw]
         else:
             # otherwise, order them by sortf if there is one.
             if self.mapf is None:
@@ -576,7 +576,7 @@ class PivotDataPool(DataPool):
             else:
                 if not self.mts:
                     self.cv_raw.sort(key=self.sortf)
-                self.cv = [self.mapf(cv) for cv in self.cv_raw]
+                self.cv = [self.mapf(_cv) for _cv in self.cv_raw]
                 if self.mts:
                     combined = sorted(zip(self.cv, self.cv_raw),
                                       key=self.sortf)
