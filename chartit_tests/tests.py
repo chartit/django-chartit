@@ -894,6 +894,38 @@ class GoodDataSeriesListInputTests(TestCase):
         self.assertOptionDictsEqual(clean_dps(series_input),
                                     series_cleaned)
 
+    def test_terms_is_a_list_of_tuples_w_lambda(self):
+        _l = lambda x: -x
+        series_input = \
+          [{'options':
+             {'source': SalesHistory.objects.all()},
+            'terms': [('price', _l)]
+            }]
+        series_cleaned = \
+          {'price': {
+             'source': SalesHistory.objects.all(),
+             'field': 'price',
+             'field_alias': 'price',
+             'fn' : _l}}
+        self.assertOptionDictsEqual(clean_dps(series_input),
+                                    series_cleaned)
+
+    def test_terms_is_a_list_of_tuples_containing_dict_and_lambda(self):
+        _l = lambda x: -x
+        series_input = \
+          [{'options':
+             {'source': SalesHistory.objects.all()},
+            'terms': [({'price-x': 'price'}, _l)]
+            }]
+        series_cleaned = \
+          {'price-x': {
+             'source': SalesHistory.objects.all(),
+             'field': 'price',
+             'field_alias': 'price-x',
+             'fn' : _l}}
+        self.assertOptionDictsEqual(clean_dps(series_input),
+                                    series_cleaned)
+
     def test_multiple_dicts(self):
         series_input = \
           [{'options':

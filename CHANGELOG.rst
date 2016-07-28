@@ -1,6 +1,10 @@
 Changelog
 =========
 
+* master:
+    * Allow dictionary fields in conjunction with lambda fields. Closes #26
+    * Minor documentation improvements
+
 * 0.2.2 (January 28, 2016)
     * Fixed another issue that prevented installation via PyPI
 
