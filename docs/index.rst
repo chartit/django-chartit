@@ -34,6 +34,8 @@ You can install Django-Chartit from PyPI. Just do ::
 
     $ pip install django_chartit
 
+Then, add `chartit` to `INSTALLED_APPS` in "settings.py".
+
 You also need supporting JavaScript libraries. See the
 `Required JavaScript Libraries`_ section for more details.
 
