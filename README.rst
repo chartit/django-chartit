@@ -13,7 +13,7 @@ Django-Chartit
    :target: https://landscape.io/github/chartit/django-chartit/master
    :alt: Code Health
 
-.. image:: https://coveralls.io/repos/chartit/django-chartit/badge.svg?branch=master&service=github
+.. image:: https://coveralls.io/repos/github/chartit/django-chartit/badge.svg?branch=master
   :target: https://coveralls.io/github/chartit/django-chartit?branch=master
 
 
