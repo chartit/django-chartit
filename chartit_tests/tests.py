@@ -1,7 +1,8 @@
-from django.test import TestCase
+import sys
+from django.test import TestCase, override_settings
 from django.db.models import Avg
 
-from chartit import PivotDataPool, DataPool, Chart
+from chartit import PivotDataPool, DataPool, Chart, PivotChart
 from chartit.exceptions import APIInputError
 from chartit.templatetags import chartit
 from chartit.validation import clean_pdps, clean_dps, clean_pcso, clean_cso
@@ -1646,6 +1647,28 @@ class ChartitTemplateTagTests(TestCase):
         self.assertIn('var _chartit_hco_array = ();', html)
         self.assertIn('<script src="/static/chartit/js/chartloader.js" type="text/javascript">', html) # noqa
 
+    def test_load_charts_with_missing_render_to(self):
+        chart_data = DataPool(series=[{'options': {
+            'source': SalesHistory.objects.all()},
+            'terms': ['price', 'sale_date']
+        }])
+
+        chart = Chart(
+            datasource=chart_data,
+            series_options=[{
+                'options': {
+                    'type': 'column',
+                    'stacking': False
+                },
+                'terms': {'sale_date': ['price']}}])
+
+        html = chartit.load_charts(chart, '')
+
+        self.assertIn('<script type="text/javascript">', html)
+        self.assertIn('{"renderTo": "container"}', html)
+        self.assertIn('"title": {"text": "Price vs. Sale Date"}', html)
+        self.assertIn('<script src="/static/chartit/js/chartloader.js" type="text/javascript">', html) # noqa
+
     def test_load_charts_with_single_chart(self):
         chart_data = DataPool(series=[{'options': {
             'source': SalesHistory.objects.all()},
@@ -1672,4 +1695,92 @@ class ChartitTemplateTagTests(TestCase):
         self.assertIn('"title": {"text": "Price vs. Sale Date"}', html)
         self.assertIn('<script src="/static/chartit/js/chartloader.js" type="text/javascript">', html) # noqa
 
-    # def test_load_charts_with_list_of_charts(self):
+    def test_load_charts_with_two_charts(self):
+        chart_data = DataPool(series=[{'options': {
+            'source': SalesHistory.objects.all()},
+            'terms': ['price', 'sale_date']
+        }])
+
+        chart = Chart(
+            datasource=chart_data,
+            series_options=[{
+                'options': {
+                    'type': 'column',
+                    'stacking': False
+                },
+                'terms': {'sale_date': ['price']}}])
+
+        pivot_input = [{
+            'options': {
+                'source': SalesHistory.objects.all(),
+                'categories': 'bookstore__city__city',
+            },
+            'terms': {
+                'avg_price': Avg('price'),
+            }
+        }]
+        pivot_chart_data = PivotDataPool(pivot_input)
+
+        pivot_chart = PivotChart(
+            datasource=pivot_chart_data,
+            series_options=[{
+                'options': {
+                    'type': 'column',
+                    'stacking': False
+                },
+                'terms': ['avg_price']
+            }]
+        )
+
+        html = chartit.load_charts([chart, pivot_chart],
+                                   'my_chart,my_pivot_chart')
+
+        self.assertIn('<script type="text/javascript">', html)
+        self.assertIn('"stacking": false', html)
+        self.assertIn('"data": []', html)
+        self.assertIn('"type": "column"', html)
+        self.assertIn('"name": "price"', html)
+        # the first chart
+        self.assertIn('{"renderTo": "my_chart"}', html)
+        self.assertIn('"title": {"text": "Price vs. Sale Date"}', html)
+        # the second chart
+        self.assertIn('{"renderTo": "my_pivot_chart"}', html)
+        self.assertIn('"title": {"text": "Avg_Price vs. City"}', html)
+        self.assertIn('<script src="/static/chartit/js/chartloader.js" type="text/javascript">', html) # noqa
+
+
+class ChartitJSRelPathTests(TestCase):
+    """
+        Test the CHARTIT_JS_REL_PATH setting.
+    """
+
+    def setUp(self):
+        super(self.__class__, self).setUp()
+
+        # force chartit module to reload
+        # b/c this setting is evaluated near the top
+        for mod in ['chartit.templatetags.chartit',
+                    'chartit.templatetags',
+                    'chartit']:
+            if mod in sys.modules:
+                del sys.modules[mod]
+
+    @override_settings(CHARTIT_JS_REL_PATH='chartit/js/')
+    def test_setting_starting_without_slash(self):
+        from chartit.templatetags import chartit
+
+        html = chartit.load_charts(None, 'my_chart')
+
+        self.assertIn('<script type="text/javascript">', html)
+        self.assertIn('var _chartit_hco_array = ();', html)
+        self.assertIn('<script src="/static/chartit/js/chartloader.js" type="text/javascript">', html) # noqa
+
+    @override_settings(CHARTIT_JS_REL_PATH='/chartit/js/')
+    def test_setting_starting_with_slash(self):
+        from chartit.templatetags import chartit
+
+        html = chartit.load_charts(None, 'my_chart')
+
+        self.assertIn('<script type="text/javascript">', html)
+        self.assertIn('var _chartit_hco_array = ();', html)
+        self.assertIn('<script src="/static/chartit/js/chartloader.js" type="text/javascript">', html) # noqa
