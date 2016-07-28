@@ -521,7 +521,7 @@ class PivotChart(object):
         self.hcoptions = HCOptions({})
         # series and terms
         dss = self.datasource.series
-        terms = self.series_options.keys()
+        terms = list(self.series_options.keys())
         # legend by
         lgby_dict = dict(((t, dss[t]['legend_by']) for t in terms))
         lgby_vname_lists = [[dss[t]['field_aliases'].get(lgby, lgby)
