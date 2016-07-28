@@ -344,11 +344,11 @@ def clean_pcso(series_options, ds):
     if isinstance(series_options, dict):
         for sok, sod in series_options.items():
             if sok not in ds.series.keys():
-                    raise APIInputError("All the series terms must be present "
-                                        "in the series dict of the "
-                                        "datasource. Got %s. Allowed values "
-                                        "are: %s"
-                                        % (sok, ', '.join(ds.series.keys())))
+                raise APIInputError("All the series terms must be present "
+                                    "in the series dict of the "
+                                    "datasource. Got %s. Allowed values "
+                                    "are: %s"
+                                    % (sok, ', '.join(ds.series.keys())))
             if not isinstance(sod, dict):
                 raise APIInputError("All the series options must be of the "
                                     "type dict. Got %s of type %s instead."
@@ -411,10 +411,10 @@ def clean_cso(series_options, ds):
     if isinstance(series_options, dict):
         for sok, sod in series_options.items():
             if sok not in ds.series.keys():
-                    raise APIInputError("%s is not one of the keys of the "
-                                        "datasource series. Allowed values "
-                                        "are: %s"
-                                        % (sok, ', '.join(ds.series.keys())))
+                raise APIInputError("%s is not one of the keys of the "
+                                    "datasource series. Allowed values "
+                                    "are: %s"
+                                    % (sok, ', '.join(ds.series.keys())))
             if not isinstance(sod, dict):
                 raise APIInputError("%s is of type: %s. Expecting a dict."
                                     % (sod, type(sod)))

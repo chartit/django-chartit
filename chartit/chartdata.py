@@ -125,7 +125,7 @@ class DataPool(object):
             vqs = src.values(*(td['field'] for (tk, td) in tk_td_tuples))
             vqs2 = []
             for v in vqs:
-                for (tk, td) in tk_td_tuples:
+                for (_, td) in tk_td_tuples:
                     f = td.get('fn')
                     if f:
                         v[td['field']] = f(v[td['field']])
@@ -135,7 +135,7 @@ class DataPool(object):
     def _get_data(self):
         for tk_td_tuples, vqs in self._generate_vqs():
             vqs_list = list(vqs)
-            for tk, td in tk_td_tuples:
+            for tk, _ in tk_td_tuples:
                 # everything has a reference to the same list
                 self.series[tk]['_data'] = vqs_list
 
@@ -394,8 +394,8 @@ class PivotDataPool(DataPool):
         self.series = clean_pdps(series)
         self.top_n_term = (top_n_term if top_n_term
                            in self.series.keys() else None)
-        self.top_n = (top_n if (self.top_n_term is not None
-                                and isinstance(top_n, int)) else 0)
+        self.top_n = (top_n if (self.top_n_term is not None and
+                                isinstance(top_n, int)) else 0)
         self.pareto_term = (pareto_term if pareto_term in
                             self.series.keys() else None)
         self.sortf, self.mapf, self.mts = clean_sortf_mapf_mts(sortf_mapf_mts)

@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render_to_response
 from demoproject.utils.decorators import add_source_code_and_doc
 
 @add_source_code_and_doc

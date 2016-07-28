@@ -1,5 +1,4 @@
 from django.conf.urls.defaults import patterns
-from django.views.generic.simple import redirect_to
 
 home_view_title = [
     (r'demo/', 'demohome',

@@ -157,7 +157,7 @@ class Chart(object):
         for (x_axis, itr1) in x_axis_groups:
             sort_fn = lambda td_tk: dss[td_tk[1]['_x_axis_term']]['_data']
             itr1 = sorted(itr1, key=sort_fn)
-            for _vqs_num, (_data, itr2) in enumerate(groupby(itr1, sort_fn)):
+            for _vqs_num, (_, itr2) in enumerate(groupby(itr1, sort_fn)):
                 x_axis_vqs_groups[x_axis][_vqs_num] = _x_vqs = {}
                 for tk, td in itr2:
                     _x_vqs.setdefault(td['_x_axis_term'], []).append(tk)
@@ -175,8 +175,8 @@ class Chart(object):
         self.hcoptions['series'] = []
         # Set title
         title = ''
-        for x_axis_num, vqs_group in self.x_axis_vqs_groups.items():
-            for vqs_num, x_y_terms in vqs_group.items():
+        for _, vqs_group in self.x_axis_vqs_groups.items():
+            for _, x_y_terms in vqs_group.items():
                 for x_term, y_terms in x_y_terms.items():
                     title += ', '.join([dss[y_term]['field_alias'].title()
                                         for y_term in y_terms])
@@ -323,10 +323,10 @@ class Chart(object):
                             # all other chart types - line, area, etc.
                             hco_x_axis = self.hcoptions['xAxis']
                             if len(hco_x_axis) - 1 < x_axis_num:
-                                    hco_x_axis.extend([HCOptions({})] *
-                                                      (x_axis_num -
-                                                       (len(hco_x_axis) -
-                                                        1)))
+                                hco_x_axis.extend([HCOptions({})] *
+                                                  (x_axis_num -
+                                                   (len(hco_x_axis) -
+                                                    1)))
                             hco_x_axis[x_axis_num]['categories'] = []
                             for x_value, y_value_tuple in data:
                                 hco_x_axis[x_axis_num]['categories']\
@@ -363,9 +363,8 @@ class Chart(object):
                 if y_terms_multi:
                     hco_x_axis = self.hcoptions['xAxis']
                     if len(hco_x_axis) - 1 < x_axis_num:
-                            hco_x_axis\
-                              .extend([HCOptions({})] *
-                                      (x_axis_num - (len(hco_x_axis)-1)))
+                        hco_x_axis.extend([HCOptions({})] *
+                                  (x_axis_num - (len(hco_x_axis)-1)))
                     hco_x_axis[x_axis_num]['categories'] = []
 
                     if x_mts:
