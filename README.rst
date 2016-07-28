@@ -9,6 +9,10 @@ Django-Chartit
 .. image:: https://travis-ci.org/chartit/django-chartit.svg?branch=master
     :target: https://travis-ci.org/chartit/django-chartit
 
+.. image:: https://landscape.io/github/chartit/django-chartit/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/chartit/django-chartit/master
+   :alt: Code Health
+
 .. image:: https://coveralls.io/repos/chartit/django-chartit/badge.svg?branch=master&service=github
   :target: https://coveralls.io/github/chartit/django-chartit?branch=master
 
