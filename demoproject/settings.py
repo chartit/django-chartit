@@ -9,6 +9,7 @@ PROJECT_ROOT = os.path.dirname(__file__)
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
+SECRET_KEY = 'chartit-demo'
 MANAGERS = ADMINS
 TIME_ZONE = 'America/New_York'
 LANGUAGE_CODE = 'en-us'
@@ -49,7 +50,7 @@ MIDDLEWARE_CLASSES = (
 )
 ROOT_URLCONF = 'urls'
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, 'templates')
+    os.path.join(PROJECT_ROOT, 'templates'),
 )
 INSTALLED_APPS = (
     'django.contrib.staticfiles',
