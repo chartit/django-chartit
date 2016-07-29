@@ -7,11 +7,13 @@ class MonthlyWeatherByCity(models.Model):
     houston_temp = models.DecimalField(max_digits=5, decimal_places=1)
     new_york_temp = models.DecimalField(max_digits=5, decimal_places=1)
     san_franciso_temp = models.DecimalField(max_digits=5, decimal_places=1)
-    
+
+
 class MonthlyWeatherSeattle(models.Model):
     month = models.IntegerField()
     seattle_temp = models.DecimalField(max_digits=5, decimal_places=1)
-    
+
+
 class DailyWeather(models.Model):
     month = models.IntegerField()
     day = models.IntegerField()

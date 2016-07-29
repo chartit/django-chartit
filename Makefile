@@ -24,7 +24,7 @@ clean-pyc:
 	find . -name '*~' -exec rm -f {} +
 
 lint:
-	flake8 chartit chartit_tests
+	flake8 setup.py chartit chartit_tests demoproject
 
 test: lint
 	python runtests.py chartit_tests

@@ -80,6 +80,6 @@ LOGGING = {
 # All production settings like sensitive passwords go here.
 # Remember to exclude this file from version control
 try:
-    from prod_settings_demo import *
+    from prod_settings_demo import * # noqa
 except ImportError:
     pass

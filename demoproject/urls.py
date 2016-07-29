@@ -54,12 +54,12 @@ pivot_view_title = [
 ]
 
 home_sidebar = [(r'../' + url, title) for (url, view, title) in
-                 home_view_title]
+                home_view_title]
 
 chart_sidebar = [(r'../' + url, title) for (url, view, title) in
                  chart_view_title]
 pivot_sidebar = [(r'../' + url, title) for (url, view, title) in
-                    pivot_view_title]
+                 pivot_view_title]
 
 sidebar_items = [("Welcome", home_sidebar),
                  ("Charts", chart_sidebar),
@@ -69,18 +69,18 @@ home_pattern_tuples = [(r'^' + url + r'$',
                        view,
                        {'title': title,
                         'sidebar_items': sidebar_items}) for
-                           (url, view, title) in home_view_title]
+                       (url, view, title) in home_view_title]
 
 chart_pattern_tuples = [(r'^' + url + r'$',
-                       view,
-                       {'title': title,
-                        'sidebar_items': sidebar_items}) for
-                           (url, view, title) in chart_view_title]
+                        view,
+                        {'title': title,
+                         'sidebar_items': sidebar_items}) for
+                        (url, view, title) in chart_view_title]
 pivot_pattern_tuples = [(r'^' + url + r'$',
-                       view,
-                       {'title': title,
-                        'sidebar_items': sidebar_items}) for
-                           (url, view, title) in pivot_view_title]
+                        view,
+                        {'title': title,
+                         'sidebar_items': sidebar_items}) for
+                        (url, view, title) in pivot_view_title]
 
 homepatterns = patterns('homepage.views',
                         (r'^$', 'homepage'),)
