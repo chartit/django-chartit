@@ -20,15 +20,18 @@ class BaseChart(object):
         """Load Chart's data as JSON
         Useful in Ajax requests. Example:
 
-        Return JSON from this method and response to client:
-        return JsonResponse(cht.to_JSON(), safe=False)
+        Return JSON from this method and response to client::
 
-        Then use jQuery load data and create Highchart:
-        $(function(){
-        $.getJSON("/data",function(data){
-            $('#container').highcharts(JSON.parse(data));
+            return JsonResponse(cht.to_json(), safe=False)
+
+        Then use jQuery load data and create Highchart::
+
+            $(function(){
+            $.getJSON("/data",function(data){
+                $('#container').highcharts(JSON.parse(data));
+                });
             });
-        });"""
+        """
         return simplejson.dumps(self.hcoptions)
 
 
