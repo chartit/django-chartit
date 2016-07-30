@@ -274,7 +274,7 @@ Full documentation is available
 Required JavaScript Libraries
 =============================
 
-The following JavaScript Libraries are required for using Django-Chartit 2.
+The following JavaScript Libraries are required for using Django-Chartit.
 
 - `jQuery <http://jquery.com>`_
 - `Highcharts <http://highcharts.com>`_
