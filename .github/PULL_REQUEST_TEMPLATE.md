@@ -11,6 +11,7 @@ Before submitting a PR make sure the following are checked:
 * [ ] Feature branch is up-to-date with `master` (if not - rebase it)
 * [ ] Squashed related commits together.
 * [ ] Reviewed the diff manually for unexpected or unrelated changes.
+* [ ] Updated `README.rst` with change log.
 * [ ] Tested changes manually.
 * [ ] Added automated tests.
 * [ ] `make coverage` tests are passing.
