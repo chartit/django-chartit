@@ -30,10 +30,12 @@ Changelog
 
 * master:
     * New to_json() method for charts. Useful for creating Highcharts in AJAX
-    * Merged with Grant McConnaughey's django-chartit2 fork
+    * Merged with *django-chartit2* fork by
+      `Grant McConnaughey <https://github.com/grantmcconnaughey>`_ which adds
+      Python 3 and latest Django 1.8.x and 1.9.x support
     * Allow dictionary fields in conjunction with lambda fields. Closes #26
-    * Minor documentation improvements
-    * Lots of code cleanups
+    * Documentation improvements
+    * Lots of code cleanups and style improvements
 
 * 0.2.2 as django-chartit2 (January 28, 2016)
     * Fixed another issue that prevented installation via PyPI
