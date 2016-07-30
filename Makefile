@@ -38,12 +38,10 @@ coverage-html: coverage
 	open htmlcov/index.html
 
 docs:
-	rm -f docs/django-app-gen.rst
-	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ chartit
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
-	open docs/_build/html/index.html
+	rm -f docs/chartit*.rst
+	rm -f docs/modules.rst
 
 release: clean
 	python setup.py sdist upload

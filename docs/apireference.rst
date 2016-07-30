@@ -8,14 +8,12 @@ How to retrieve data
 DataPool
 --------
 
-.. autoclass:: chartit.DataPool
-   :members: __init__
+.. automethod:: chartit.DataPool.__init__
 
 PivotDataPool
 -------------
 
-.. autoclass:: chartit.PivotDataPool
-   :members: __init__
+.. automethod:: chartit.PivotDataPool.__init__
 
 How to create the charts
 ========================
@@ -23,14 +21,12 @@ How to create the charts
 Chart
 ------
 
-.. autoclass:: chartit.Chart
-   :members: __init__
+.. automethod:: chartit.Chart.__init__
 
 PivotChart
 ----------
 
-.. autoclass:: chartit.PivotChart
-   :members: __init__
+.. automethod:: chartit.PivotChart.__init__
 
 How to use chartit django template filters
 ===========================================

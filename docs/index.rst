@@ -1,12 +1,20 @@
 .. include:: ../README.rst
 
-===============
-API Reference
-===============
+===================
+Quick API Reference
+===================
 .. toctree::
    :maxdepth: 3
 
    apireference
+
+=========================
+Full module documentation
+=========================
+.. toctree::
+   :maxdepth: 3
+
+   modules
 
 ========
 License

@@ -134,15 +134,15 @@ class Chart(object):
 
         Here is an example of what this function would return. ::
 
-        [
-         [[(term-1-A-1, opts-1-A-1), (term-1-A-2, opts-1-A-2), ...],
-          [(term-1-B-1, opts-1-B-1), (term-1-B-2, opts-1-B-2), ...],
-          ...],
-         [[term-2-A-1, opts-2-A-1), (term-2-A-2, opts-2-A-2), ...],
-          [term-2-B-2, opts-2-B-2), (term-2-B-2, opts-2-B-2), ...],
-          ...],
-          ...
-          ]
+            [
+             [[(term-1-A-1, opts-1-A-1), (term-1-A-2, opts-1-A-2), ...],
+              [(term-1-B-1, opts-1-B-1), (term-1-B-2, opts-1-B-2), ...],
+              ...],
+             [[term-2-A-1, opts-2-A-1), (term-2-A-2, opts-2-A-2), ...],
+              [term-2-B-2, opts-2-B-2), (term-2-B-2, opts-2-B-2), ...],
+              ...],
+              ...
+              ]
 
         In the above example,
 
@@ -411,6 +411,7 @@ class PivotChart(object):
 
         - **series_options** (**required**) - specifies the options to plot
           the terms on the chart. It is of the form ::
+
             [{'options': {
                 #any items from HighChart series. For ex.
                 'type': 'column'

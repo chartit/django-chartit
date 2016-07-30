@@ -227,9 +227,9 @@ the chart. ::
       <div id='container'> Chart will be rendered here </div>
   </body>
 
-====
+=========================
 Rendering multiple charts
-====
+=========================
 
 It is possible to render multiple charts in the same template. The first
 argument to ``load_charts`` is the Chart object or a list of Chart objects,

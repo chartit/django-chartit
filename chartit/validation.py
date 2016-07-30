@@ -13,15 +13,18 @@ def _validate_field_lookup_term(model, term):
     """Checks whether the term is a valid field_lookup for the model.
 
     **Args**:
+
     - **model** (**required**) - a django model for which to check whether
       the term is a valid field_lookup.
     - **term** (**required**) - the term to check whether it is a valid
       field lookup for the model supplied.
 
     **Returns**:
+
     -  The verbose name of the field if the supplied term is a valid field.
 
     **Raises**:
+
     - APIInputError: If the term supplied is not a valid field lookup
       parameter for the model.
     """
