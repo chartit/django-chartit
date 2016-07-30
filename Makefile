@@ -40,8 +40,6 @@ coverage-html: coverage
 docs:
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
-	rm -f docs/chartit*.rst
-	rm -f docs/modules.rst
 
 release: clean
 	python setup.py sdist upload
