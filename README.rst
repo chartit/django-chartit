@@ -177,41 +177,49 @@ We want to plot a pivot chart of month (along the x-axis) versus the average
 rainfall (along the y-axis) of the top 3 cities with highest average
 rainfall in each month. ::
 
-   from chartit import PivotDataPool, PivotChart
+    from django.db.models import Avg
+    from chartit import PivotDataPool, PivotChart
 
-   def rainfall_pivot_chart_view(request):
-       #Step 1: Create a PivotDataPool with the data we want to retrieve.
-       rainpivotdata = \
-           PivotDataPool(
-              series =
-               [{'options': {
-                  'source': DailyWeather.objects.all(),
-                  'categories': ['month']},
-                 'terms': {
-                   'avg_rain': Avg('rainfall'),
-                   'legend_by': ['city'],
-                   'top_n_per_cat': 3}}
-                ])
+    def rainfall_pivot_chart_view(request):
+        # Step 1: Create a PivotDataPool with the data we want to retrieve.
+        rainpivotdata = PivotDataPool(
+            series=[{
+                'options': {
+                    'source': DailyWeather.objects.all(),
+                    'categories': ['month'],
+                    'legend_by': 'city',
+                    'top_n_per_cat': 3,
+                },
+                'terms': {
+                    'avg_rain': Avg('rainfall'),
+                }
+            }]
+        )
 
-       #Step 2: Create the PivotChart object
-       rainpivcht = \
-           PivotChart(
-               datasource = rainpivotdata,
-               series_options =
-                 [{'options':{
-                     'type': 'column',
-                     'stacking': True},
-                   'terms':[
-                     'avg_rain']}],
-               chart_options =
-                 {'title': {
-                      'text': 'Rain by Month in top 3 cities'},
-                  'xAxis': {
-                       'title': {
-                          'text': 'Month'}}})
+        # Step 2: Create the PivotChart object
+        rainpivcht = PivotChart(
+            datasource=rainpivotdata,
+            series_options=[{
+                'options': {
+                    'type': 'column',
+                    'stacking': True
+                },
+                'terms': ['avg_rain']
+            }],
+            chart_options={
+                'title': {
+                    'text': 'Rain by Month in top 3 cities'
+                },
+                'xAxis': {
+                    'title': {
+                        'text': 'Month'
+                    }
+                }
+            }
+        )
 
-       #Step 3: Send the PivotChart object to the template.
-       return render_to_response({'rainpivchart': rainpivcht})
+        # Step 3: Send the PivotChart object to the template.
+        return render_to_response({'rainpivchart': rainpivcht})
 
 And you can use the ``load_charts`` filter in the django template to render
 the chart. ::
