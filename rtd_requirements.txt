@@ -1,0 +1,3 @@
+# used for building the docs on Red The Docs
+Django
+simplejson
