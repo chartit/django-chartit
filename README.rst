@@ -28,7 +28,7 @@ pivoted by specific column(s).
 Changelog
 =========
 
-* master:
+* 0.2.3 (July 30, 2016)
     * New to_json() method for charts. Useful for creating Highcharts in AJAX
     * Merged with *django-chartit2* fork by
       `Grant McConnaughey <https://github.com/grantmcconnaughey>`_ which adds
