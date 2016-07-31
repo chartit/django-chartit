@@ -1,9 +1,8 @@
-import os
-from django.shortcuts import render_to_response
 from django.db.models import Sum, Avg
 from chartit import PivotChart, PivotDataPool
-from demoproject.utils.decorators import add_source_code_and_doc
-from models import SalesHistory
+from django.shortcuts import render_to_response
+from .decorators import add_source_code_and_doc
+from .models import SalesHistory
 
 
 @add_source_code_and_doc
@@ -375,25 +374,3 @@ def pivot_mapf(request, title, code, doc, sidebar_items):
                                 'title': title,
                                 'doc': doc,
                                 'sidebar_items': sidebar_items})
-
-
-@add_source_code_and_doc
-def model_details(request, title, code, doc, sidebar_items):
-    """
-    All the charts in this section are based on the following Models. The raw
-    data is available as a ``SQLite3`` database file
-    `here <../../static/db/chartitdemodb>`_. You can download the file and use
-    `SQLiteBrowser <http://sqlitebrowser.sourceforge.net/>`_
-    to look at the raw data.
-    """
-    fname = os.path.join(os.path.split(os.path.abspath(__file__))[0],
-                         'models.py')
-
-    with open(fname) as f:
-        code = ''.join(f.readlines())
-
-    return render_to_response('model_details.html',
-                              {'code': code,
-                               'title': title,
-                               'doc': doc,
-                               'sidebar_items': sidebar_items})

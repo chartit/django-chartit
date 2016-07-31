@@ -3,7 +3,6 @@
 div#featured {
 
     height: 233px;
-    background: url(../images/wood_bg.jpg) no-repeat top center;
 }
 
 div.featured-arrow {
@@ -18,7 +17,6 @@ div#slider {
     margin: 32px 27px;
     float: left;
     position: relative;
-    background: url(../images/faded.png) no-repeat center;
 }
 
 div.projectImage {

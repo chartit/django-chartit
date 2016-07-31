@@ -38,10 +38,10 @@
                     <a href="/#feedback" title = "Feedback">Feedback</a>
                 </li>
                 <li class="right" style="margin-right: 10px" >
-                    <a href="http://github.com/pgollakota/django-chartit/" title = "Code">Code</a> |
+                    <a href="http://github.com/chartit/django-chartit/" title = "Code">Code</a> |
                     </li>
                     <li class="right" style="margin-right: 10px" >
-                    <a href="/docs" title = "Docs">Docs</a> |
+                    <a href="http://django-chartit.readthedocs.io/en/latest/" title = "Docs">Docs</a> |
                     </li>
                     <li class="right" style="margin-right: 10px" >
                     <a href="/demo" title = "Demo">Demo</a> |
@@ -66,13 +66,13 @@
                     <div class="sphinxsidebar">
                     <div class="sphinxsidebarwrapper">
 
-                    {% for cname, clist in sidebar_items %}
-                    <h3> {{ cname }}</h3>
+                    {% for section in sidebar_items|dictsort:'sort_order' %}
+                    <h3> {{ section.section }}</h3>
                     <ul>
                     <ul>
-                    {% for link, title in clist %}
+                    {% for title, url_name in section.links %}
                     <li><a class="reference internal"
-                    href="../../{{link}}">{{ title }}</a></li>
+                    href="{% url url_name %}">{{ title }}</a></li>
                     {% endfor %}
                     </ul>
                     </ul>
