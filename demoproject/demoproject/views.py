@@ -55,7 +55,6 @@ def homepage(request):
     return render_to_response('index.html', {'chart_list': cht})
 
 
-
 @add_source_code_and_doc
 def demohome(request, title, code, doc, sidebar_items):
     """

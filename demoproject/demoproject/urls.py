@@ -32,7 +32,7 @@ urlpatterns = [
             'sidebar_section': 'Welcome',
         },
         name='demo_home',
-    ),
+        ),
 
     url(r'^demo/model-details/$', views.model_details,
         {
@@ -40,7 +40,7 @@ urlpatterns = [
             'sidebar_section': 'Welcome',
         },
         name='model_details',
-    ),
+        ),
 
     # chart examples
     url(r'^demo/chart/basic-line/$', chartdemo.basicline,
@@ -49,7 +49,7 @@ urlpatterns = [
             'sidebar_section': 'Charts',
         },
         name='line_chart',
-    ),
+        ),
 
     url(r'^demo/chart/mapf-for-x/$', chartdemo.mapf_for_x,
         {
@@ -57,7 +57,7 @@ urlpatterns = [
             'sidebar_section': 'Charts',
         },
         name='mapf_for_x',
-    ),
+        ),
 
     url(r'^demo/chart/column-chart/$', chartdemo.column_chart,
         {
@@ -65,7 +65,7 @@ urlpatterns = [
             'sidebar_section': 'Charts',
         },
         name='column_chart',
-    ),
+        ),
 
     url(r'^demo/chart/column-chart-multi-stack/$',
         chartdemo.column_chart_multi_stack,
@@ -74,7 +74,7 @@ urlpatterns = [
             'sidebar_section': 'Charts',
         },
         name='column_chart_multi_stack',
-    ),
+        ),
 
     url(r'^demo/chart/scatter-plot/$', chartdemo.scatter_plot,
         {
@@ -82,7 +82,7 @@ urlpatterns = [
             'sidebar_section': 'Charts',
         },
         name='scatter_plot',
-    ),
+        ),
 
     url(r'^demo/chart/basic-pie/$', chartdemo.basicpie,
         {
@@ -90,7 +90,7 @@ urlpatterns = [
             'sidebar_section': 'Charts',
         },
         name='basic_pie',
-    ),
+        ),
 
     url(r'^demo/chart/multi-table-same-x/$', chartdemo.multi_table_same_x,
         {
@@ -98,7 +98,7 @@ urlpatterns = [
             'sidebar_section': 'Charts',
         },
         name='multiple_models_same_chart',
-    ),
+        ),
 
     url(r'^demo/chart/multi-axes-and-types/$', chartdemo.multi_axes_and_types,
         {
@@ -106,7 +106,7 @@ urlpatterns = [
             'sidebar_section': 'Charts',
         },
         name='multiple_models_multiple_axes',
-    ),
+        ),
 
     url(r'^demo/chart/chart-default-options/$',
         chartdemo.chart_default_options,
@@ -115,7 +115,7 @@ urlpatterns = [
             'sidebar_section': 'Charts',
         },
         name='chart_default_options_explained',
-    ),
+        ),
 
     url(r'^demo/chart/combination-plot/$', chartdemo.combination_plot,
         {
@@ -123,7 +123,7 @@ urlpatterns = [
             'sidebar_section': 'Charts',
         },
         name='scatter_plot_multiple_models',
-    ),
+        ),
 
     url(r'^demo/chart/combination-line-pie/$', chartdemo.combination_line_pie,
         {
@@ -131,7 +131,7 @@ urlpatterns = [
             'sidebar_section': 'Charts',
         },
         name='line_pie_combination',
-    ),
+        ),
 
     # pivot chart examples
     url(r'^demo/pivot/simple/$', pivotdemo.simplepivot,
@@ -140,7 +140,7 @@ urlpatterns = [
             'sidebar_section': 'Pivot Charts',
         },
         name='pivot_basic_chart',
-    ),
+        ),
 
     url(r'^demo/pivot/pivot-with-legend/$', pivotdemo.pivot_with_legend,
         {
@@ -148,7 +148,7 @@ urlpatterns = [
             'sidebar_section': 'Pivot Charts',
         },
         name='pivot_chart_legend_by',
-    ),
+        ),
 
     url(r'^demo/pivot/multi-category/$', pivotdemo.pivot_multi_category,
         {
@@ -156,7 +156,7 @@ urlpatterns = [
             'sidebar_section': 'Pivot Charts',
         },
         name='pivot_multiple_categories',
-    ),
+        ),
 
     url(r'^demo/pivot/top-n-per-cat/$', pivotdemo.pivot_with_top_n_per_cat,
         {
@@ -164,7 +164,7 @@ urlpatterns = [
             'sidebar_section': 'Pivot Charts',
         },
         name='pivot_top_few_per_category',
-    ),
+        ),
 
     url(r'^demo/pivot/top-n/$', pivotdemo.pivot_top_n,
         {
@@ -172,7 +172,7 @@ urlpatterns = [
             'sidebar_section': 'Pivot Charts',
         },
         name='pivot_chart_top_few_items_only',
-    ),
+        ),
 
     url(r'^demo/pivot/pareto/$', pivotdemo.pivot_pareto,
         {
@@ -180,7 +180,7 @@ urlpatterns = [
             'sidebar_section': 'Pivot Charts',
         },
         name='pivot_pareto',
-    ),
+        ),
 
     url(r'^demo/pivot/muti-axes/$', pivotdemo.pivot_multi_axes,
         {
@@ -188,7 +188,7 @@ urlpatterns = [
             'sidebar_section': 'Pivot Charts',
         },
         name='pivot_chart_multiple_axes',
-    ),
+        ),
 
     url(r'^demo/pivot/mapf/$', pivotdemo.pivot_mapf,
         {
@@ -196,7 +196,7 @@ urlpatterns = [
             'sidebar_section': 'Pivot Charts',
         },
         name='pivot_chart_custom_x_axes_mapping',
-    )
+        )
 ]
 
 # build sidebar_items first
@@ -207,12 +207,12 @@ for u in urlpatterns:
         title = u.default_args['title']
 
         # check if we've seen this section already
-        if not section in seen_sections:
+        if section not in seen_sections:
             item = {
-                    'sort_order': sort_order[section],
-                    'section': section,
-                    'links': [],
-                   }
+                'sort_order': sort_order[section],
+                'section': section,
+                'links': [],
+            }
             sidebar_items.append(item)
             seen_sections.append(section)
 
