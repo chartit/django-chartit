@@ -4,8 +4,9 @@ before_install:
 - pip install coveralls
 env:
 - !!python/unicode '_DJANGO=1.10'
-- _DJANGO=1.8.14
-- _DJANGO=1.9.8
+- !!python/unicode '_DJANGO=1.8.14'
+- !!python/unicode '_DJANGO=1.9.8'
+- !!python/unicode '_DJANGO=1.9.9'
 install:
 - pip install Django==$_DJANGO
 - pip install -e .
