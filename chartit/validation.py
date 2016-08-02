@@ -9,6 +9,30 @@ from django.utils import six
 from .exceptions import APIInputError
 
 
+def get_all_field_names(meta):
+    """
+        Taken from Django 1.9.8 b/c this is unofficial API
+        which has been deprecated in 1.10.
+    """
+    names = set()
+    fields = meta.get_fields()
+    for field in fields:
+        # For backwards compatibility GenericForeignKey should not be
+        # included in the results.
+        if field.is_relation and field.many_to_one and \
+           field.related_model is None:
+            continue
+        # Relations to child proxy models should not be included.
+        if (field.model != meta.model and
+                field.model._meta.concrete_model == meta.concrete_model):
+            continue
+
+        names.add(field.name)
+        if hasattr(field, 'attname'):
+            names.add(field.attname)
+    return list(names)
+
+
 def _validate_field_lookup_term(model, term):
     """Checks whether the term is a valid field_lookup for the model.
 
@@ -30,30 +54,19 @@ def _validate_field_lookup_term(model, term):
     """
     # TODO: Memoization for speed enchancements?
     terms = term.split('__')
-    model_fields = model._meta.get_all_field_names()
+    model_fields = get_all_field_names(model._meta)
     if terms[0] not in model_fields:
         raise APIInputError("Field %r does not exist. Valid lookups are %s."
                             % (terms[0], ', '.join(model_fields)))
     if len(terms) == 1:
         return model._meta.get_field(terms[0]).verbose_name
     else:
-        # DocString details for model._meta.get_field_by_name
-        #
-        # Returns a tuple (field_object, model, direct, m2m), where
-        #     field_object is the Field instance for the given name,
-        #     model is the model containing this field (None for
-        #         local fields),
-        #     direct is True if the field exists on this model,
-        #     and m2m is True for many-to-many relations.
-        # When 'direct' is False, 'field_object' is the corresponding
-        # RelatedObject for this field (since the field doesn't have
-        # an instance associated with it).
-        field_details = model._meta.get_field_by_name(terms[0])
+        field = model._meta.get_field(terms[0])
         # if the field is direct field
-        if field_details[2]:
-            m = field_details[0].related.model
+        if not field.auto_created or field.concrete:
+            m = field.related_model
         else:
-            m = field_details[0].model
+            m = model
 
         return _validate_field_lookup_term(m, '__'.join(terms[1:]))
 
@@ -91,7 +104,7 @@ def _clean_categories(categories, source):
                             % (categories, type(categories)))
     field_aliases = {}
     for c in categories:
-        if c in source.query.aggregates.keys() or \
+        if c in source.query.annotations.keys() or \
            c in source.query.extra.keys():
             field_aliases[c] = c
         else:

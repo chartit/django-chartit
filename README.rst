@@ -28,6 +28,12 @@ pivoted by specific column(s).
 Changelog
 =========
 
+* master
+    * Fix for `get_all_field_names()` and `get_field_by_name()` removal
+      in Django 1.10. Fixes
+      `#39 <https://github.com/chartit/django-chartit/issues/39>`_
+    * Updated for django.db.sql.query.Query.aggregates removal
+
 * 0.2.3 (July 30, 2016)
     * New to_json() method for charts. Useful for creating Highcharts in AJAX
     * Merged with *django-chartit2* fork by
