@@ -20,9 +20,9 @@ def add_source_code_and_doc(f):
         start_line = end_line = None
         for i, line in enumerate(src_lines):
             if start_line is None or end_line is None:
-                if '#start_code' in line:
+                if '# start_code' in line:
                     start_line = i+1
-                if '#end_code' in line:
+                if '# end_code' in line:
                     end_line = i
             else:
                 break
