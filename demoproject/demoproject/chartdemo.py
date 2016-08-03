@@ -18,7 +18,7 @@ def basicline(request, title, code, doc, sidebar_items):
     - Remember that for a Chart, the x and y terms in the ``series_options``
       are written as ``x: [y, ...]`` pairs.
     - Any valid items in the `Highcharts options object
-      <http://www.highcharts.com/ref/>`_ are valid ``chart_options``.
+      <http://api.highcharts.com/highcharts>`_ are valid ``chart_options``.
     """
 
     # start_code
@@ -84,7 +84,7 @@ def basicpie(request, title, code, doc, sidebar_items):
     - Remember that for a Chart, the x and y terms in the ``series_options``
       are written as ``x: [y, ...]`` pairs.
     - Any valid items in the `Highcharts options object
-      <http://www.highcharts.com/ref/>`_ are valid ``chart_options``.
+      <http://api.highcharts.com/highcharts>`_ are valid ``chart_options``.
     - We use the ``x_mapf_sortf_mts`` parameter to convert the month numbers
       retrieved from the database to month names.
 
@@ -303,7 +303,8 @@ def multi_axes_and_types(request, title, code, doc, sidebar_items):
     - You can plot data on different axes by setting the ``xAxis`` and
       ``yAxis``.
     - The ``series_options`` - ``options`` dict takes any of the values from
-      `Highcharts series options <http://www.highcharts.com/ref/#series>`_.
+      `Highcharts series options
+      <http://api.highcharts.com/highcharts#Series>`_
     - If there are only 2 axes (0 and 1), the default behavior of Chartit is
       to display them on opposite sides. You can override this default behavior
       by setting ``{"opposite": False}`` manually. If there are more than
@@ -674,7 +675,8 @@ def column_chart(request, title, code, doc, sidebar_items):
     Points to note:
 
     - Any of the `Highcharts series options
-      <http://www.highcharts.com/ref/#series>`_ are valid options for the Chart
+      <http://api.highcharts.com/highcharts#Series>`_ are valid options for
+      the Chart
       ``series_options`` - ``options`` dict. In this case we set the
       ``stacking`` parameter to ``True`` to stack the columns on the top of
       each other.
@@ -744,8 +746,8 @@ def combination_line_pie(request, title, code, doc, sidebar_items):
 
     - ``center`` and ``size`` are used to center the pie chart and scale it
       to fit in the chart. Remember that any of the `Highcharts series options
-      <http://www.highcharts.com/ref/#series>`_ are valid options for the Chart
-      ``series_options`` - ``options`` dict.
+      <http://api.highcharts.com/highcharts#Series>`_ are valid options for
+      the Chart ``series_options`` - ``options`` dict.
 
     Note: This demo is to demonstrate the use of the API and not to teach
     you data analysis and data presentation skills. Not all charts plotted
