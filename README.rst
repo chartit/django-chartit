@@ -28,6 +28,10 @@ pivoted by specific column(s).
 Changelog
 =========
 
+* master
+    * Workaround Python 3 vs. Python 2 list sort issue which breaks
+      charts with multiple data sources displayed on the same axis!
+
 * 0.2.4 (August 2, 2016)
     * Fix for `get_all_field_names()` and `get_field_by_name()` removal
       in Django 1.10. Fixes

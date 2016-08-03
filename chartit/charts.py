@@ -1,3 +1,4 @@
+import sys
 import copy
 from collections import defaultdict, OrderedDict
 from itertools import groupby
@@ -15,6 +16,7 @@ class BaseChart(object):
     """
     def __init__(self, datasource, series_options, chart_options=None):
         self.hcoptions = HCOptions({})
+        self.PY2 = sys.version_info.major == 2
 
     def to_json(self):
         """Load Chart's data as JSON
@@ -142,7 +144,11 @@ class Chart(BaseChart):
           corresponding datasource or if the ``series_options`` cannot be
           parsed.
         """
-
+        super(self.__class__, self).__init__(
+                                                datasource,
+                                                series_options,
+                                                chart_options
+                                            )
         self.user_input = locals()
         if not isinstance(datasource, DataPool):
             raise APIInputError("%s must be an instance of DataPool."
@@ -187,7 +193,27 @@ class Chart(BaseChart):
         so = sorted(self.series_options.items(), key=sort_fn)
         x_axis_groups = groupby(so, sort_fn)
         for (x_axis, itr1) in x_axis_groups:
-            itr1 = sorted(itr1, key=sort2_fn)
+            # Python 2 and 3 have different rules for ordering comparisons
+            # https://docs.python.org/3/whatsnew/3.0.html#ordering-comparisons
+            # http://stackoverflow.com/a/3484456
+            #
+            # Here we're trying to sort the iterator based on values in the
+            # _data attribute, which are lists of dicts, holding model data.
+            #
+            # When we try to render charts using sources from two different
+            # models these dicts have different keys and the comparison
+            # list_A < list_B fails with
+            # TypeError: unorderable types: dict() < dict()
+            #
+            # for example try:
+            # [{'a':1}, {'b':2}] < [{'a':1}, {'b':2, 'c':3}]
+            #
+            # This is used in demoproject.chartdemo.multi_table_same_x()!
+            #
+            # At the moment I don't have an idea how to solve this
+            # but disabling the sort seems to work, at least in the demo!
+            if self.PY2:
+                itr1 = sorted(itr1, key=sort2_fn)
             for _vqs_num, (_, itr2) in enumerate(groupby(itr1, sort2_fn)):
                 x_axis_vqs_groups[x_axis][_vqs_num] = _x_vqs = {}
                 for tk, td in itr2:
@@ -405,13 +431,13 @@ class Chart(BaseChart):
                         if x_mapf:
                             data = ((x_mapf(x_value), y_vals) for
                                     (x_value, y_vals) in
-                                    y_values_multi.iteritems())
+                                    y_values_multi.items())
                             sort_key = ((lambda x_y: x_sortf(x_y[1]))
                                         if x_sortf is not None
                                         else None)
                             data = sorted(data, key=sort_key)
                     else:
-                        data = y_values_multi.iteritems()
+                        data = y_values_multi.items()
                         sort_key = ((lambda x_y: x_sortf(x_y[1])) if x_sortf
                                     is not None else None)
                         data = sorted(data, key=sort_key)
@@ -532,6 +558,11 @@ class PivotChart(BaseChart):
           corresponding datasource or if the ``series_options`` cannot be
           parsed.
         """
+        super(self.__class__, self).__init__(
+                                                datasource,
+                                                series_options,
+                                                chart_options
+                                            )
         self.user_input = locals()
         if not isinstance(datasource, PivotDataPool):
             raise APIInputError("%s must be an instance of PivotDataPool." %
