@@ -28,7 +28,7 @@ pivoted by specific column(s).
 Changelog
 =========
 
-* master
+* 0.2.5 (August 3, 2016)
     * Workaround Python 3 vs. Python 2 list sort issue which breaks
       charts with multiple data sources displayed on the same axis!
     * Make demoproject/ compatible with Django 1.10
