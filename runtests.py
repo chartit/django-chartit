@@ -1,30 +1,15 @@
+import os
 import sys
 
 try:
-    from django.conf import settings
-    from django.test.utils import get_runner
+    sys.path.append('demoproject')
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "demoproject.settings")
 
-    settings.configure(
-        DEBUG=True,
-        USE_TZ=True,
-        DATABASES={
-            "default": {
-                "ENGINE": "django.db.backends.sqlite3",
-                "NAME": ":memory:",
-            }
-        },
-        INSTALLED_APPS=[
-            "django.contrib.auth",
-            "django.contrib.contenttypes",
-            "django.contrib.staticfiles",
-            "django.contrib.sites",
-            "chartit",
-            "chartit_tests",
-        ],
-        SITE_ID=1,
-        MIDDLEWARE_CLASSES=(),
-        STATIC_URL='/static/'
-    )
+    from django.conf import settings
+    from django.core.management import call_command
+
+    settings.DATABASES['default']['NAME'] = ':memory:'
+    settings.INSTALLED_APPS.append('chartit_tests')
 
     try:
         import django
@@ -44,14 +29,10 @@ def run_tests(*test_args):
     if not test_args:
         test_args = ["chartit_tests"]
 
-    # Run tests
-    TestRunner = get_runner(settings)
-    test_runner = TestRunner()
-
-    failures = test_runner.run_tests(test_args)
-
-    if failures:
-        sys.exit(bool(failures))
+    # ./manage.py test takes care of database creation and
+    # application of migrations if any
+    result = call_command('test', *test_args, verbosity=2, failfast=True)
+    sys.exit(result)
 
 
 if __name__ == "__main__":
