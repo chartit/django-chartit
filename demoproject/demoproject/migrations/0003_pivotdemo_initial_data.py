@@ -18836,10 +18836,18 @@ def initial_data(apps, schema_editor):
     BookAuthors = None
     for relation in Book._meta.many_to_many:
         if relation.name == 'related':
-            BookRelated = relation.remote_field.through
+            try:
+                BookRelated = relation.remote_field.through
+            except AttributeError:
+                # available in Django 1.8
+                BookRelated = relation.rel.through
 
         if relation.name == 'authors':
-            BookAuthors = relation.remote_field.through
+            try:
+                BookAuthors = relation.remote_field.through
+            except AttributeError:
+                # available in Django 1.8
+                BookAuthors = relation.rel.through
 
     # create objects which don't have FKs or ManyToMany fields
     for record in data:
