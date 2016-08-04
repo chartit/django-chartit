@@ -1,92 +1,67 @@
 from django.db import models
 
 
-class Author(models.Model):
+class MonthlyWeatherByCity(models.Model):
+    month = models.IntegerField()
+    boston_temp = models.DecimalField(max_digits=5, decimal_places=1)
+    houston_temp = models.DecimalField(max_digits=5, decimal_places=1)
+    new_york_temp = models.DecimalField(max_digits=5, decimal_places=1)
+    san_francisco_temp = models.DecimalField(max_digits=5, decimal_places=1)
 
-    first_name = models.CharField(max_length=50, db_column='first_name')
-    last_name = models.CharField(max_length=50, db_column='last_name')
+
+class MonthlyWeatherSeattle(models.Model):
+    month = models.IntegerField()
+    seattle_temp = models.DecimalField(max_digits=5, decimal_places=1)
+
+
+class DailyWeather(models.Model):
+    month = models.IntegerField()
+    day = models.IntegerField()
+    temperature = models.DecimalField(max_digits=5, decimal_places=1)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=2)
+
+
+class Author(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
 
     def __unicode__(self):
         return '%s %s' % (self.first_name, self.last_name)
 
-    class Meta:
-        db_table = 'author'
-
 
 class Publisher(models.Model):
-
-    name = models.CharField(max_length=50, db_column='name')
+    name = models.CharField(max_length=50)
 
     def __unicode__(self):
         return '%s' % (self.name)
-
-    class Meta:
-        db_table = 'publisher'
 
 
 class Genre(models.Model):
-
-    name = models.CharField(max_length=50, db_column='name')
+    name = models.CharField(max_length=50)
 
     def __unicode__(self):
         return '%s' % (self.name)
 
-    class Meta:
-        db_table = 'genre'
-
 
 class Book(models.Model):
-
-    title = models.CharField(max_length=50, db_column='title')
-    rating = models.FloatField(db_column='rating')
-    rating_count = models.IntegerField(db_column='rating_count')
-    authors = models.ManyToManyField(Author, db_column='authors')
-    publisher = models.ForeignKey(Publisher, db_column='publisher', null=True,
-                                  blank=True, on_delete=models.SET_NULL)
-    related = models.ManyToManyField('self', db_column='related', blank=True)
-    genre = models.ForeignKey(Genre, db_column='genre', null=True, blank=True,
+    title = models.CharField(max_length=50)
+    rating = models.FloatField()
+    rating_count = models.IntegerField()
+    authors = models.ManyToManyField(Author)
+    publisher = models.ForeignKey(Publisher, null=True, blank=True,
+                                  on_delete=models.SET_NULL)
+    related = models.ManyToManyField('self', blank=True)
+    genre = models.ForeignKey(Genre, null=True, blank=True,
                               on_delete=models.SET_NULL)
 
     def __unicode__(self):
         return '%s' % (self.title)
 
-    class Meta:
-        db_table = 'book'
-
-
-class BookStore(models.Model):
-
-    name = models.CharField(max_length=50, db_column='name')
-    city = models.ForeignKey('City')
-
-    def __unicode__(self):
-        return '%s' % (self.name)
-
-    class Meta:
-        db_table = 'bookstore'
-
-
-class SalesHistory(models.Model):
-
-    bookstore = models.ForeignKey(BookStore, db_column='bookstore')
-    book = models.ForeignKey(Book, db_column='book')
-    sale_date = models.DateField(db_column='sale_date')
-    sale_qty = models.IntegerField(db_column='sale_qty')
-    price = models.DecimalField(
-        max_digits=5, decimal_places=2, db_column='price'
-    )
-
-    def __unicode__(self):
-        return '%s %s %s' % (self.bookstore, self.book, self.sale_date)
-
-    class Meta:
-        db_table = 'saleshistory'
-
 
 class City(models.Model):
-    id = models.AutoField(primary_key=True, db_column='id')
-    city = models.CharField(max_length=50, db_column='city')
-    state = models.CharField(max_length=2, db_column='state')
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=2)
 
     def __unicode__(self):
         return '%s, %s' % (self.city, self.state)
@@ -94,44 +69,21 @@ class City(models.Model):
     def region(self):
         return 'USA'
 
-    class Meta:
-        db_table = 'city'
+
+class BookStore(models.Model):
+    name = models.CharField(max_length=50)
+    city = models.ForeignKey('City')
+
+    def __unicode__(self):
+        return '%s' % (self.name)
 
 
-class DailyWeather(models.Model):
-    id = models.AutoField(primary_key=True, db_column='id')
-    month = models.IntegerField(db_column='month')
-    day = models.IntegerField(db_column='day')
-    temperature = models.DecimalField(max_digits=5, decimal_places=1,
-                                      db_column='temperature')
-    city = models.CharField(max_length=50, db_column='city')
-    state = models.CharField(max_length=2, db_column='state')
+class SalesHistory(models.Model):
+    bookstore = models.ForeignKey(BookStore)
+    book = models.ForeignKey(Book)
+    sale_date = models.DateField()
+    sale_qty = models.IntegerField()
+    price = models.DecimalField(max_digits=5, decimal_places=2)
 
-    class Meta:
-        db_table = 'daily_weather'
-
-
-class MonthlyWeatherByCity(models.Model):
-    id = models.AutoField(primary_key=True, db_column='id')
-    month = models.IntegerField()
-    boston_temp = models.DecimalField(max_digits=5, decimal_places=1,
-                                      db_column='boston_temp')
-    houston_temp = models.DecimalField(max_digits=5, decimal_places=1,
-                                       db_column='houston_temp')
-    new_york_temp = models.DecimalField(max_digits=5, decimal_places=1,
-                                        db_column='new_york_temp')
-    san_francisco_temp = models.DecimalField(max_digits=5, decimal_places=1,
-                                             db_column='san_franciso_temp')
-
-    class Meta:
-        db_table = 'monthly_weather_by_city'
-
-
-class MonthlyWeatherSeattle(models.Model):
-    id = models.AutoField(primary_key=True, db_column='id')
-    month = models.IntegerField()
-    seattle_temp = models.DecimalField(max_digits=5, decimal_places=1,
-                                       db_column='seattle_temp')
-
-    class Meta:
-        db_table = 'monthly_weather_seattle'
+    def __unicode__(self):
+        return '%s %s %s' % (self.bookstore, self.book, self.sale_date)

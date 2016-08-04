@@ -10,7 +10,7 @@ def initial_data(apps, schema_editor):
                     "houston_temp": "51.79",
                     "month": 1,
                     "new_york_temp": "31.80",
-                    "san_franciso_temp": "49.40"
+                    "san_francisco_temp": "49.40"
                     },
          "model": "MonthlyWeatherByCity",
          },
@@ -18,7 +18,7 @@ def initial_data(apps, schema_editor):
                     "houston_temp": "55.40",
                     "month": 2,
                     "new_york_temp": "33.50",
-                    "san_franciso_temp": "52.40"
+                    "san_francisco_temp": "52.40"
                     },
          "model": "MonthlyWeatherByCity",
          },
@@ -26,7 +26,7 @@ def initial_data(apps, schema_editor):
                     "houston_temp": "62.30",
                     "month": 3,
                     "new_york_temp": "40.90",
-                    "san_franciso_temp": "54.0"
+                    "san_francisco_temp": "54.0"
                     },
          "model": "MonthlyWeatherByCity",
          },
@@ -34,7 +34,7 @@ def initial_data(apps, schema_editor):
                     "houston_temp": "68.50",
                     "month": 4,
                     "new_york_temp": "50.10",
-                    "san_franciso_temp": "56.20"
+                    "san_francisco_temp": "56.20"
                     },
          "model": "MonthlyWeatherByCity",
          },
@@ -42,7 +42,7 @@ def initial_data(apps, schema_editor):
                     "houston_temp": "75.80",
                     "month": 5,
                     "new_york_temp": "59.70",
-                    "san_franciso_temp": "58.70"
+                    "san_francisco_temp": "58.70"
                     },
          "model": "MonthlyWeatherByCity",
          },
@@ -50,7 +50,7 @@ def initial_data(apps, schema_editor):
                     "houston_temp": "81.30",
                     "month": 6,
                     "new_york_temp": "68.80",
-                    "san_franciso_temp": "61.40"
+                    "san_francisco_temp": "61.40"
                     },
          "model": "MonthlyWeatherByCity",
          },
@@ -58,7 +58,7 @@ def initial_data(apps, schema_editor):
                     "houston_temp": "83.60",
                     "month": 7,
                     "new_york_temp": "74.80",
-                    "san_franciso_temp": "62.80"
+                    "san_francisco_temp": "62.80"
                     },
          "model": "MonthlyWeatherByCity",
          },
@@ -66,7 +66,7 @@ def initial_data(apps, schema_editor):
                     "houston_temp": "83.30",
                     "month": 8,
                     "new_york_temp": "74.10",
-                    "san_franciso_temp": "63.60"
+                    "san_francisco_temp": "63.60"
                     },
          "model": "MonthlyWeatherByCity",
          },
@@ -74,7 +74,7 @@ def initial_data(apps, schema_editor):
                     "houston_temp": "78.90",
                     "month": 9,
                     "new_york_temp": "67.20",
-                    "san_franciso_temp": "63.90"
+                    "san_francisco_temp": "63.90"
                     },
          "model": "MonthlyWeatherByCity",
          },
@@ -82,7 +82,7 @@ def initial_data(apps, schema_editor):
                     "houston_temp": "70.40",
                     "month": 10,
                     "new_york_temp": "56.50",
-                    "san_franciso_temp": "61.00"
+                    "san_francisco_temp": "61.00"
                     },
          "model": "MonthlyWeatherByCity",
          },
@@ -90,7 +90,7 @@ def initial_data(apps, schema_editor):
                     "houston_temp": "60.90",
                     "month": 11,
                     "new_york_temp": "46.80",
-                    "san_franciso_temp": "54.70"
+                    "san_francisco_temp": "54.70"
                     },
          "model": "MonthlyWeatherByCity",
          },
@@ -98,7 +98,7 @@ def initial_data(apps, schema_editor):
                     "houston_temp": "53.70",
                     "month": 12,
                     "new_york_temp": "37.20",
-                    "san_franciso_temp": "49.50"
+                    "san_francisco_temp": "49.50"
                     },
          "model": "MonthlyWeatherByCity",
          },

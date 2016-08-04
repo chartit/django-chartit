@@ -6,7 +6,7 @@ class MonthlyWeatherByCity(models.Model):
     boston_temp = models.DecimalField(max_digits=5, decimal_places=1)
     houston_temp = models.DecimalField(max_digits=5, decimal_places=1)
     new_york_temp = models.DecimalField(max_digits=5, decimal_places=1)
-    san_franciso_temp = models.DecimalField(max_digits=5, decimal_places=1)
+    san_francisco_temp = models.DecimalField(max_digits=5, decimal_places=1)
 
 
 class MonthlyWeatherSeattle(models.Model):
@@ -46,12 +46,12 @@ class Genre(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=50)
-    rating = models.FloatField(db_column='rating')
+    rating = models.FloatField()
     rating_count = models.IntegerField()
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher, null=True, blank=True,
                                   on_delete=models.SET_NULL)
-    related = models.ManyToManyField('self', db_column='related', blank=True)
+    related = models.ManyToManyField('self', blank=True)
     genre = models.ForeignKey(Genre, null=True, blank=True,
                               on_delete=models.SET_NULL)
 
@@ -65,6 +65,9 @@ class City(models.Model):
 
     def __unicode__(self):
         return '%s, %s' % (self.city, self.state)
+
+    def region(self):
+        return 'USA'
 
 
 class BookStore(models.Model):

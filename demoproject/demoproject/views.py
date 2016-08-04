@@ -15,7 +15,7 @@ def homepage(request):
                 'month',
                 'houston_temp',
                 'boston_temp',
-                'san_franciso_temp'
+                'san_francisco_temp'
             ]
         }]
     )

@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
                     decimal_places=1, max_digits=5)),
                 ('new_york_temp', models.DecimalField(
                     decimal_places=1, max_digits=5)),
-                ('san_franciso_temp', models.DecimalField(
+                ('san_francisco_temp', models.DecimalField(
                     decimal_places=1, max_digits=5)),
             ],
         ),
@@ -73,7 +73,7 @@ class Migration(migrations.Migration):
                                         primary_key=True, serialize=False,
                                         verbose_name='ID')),
                 ('title', models.CharField(max_length=50)),
-                ('rating', models.FloatField(db_column='rating')),
+                ('rating', models.FloatField()),
                 ('rating_count', models.IntegerField()),
                 ('authors', models.ManyToManyField(to='demoproject.Author')),
             ],
@@ -159,7 +159,7 @@ class Migration(migrations.Migration):
             model_name='book',
             name='related',
             field=models.ManyToManyField(
-                blank=True, db_column='related',
+                blank=True,
                 related_name='_book_related_+', to='demoproject.Book'),
         ),
     ]
