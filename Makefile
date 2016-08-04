@@ -24,13 +24,13 @@ clean-pyc:
 	find . -name '*~' -exec rm -f {} +
 
 lint:
-	flake8 setup.py chartit chartit_tests demoproject
+	flake8 setup.py chartit demoproject
 
 test: lint
-	python runtests.py chartit_tests
+	python runtests.py demoproject
 
 coverage: lint
-	coverage run --source chartit runtests.py chartit_tests
+	coverage run --source chartit runtests.py demoproject
 	coverage report -m
 
 coverage-html: coverage

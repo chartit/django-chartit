@@ -23,8 +23,7 @@ def get_version(*file_paths):
 setup(
     name='django_chartit',
     version=get_version('chartit', '__init__.py'),
-    packages=find_packages(exclude=["chartit_tests.*", "demoproject.*",
-                                    "chartit_tests", "demoproject",
+    packages=find_packages(exclude=["demoproject.*", "demoproject",
                                     "docs.*", "docs"]),
     description=("A Django app to plot charts and pivot charts directly from "
                  "the models. Uses HighCharts and jQuery JavaScript libraries "

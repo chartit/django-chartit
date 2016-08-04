@@ -9,7 +9,6 @@ try:
     from django.core.management import call_command
 
     settings.DATABASES['default']['NAME'] = ':memory:'
-    settings.INSTALLED_APPS.append('chartit_tests')
 
     try:
         import django
@@ -27,7 +26,7 @@ except ImportError:
 
 def run_tests(*test_args):
     if not test_args:
-        test_args = ["chartit_tests"]
+        test_args = ["demoproject"]
 
     # ./manage.py test takes care of database creation and
     # application of migrations if any

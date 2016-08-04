@@ -7,8 +7,9 @@ from chartit.exceptions import APIInputError
 from chartit.templatetags import chartit
 from chartit.validation import clean_pdps, clean_dps, clean_pcso, clean_cso
 
-from .models import SalesHistory, MonthlyWeatherByCity, MonthlyWeatherSeattle
-from .utils import assertOptionDictsEqual
+from demoproject.models import SalesHistory, MonthlyWeatherByCity, \
+    MonthlyWeatherSeattle
+from utils import assertOptionDictsEqual
 
 TestCase.assertOptionDictsEqual = assertOptionDictsEqual
 
@@ -1688,7 +1689,6 @@ class ChartitTemplateTagTests(TestCase):
 
         self.assertIn('<script type="text/javascript">', html)
         self.assertIn('"stacking": false', html)
-        self.assertIn('"data": []', html)
         self.assertIn('"type": "column"', html)
         self.assertIn('"name": "price"', html)
         self.assertIn('{"renderTo": "my_chart"}', html)
@@ -1737,7 +1737,6 @@ class ChartitTemplateTagTests(TestCase):
 
         self.assertIn('<script type="text/javascript">', html)
         self.assertIn('"stacking": false', html)
-        self.assertIn('"data": []', html)
         self.assertIn('"type": "column"', html)
         self.assertIn('"name": "price"', html)
         # the first chart
