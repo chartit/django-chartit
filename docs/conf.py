@@ -21,6 +21,7 @@ project_dir = os.path.abspath(os.path.join(docs_dir, '..'))
 sys.path.append(project_dir)
 
 # Set up the Django settings/environment
+sys.path.append(os.path.join(project_dir, 'demoproject'))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'demoproject.settings'
 
 from chartit import __version__

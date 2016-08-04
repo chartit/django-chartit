@@ -32,6 +32,8 @@ Changelog
     * Merge chartit_tests/ with demoproject/
     * Load test DB with real data to use during testing
     * Add more tests
+    * Update the path to demoproject.settings when building docs. Fixes
+      a problem which caused some API docs to be empty
 
 * 0.2.5 (August 3, 2016)
     * Workaround Python 3 vs. Python 2 list sort issue which breaks
