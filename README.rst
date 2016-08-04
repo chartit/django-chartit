@@ -28,6 +28,11 @@ pivoted by specific column(s).
 Changelog
 =========
 
+* master
+    * Merge chartit_tests/ with demoproject/
+    * Load test DB with real data to use during testing
+    * Add more tests
+
 * 0.2.5 (August 3, 2016)
     * Workaround Python 3 vs. Python 2 list sort issue which breaks
       charts with multiple data sources displayed on the same axis!
