@@ -15,7 +15,7 @@ clean: clean-build clean-pyc
 
 clean-build:
 	rm -fr build/
-	rm -fr dist/
+	rm -fr _dist/
 	rm -fr *.egg-info
 
 clean-pyc:
@@ -47,4 +47,4 @@ release: clean
 
 sdist: clean
 	python setup.py sdist
-	ls -l dist
+	ls -l _dist/
