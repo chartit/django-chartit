@@ -161,26 +161,37 @@ class Chart(BaseChart):
         self.generate_plot()
 
     def _groupby_x_axis_and_vqs(self):
-        """Returns a list of list of lists where each list has the term and
-        option dict with the same xAxis and within each list with same xAxis,
-        all items in same sub-list have items with same ValueQuerySet.
+        """
+        Here is an example of what this function would return ::
 
-        Here is an example of what this function would return. ::
-
-            [
-             [[(term-1-A-1, opts-1-A-1), (term-1-A-2, opts-1-A-2), ...],
-              [(term-1-B-1, opts-1-B-1), (term-1-B-2, opts-1-B-2), ...],
-              ...],
-             [[term-2-A-1, opts-2-A-1), (term-2-A-2, opts-2-A-2), ...],
-              [term-2-B-2, opts-2-B-2), (term-2-B-2, opts-2-B-2), ...],
-              ...],
-              ...
-              ]
+            {
+                0: {
+                    0: {'month_seattle': ['seattle_temp']},
+                    1: {'month': ['houston_temp', 'boston_temp']}
+                }
+            }
 
         In the above example,
 
-        - term-1-*-* all have same xAxis.
-        - term-*-A-* all are from same ValueQuerySet (table)
+        - the inner most dict keys ('month' and 'month_seattle') are on the
+          same xAxis (xAxis 0), just groupped in 2 groups (0 and 1)
+        - the inner most list values are from same ValueQuerySet (table)
+
+        If you decide to display multiple chart types with multiple axes
+        then the return value will look like this ::
+
+
+            {
+                0: {
+                    0: {'month': ['boston_temp']}
+                },
+                1: {
+                    0: {'month': ['houston_temp']}
+                }
+            }
+
+        - the outer most 0 and 1 are the numbers of the x axes
+        - the inner most 0 shows that each axis has 1 data group
         """
         def sort_fn(td_tk):
             return td_tk[1].get('xAxis', 0)
@@ -212,6 +223,14 @@ class Chart(BaseChart):
             #
             # At the moment I don't have an idea how to solve this
             # but disabling the sort seems to work, at least in the demo!
+            #
+            # itr1 is fields which will be plotted on the same xAxis
+            # these fields may be coming from different tables.
+            # The only reason for the sort seems to be groupby below.
+            # groupby() filters the unique values, which is only relevant
+            # if one of the values is repeated, e.g. we want to plot the
+            # same field twice in the same Chart, on the same x axis!
+            # which doesn't seem to be possible !
             if self.PY2:
                 itr1 = sorted(itr1, key=sort2_fn)
             for _vqs_num, (_, itr2) in enumerate(groupby(itr1, sort2_fn)):
