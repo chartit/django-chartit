@@ -34,6 +34,8 @@ Changelog
     * Add more tests
     * Update the path to demoproject.settings when building docs. Fixes
       a problem which caused some API docs to be empty
+    * Fix ValueError: not enough values to unpack (expected 2, got 0)
+      with PivotChart when the QuerySet returns empty data.
 
 * 0.2.5 (August 3, 2016)
     * Workaround Python 3 vs. Python 2 list sort issue which breaks

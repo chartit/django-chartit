@@ -570,7 +570,14 @@ class PivotDataPool(DataPool):
                 self.cv = [self.mapf(_cv) for _cv in self.cv_raw]
         else:
             # otherwise, order them by sortf if there is one.
-            if self.mapf is None:
+            if not self.cv_raw:
+                # if there isn't any data available just
+                # set self.cv to empty list and return
+                # otherwise we get
+                # ValueError: not enough values to unpack (expected 2, got 0)
+                # from zip(*combined) below
+                self.cv = self.cv_raw
+            elif self.mapf is None:
                 self.cv_raw.sort(key=self.sortf)
                 self.cv = self.cv_raw
             else:

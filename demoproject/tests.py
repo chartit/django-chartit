@@ -1,6 +1,6 @@
 import sys
 from django.test import TestCase, override_settings
-from django.db.models import Avg
+from django.db.models import Avg, Sum
 
 from chartit import PivotDataPool, DataPool, Chart, PivotChart
 from chartit.exceptions import APIInputError
@@ -1746,6 +1746,91 @@ class ChartitTemplateTagTests(TestCase):
         self.assertIn('{"renderTo": "my_pivot_chart"}', html)
         self.assertIn('"title": {"text": "Avg_Price vs. City"}', html)
         self.assertIn('<script src="/static/chartit/js/chartloader.js" type="text/javascript">', html) # noqa
+
+    def test_sortf_mapf_mts_with_data(self):
+        """
+            Test that PivotChart loads when there is actual data and
+            sortf_mapf_mtp is specified!
+        """
+
+        def region_state(x):
+            region = {'CA': 'S', 'MA': 'N', 'TX': 'S', 'NY': 'N'}
+            return (region[x[0]], x[1])
+
+        ds = PivotDataPool(
+            series=[{
+                'options': {
+                    'source': SalesHistory.objects.all(),
+                    'categories': [
+                        'bookstore__city__state',
+                        'bookstore__city__city'
+                    ],
+                    'legend_by': 'book__genre__name'
+                },
+                'terms': {
+                    'tot_sales': Sum('sale_qty')
+                }
+            }],
+            sortf_mapf_mts=(None, region_state, True)
+        )
+
+        chart = PivotChart(
+            datasource=ds,
+            series_options=[{
+                'options': {
+                    'type': 'column',
+                    'stacking': True
+                },
+                'terms': ['tot_sales']
+            }]
+        )
+
+        # just make sure this renders fine w/o errors
+        html = chartit.load_charts([chart], 'my_chart')
+        self.assertNotEqual(html, '')
+
+    def test_sortf_mapf_mts_without_data(self):
+        """
+            Test that PivotChart loads when the QuerySet returns empty data and
+            sortf_mapf_mtp is specified!
+        """
+
+        def region_state(x):
+            region = {'CA': 'S', 'MA': 'N', 'TX': 'S', 'NY': 'N'}
+            return (region[x[0]], x[1])
+
+        ds = PivotDataPool(
+            series=[{
+                'options': {
+                    'source': SalesHistory.objects.filter(
+                                bookstore__city__city='TEST CITY'),
+                    'categories': [
+                        'bookstore__city__state',
+                        'bookstore__city__city'
+                    ],
+                    'legend_by': 'book__genre__name'
+                },
+                'terms': {
+                    'tot_sales': Sum('sale_qty')
+                }
+            }],
+            sortf_mapf_mts=(None, region_state, True)
+        )
+
+        chart = PivotChart(
+            datasource=ds,
+            series_options=[{
+                'options': {
+                    'type': 'column',
+                    'stacking': True
+                },
+                'terms': ['tot_sales']
+            }]
+        )
+
+        # just make sure this renders fine w/o errors
+        html = chartit.load_charts([chart], 'my_chart')
+        self.assertNotEqual(html, '')
 
 
 class ChartitJSRelPathTests(TestCase):
