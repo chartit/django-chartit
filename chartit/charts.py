@@ -7,7 +7,7 @@ from .highcharts import HCOptions
 from .validation import clean_pcso, clean_cso, clean_x_sortf_mapf_mts
 from .exceptions import APIInputError
 from .chartdata import PivotDataPool, DataPool
-import simplejson
+import json
 
 
 class BaseChart(object):
@@ -34,7 +34,7 @@ class BaseChart(object):
                 });
             });
         """
-        return simplejson.dumps(self.hcoptions)
+        return json.dumps(self.hcoptions)
 
 
 class Chart(BaseChart):

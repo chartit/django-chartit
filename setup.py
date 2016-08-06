@@ -48,9 +48,6 @@ setup(
         'Topic :: Software Development',
     ],
     platforms='any',
-    install_requires=[
-        'simplejson',
-    ],
     keywords='django charts',
     author='Praveen Gollakota',
     author_email='pgollakota@gmail.com',

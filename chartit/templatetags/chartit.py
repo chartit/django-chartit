@@ -4,7 +4,8 @@ from django import template
 from django.utils.safestring import mark_safe
 from django.utils import six
 from django.conf import settings
-import simplejson
+from decimal import Decimal
+import json
 
 from ..charts import Chart, PivotChart
 
@@ -20,8 +21,16 @@ CHART_LOADER_URL = posixpath.join(settings.STATIC_URL,
                                   'chartloader.js')
 
 
-def date_format(obj):
-    return obj.isoformat() if hasattr(obj, 'isoformat') else obj
+def json_serializer(obj):
+    """
+        Return JSON representation of some special data types.
+    """
+    if hasattr(obj, 'isoformat'):
+        return obj.isoformat()
+    elif type(obj) == Decimal:
+        return float(obj)
+    else:
+        return obj
 
 
 register = template.Library()
@@ -71,9 +80,8 @@ def load_charts(chart_list=None, render_to=''):
                                 chart_list, render_to_list):
             if render_to:
                 hco['chart']['renderTo'] = render_to
-        embed_script = (embed_script % (simplejson.dumps(chart_list,
-                                                         use_decimal=True,
-                                                         default=date_format),
+        embed_script = (embed_script % (json.dumps(chart_list,
+                                                   default=json_serializer),
                                         CHART_LOADER_URL))
     else:
         embed_script = embed_script % ((), CHART_LOADER_URL)
