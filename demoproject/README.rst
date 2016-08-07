@@ -11,7 +11,7 @@ Installation & Configuration
 This demoproject is installed as part of the `django_chartit` package.
 To install additional dependecies execute the command ::
 
-    pip install docutils Django django-markup-deprecated Pygments simplejson
+    pip install docutils Django django-markup-deprecated Pygments
 
 To run the demo project ::
 
