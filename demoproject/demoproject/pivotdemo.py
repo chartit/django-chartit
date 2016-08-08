@@ -2,7 +2,7 @@ from django.db.models import Sum, Avg
 from chartit import PivotChart, PivotDataPool
 from django.shortcuts import render_to_response
 from .decorators import add_source_code_and_doc
-from .models import SalesHistory
+from .models import SalesHistory, Book
 
 
 @add_source_code_and_doc
@@ -366,6 +366,46 @@ def pivot_mapf(request, title, code, doc, sidebar_items):
                    'stacking': True},
                  'terms': [
                     'tot_sales']}])
+    # end_code
+    return render_to_response('chart_code.html',
+                              {
+                                'chart_list': pivcht,
+                                'code': code,
+                                'title': title,
+                                'doc': doc,
+                                'sidebar_items': sidebar_items})
+
+
+@add_source_code_and_doc
+def pivot_with_datefield(request, title, code, doc, sidebar_items):
+    """
+    Pivot chart with DateField
+    --------------------------
+    This chart shows total sales of one book per date.
+
+    Note that we filter down the possible values using date range
+    queries instead of slicing. Slicing the query results in an error.
+    Slicing in Chart() charts however is fine!
+    """
+    # start_code
+    ds = PivotDataPool(
+          series=[
+           {'options': {
+              'source': SalesHistory.objects.filter(
+                            book=Book.objects.filter(title="Hyperspace"),
+                            sale_date__year=2010,
+                            sale_date__month__lt=10,
+                        ),
+              'categories': 'sale_date'},
+            'terms': {
+              'tot_sales': Sum('sale_qty')}}])
+
+    pivcht = PivotChart(
+              datasource=ds,
+              series_options=[
+                {'options': {
+                   'type': 'column'},
+                 'terms': ['tot_sales']}])
     # end_code
     return render_to_response('chart_code.html',
                               {

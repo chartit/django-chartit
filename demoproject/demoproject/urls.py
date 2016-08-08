@@ -133,6 +133,15 @@ urlpatterns = [
         name='line_pie_combination',
         ),
 
+    url(r'^demo/chart/line-with-datefield/$',
+        chartdemo.basicline_with_datefield,
+        {
+            'title': 'Line chart with DateField field',
+            'sidebar_section': 'Charts',
+        },
+        name='line_datefield',
+        ),
+
     # pivot chart examples
     url(r'^demo/pivot/simple/$', pivotdemo.simplepivot,
         {
@@ -196,7 +205,15 @@ urlpatterns = [
             'sidebar_section': 'Pivot Charts',
         },
         name='pivot_chart_custom_x_axes_mapping',
-        )
+        ),
+
+    url(r'^demo/pivot/pivot-datefield/$', pivotdemo.pivot_with_datefield,
+        {
+            'title': 'Pivot Chart with DateField',
+            'sidebar_section': 'Pivot Charts',
+        },
+        name='pivot_chart_datefield',
+        ),
 ]
 
 # build sidebar_items first

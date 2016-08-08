@@ -2,6 +2,7 @@ from chartit import DataPool, Chart
 from django.shortcuts import render_to_response
 from .decorators import add_source_code_and_doc
 from .models import MonthlyWeatherByCity, MonthlyWeatherSeattle, DailyWeather
+from .models import SalesHistory, BookStore
 
 
 @add_source_code_and_doc
@@ -799,6 +800,68 @@ def combination_line_pie(request, title, code, doc, sidebar_items):
             },
             x_sortf_mapf_mts=[(None, monthname, False),
                               (None, monthname, False)])
+    # end_code
+    return render_to_response('chart_code.html',
+                              {
+                                'chart_list': cht,
+                                'code': code,
+                                'title': title,
+                                'doc': doc,
+                                'sidebar_items': sidebar_items})
+
+
+@add_source_code_and_doc
+def basicline_with_datefield(request, title, code, doc, sidebar_items):
+    """
+    A Basic Line Chart with DateField
+    ---------------------------------
+    This chart plots sales quantities per day from the first book store.
+
+    Points to note:
+
+    - ``sale_date`` is a DateField
+
+    """
+
+    # start_code
+    ds = DataPool(
+            series=[{
+                'options': {
+                    'source': SalesHistory.objects.filter(
+                                            bookstore=BookStore.objects.first()
+                              )[:10]
+                },
+                'terms': [
+                    'sale_date',
+                    'sale_qty',
+                ]
+            }]
+    )
+
+    cht = Chart(
+            datasource=ds,
+            series_options=[{
+                'options': {
+                    'type': 'line',
+                    'stacking': False
+                },
+                'terms': {
+                    'sale_date': [
+                        'sale_qty',
+                    ]
+                }
+            }],
+            chart_options={
+                'title': {
+                    'text': 'Sales QTY per day'
+                },
+                'xAxis': {
+                    'title': {
+                        'text': 'Sale date'
+                    }
+                }
+            }
+    )
     # end_code
     return render_to_response('chart_code.html',
                               {
