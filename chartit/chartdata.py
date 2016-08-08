@@ -1,9 +1,14 @@
+import sys
 import copy
 from collections import defaultdict, OrderedDict
 from itertools import groupby, chain, islice
 from operator import itemgetter
-
 from .validation import clean_dps, clean_pdps, clean_sortf_mapf_mts
+
+# in Python 3 the standard str type is unicode and the
+# unicode type has been removed so define the keyword here
+if sys.version_info.major >= 3:
+    unicode = str
 
 
 class DataPool(object):
@@ -481,7 +486,7 @@ class PivotDataPool(DataPool):
                 for cv, g_vqs_by_cv in groupby(vqs, itemgetter(*categories)):
                     if not isinstance(cv, tuple):
                         cv = (cv,)
-                    cv = tuple(map(str, cv))
+                    cv = tuple(map(unicode, cv))
                     self.cv_raw |= set([cv])
                     # For the first loop (i==0), the queryset is already
                     # pre-sorted by value of the data func alias (for example
@@ -534,7 +539,7 @@ class PivotDataPool(DataPool):
                                 lv = itemgetter(*legend_by)(vd)
                                 if not isinstance(lv, tuple):
                                     lv = (lv,)
-                                lv = tuple(map(str, lv))
+                                lv = tuple(map(unicode, lv))
                             # If there is nothing to legend by i.e.
                             # legend_by=() then itemgetter raises a TypeError.
                             # Handle it.

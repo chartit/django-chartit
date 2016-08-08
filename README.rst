@@ -37,6 +37,8 @@ Changelog
     * Fix ValueError: not enough values to unpack (expected 2, got 0)
       with PivotChart when the QuerySet returns empty data
     * Dropped requirement on `simplejson`
+    * Properly handle unicode data in Pivot charts. Fixes
+      `#5 <https://github.com/chartit/django-chartit/issues/5>`_
 
 * 0.2.5 (August 3, 2016)
     * Workaround Python 3 vs. Python 2 list sort issue which breaks
