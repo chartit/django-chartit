@@ -394,7 +394,7 @@ def pivot_with_datefield(request, title, code, doc, sidebar_items):
               'source': SalesHistory.objects.filter(
                             book=Book.objects.filter(title="Hyperspace"),
                             sale_date__year=2010,
-                            sale_date__month__lt=10,
+                            sale_date__month=10,
                         ),
               'categories': 'sale_date'},
             'terms': {
@@ -406,6 +406,58 @@ def pivot_with_datefield(request, title, code, doc, sidebar_items):
                 {'options': {
                    'type': 'column'},
                  'terms': ['tot_sales']}])
+    # end_code
+    return render_to_response('chart_code.html',
+                              {
+                                'chart_list': pivcht,
+                                'code': code,
+                                'title': title,
+                                'doc': doc,
+                                'sidebar_items': sidebar_items})
+
+
+@add_source_code_and_doc
+def pivot_datetime_related(request, title, code, doc, sidebar_items):
+    """
+    Pivot chart with DateTimeField from related model
+    -------------------------------------------------
+    This chart shows total sales based on when book was published.
+    The data is limited to books published during
+    June 1st-20th, 2010 for brevity.
+
+    Note that we filter down the possible values using date range
+    queries instead of slicing. Slicing the query results in an error.
+    Slicing in Chart() charts however is fine!
+    """
+    # start_code
+    ds = PivotDataPool(
+            series=[{
+                'options': {
+                    'source': SalesHistory.objects.filter(
+                                book__published_at__year=2010,
+                                book__published_at__month=6,
+                              ),
+                    'categories': 'book__published_at',
+                    'legend_by': 'book__title',
+                },
+                'terms': {
+                    'tot_sales': Sum('sale_qty'),
+                }
+            }]
+    )
+
+    pivcht = PivotChart(
+        datasource=ds,
+        series_options=[{
+            'options': {
+                'type': 'column',
+                'stacking': True,
+                'xAxis': 0,
+                'yAxis': 0,
+            },
+            'terms': ['tot_sales']
+        }]
+    )
     # end_code
     return render_to_response('chart_code.html',
                               {

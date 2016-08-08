@@ -870,3 +870,61 @@ def basicline_with_datefield(request, title, code, doc, sidebar_items):
                                 'title': title,
                                 'doc': doc,
                                 'sidebar_items': sidebar_items})
+
+
+@add_source_code_and_doc
+def datetimefield_from_related_model(request, title, code, doc, sidebar_items):
+    """
+    A Basic Line Chart with DateTimeField from related model
+    --------------------------------------------------------
+    This chart plots sales quantities from the first book store based on
+    when the book was published.
+    """
+
+    # start_code
+    ds = DataPool(
+            series=[{
+                'options': {
+                    'source': SalesHistory.objects.filter(
+                                            bookstore=BookStore.objects.first()
+                              )[:10]
+                },
+                'terms': [
+                    'book__published_at',
+                    'sale_qty',
+                ]
+            }]
+    )
+
+    cht = Chart(
+            datasource=ds,
+            series_options=[{
+                'options': {
+                    'type': 'line',
+                    'stacking': False
+                },
+                'terms': {
+                    'book__published_at': [
+                        'sale_qty',
+                    ]
+                }
+            }],
+            chart_options={
+                'title': {
+                    'text': 'Sales QTY vs. Book publish date'
+                },
+                'xAxis': {
+                    'title': {
+                        'text': 'Publish date'
+                    }
+                }
+            }
+    )
+    # end_code
+    return render_to_response('chart_code.html',
+                              {
+                                'chart_list': cht,
+                                'code': code,
+                                'title': title,
+                                'doc': doc,
+                                'sidebar_items': sidebar_items})

@@ -142,6 +142,15 @@ urlpatterns = [
         name='line_datefield',
         ),
 
+    url(r'^demo/chart/datetime-from-related/$',
+        chartdemo.datetimefield_from_related_model,
+        {
+            'title': 'Chart with DateTimeField from related model',
+            'sidebar_section': 'Charts',
+        },
+        name='line_datetime_related',
+        ),
+
     # pivot chart examples
     url(r'^demo/pivot/simple/$', pivotdemo.simplepivot,
         {
@@ -213,6 +222,15 @@ urlpatterns = [
             'sidebar_section': 'Pivot Charts',
         },
         name='pivot_chart_datefield',
+        ),
+
+    url(r'^demo/pivot/pivot-datetime-related/$',
+        pivotdemo.pivot_datetime_related,
+        {
+            'title': 'Pivot Chart with DateTimeField from related model',
+            'sidebar_section': 'Pivot Charts',
+        },
+        name='pivot_chart_datetime_related',
         ),
 ]
 

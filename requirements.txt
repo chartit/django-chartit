@@ -2,6 +2,7 @@
 flake8
 coverage
 # test requirements from demoproject/
+pytz
 django-markup-deprecated
 docutils
 Pygments

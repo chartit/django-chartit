@@ -51,6 +51,7 @@ class Book(models.Model):
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher, null=True, blank=True,
                                   on_delete=models.SET_NULL)
+    published_at = models.DateTimeField(null=True, blank=True)
     related = models.ManyToManyField('self', blank=True)
     genre = models.ForeignKey(Genre, null=True, blank=True,
                               on_delete=models.SET_NULL)
