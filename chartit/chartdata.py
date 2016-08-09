@@ -1,7 +1,9 @@
 import sys
 from collections import defaultdict, OrderedDict
+from django.core.exceptions import FieldError
 from itertools import groupby, chain, islice
 from operator import itemgetter
+from .utils import _getattr
 from .validation import clean_dps, clean_pdps, clean_sortf_mapf_mts
 
 # in Python 3 the standard str type is unicode and the
@@ -128,13 +130,17 @@ class DataPool(object):
         # query_groups is a list of lists.
         for tk_td_tuples in self.query_groups:
             src = tk_td_tuples[0][1]['source']
-            vqs = src.values(*(td['field'] for (tk, td) in tk_td_tuples))
+            try:
+                vqs = src.values(*(td['field'] for (tk, td) in tk_td_tuples))
+            except FieldError:
+                # model attributes can't be resolved into fields
+                vqs = src
             vqs2 = []
             for v in vqs:
                 for (_, td) in tk_td_tuples:
                     f = td.get('fn')
                     if f:
-                        v[td['field']] = f(v[td['field']])
+                        v[td['field']] = f(_getattr(v, td['field']))
                 vqs2.append(v)
             yield tk_td_tuples, vqs2
 

@@ -1055,3 +1055,69 @@ def avg_count(_, title, code, doc, sidebar_items):
                                 'title': title,
                                 'doc': doc,
                                 'sidebar_items': sidebar_items})
+
+
+@add_source_code_and_doc
+def model_property(request, title, code, doc, sidebar_items):
+    """
+    A basic Chart using model property
+    ----------------------------------
+
+
+    NOTE that ``region()`` is a model property defined as
+
+    ::
+
+        class City(models.Model):
+            def region(self):
+                return 'USA:%s' % self.city
+    """
+
+    # start_code
+    ds = DataPool(
+            series=[{
+                'options': {
+                    'source': SalesHistory.objects.only(
+                                'bookstore__city', 'sale_qty'
+                              )[:10],
+                },
+                'terms': [
+                    'bookstore__city__region',
+                    'sale_qty'
+                ]
+            }]
+    )
+
+    cht = Chart(
+            datasource=ds,
+            series_options=[{
+                'options': {
+                    'type': 'column',
+                    'stacking': False,
+                    'stack': 0,
+                },
+                'terms': {
+                    'bookstore__city__region': [
+                        'sale_qty'
+                    ]
+                }},
+            ],
+            chart_options={
+                'title': {
+                    'text': 'Sales reports'
+                },
+                'xAxis': {
+                    'title': {
+                        'text': 'City'
+                    }
+                }
+            }
+    )
+    # end_code
+    return render_to_response('chart_code.html',
+                              {
+                                'chart_list': cht,
+                                'code': code,
+                                'title': title,
+                                'doc': doc,
+                                'sidebar_items': sidebar_items})

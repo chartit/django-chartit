@@ -167,6 +167,14 @@ urlpatterns = [
         name='line_avg_count',
         ),
 
+    url(r'^demo/chart/model-property/$', chartdemo.model_property,
+        {
+            'title': 'Line chart using model property',
+            'sidebar_section': 'Charts',
+        },
+        name='line_model_property',
+        ),
+
     # pivot chart examples
     url(r'^demo/pivot/simple/$', pivotdemo.simplepivot,
         {

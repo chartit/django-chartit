@@ -29,6 +29,13 @@ Changelog
 =========
 
 * master
+    * ``DataPool`` terms now supports model properties. Fixes
+      `#35 <https://github.com/chartit/django-chartit/issues/35>`_.
+      Model properties are **not** supported for ``PivotDataPool``!
+      **NOTE: when using model properties chartit can't make use of
+      `QuerySet.values()` internally. This means results will not be groupped
+      by the values of the fields you supplied. This may lead to unexpected
+      query results/charts!**
     * README now tells how to execute ``demoproject/``
 
 * 0.2.7 (September 14, 2016)

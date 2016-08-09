@@ -61,6 +61,11 @@ def _validate_field_lookup_term(model, term, query):
     # TODO: Memoization for speed enchancements?
     terms = term.split('__')
     model_fields = get_all_field_names(model._meta)
+
+    # if this is a model property and not a field then return
+    if hasattr(model, term) and term not in model_fields:
+        return term
+
     if terms[0] not in model_fields:
         raise APIInputError("Field %r does not exist. Valid lookups are %s."
                             % (terms[0], ', '.join(model_fields)))

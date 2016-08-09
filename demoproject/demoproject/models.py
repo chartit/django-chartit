@@ -68,7 +68,7 @@ class City(models.Model):
         return '%s, %s' % (self.city, self.state)
 
     def region(self):
-        return 'USA'
+        return 'USA:%s' % self.city
 
 
 class BookStore(models.Model):

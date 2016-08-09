@@ -8,6 +8,10 @@ def _getattr(obj, attr):
     else:
         value = reduce(getattr, attr.split('__'), obj)
 
+    # b/c we also support model properties
+    if callable(value):
+        value = value()
+
     return value
 
 
