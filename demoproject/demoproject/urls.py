@@ -151,6 +151,22 @@ urlpatterns = [
         name='line_datetime_related',
         ),
 
+    url(r'^demo/chart/extra-datefield/$', chartdemo.extra_datefield,
+        {
+            'title': 'Line chart with extra() DateField',
+            'sidebar_section': 'Charts',
+        },
+        name='line_extra_datefield',
+        ),
+
+    url(r'^demo/chart/avg-count/$', chartdemo.avg_count,
+        {
+            'title': 'Line chart with Avg() and Count()',
+            'sidebar_section': 'Charts',
+        },
+        name='line_avg_count',
+        ),
+
     # pivot chart examples
     url(r'^demo/pivot/simple/$', pivotdemo.simplepivot,
         {

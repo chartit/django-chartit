@@ -41,6 +41,9 @@ Changelog
       `#5 <https://github.com/chartit/django-chartit/issues/5>`_
     * Demo project updated with Chart and PivotChart examples of
       rendering DateField values on the X axis
+    * Allow charting of extra() or annotate() fields. Fixes
+      `#8 <https://github.com/chartit/django-chartit/issues/8>`_ and
+      `#12 <https://github.com/chartit/django-chartit/issues/12>`_
 
 * 0.2.5 (August 3, 2016)
     * Workaround Python 3 vs. Python 2 list sort issue which breaks

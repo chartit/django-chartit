@@ -1,8 +1,9 @@
 from chartit import DataPool, Chart
+from django.db.models import Avg, Count
 from django.shortcuts import render_to_response
 from .decorators import add_source_code_and_doc
 from .models import MonthlyWeatherByCity, MonthlyWeatherSeattle, DailyWeather
-from .models import SalesHistory, BookStore
+from .models import SalesHistory, BookStore, Book
 
 
 @add_source_code_and_doc
@@ -916,6 +917,132 @@ def datetimefield_from_related_model(request, title, code, doc, sidebar_items):
                 'xAxis': {
                     'title': {
                         'text': 'Publish date'
+                    }
+                }
+            }
+    )
+    # end_code
+    return render_to_response('chart_code.html',
+                              {
+                                'chart_list': cht,
+                                'code': code,
+                                'title': title,
+                                'doc': doc,
+                                'sidebar_items': sidebar_items})
+
+
+@add_source_code_and_doc
+def extra_datefield(request, title, code, doc, sidebar_items):
+    """
+    A Basic Line Chart using QuerySet.extra() with DateField
+    --------------------------------------------------------
+    This chart plots sales quantities per day from the first book store.
+    We're using QuerySet.extra() to format the date value directly at
+    the DB level.
+    """
+
+    # start_code
+    ds = DataPool(
+            series=[{
+                'options': {
+                    # NOTE: strftime is SQLite function.
+                    # For MySQL use DATE_FORMAT
+                    'source': SalesHistory.objects.extra(
+                                    select={
+                                        'sold_at': \
+                                        "strftime('%%Y/%%m/%%d', sale_date)"
+                                    }
+                              ).filter(
+                                    bookstore=BookStore.objects.first()
+                              )[:10]
+                },
+                'terms': [
+                    'sold_at',
+                    'sale_qty',
+                ]
+            }]
+    )
+
+    cht = Chart(
+            datasource=ds,
+            series_options=[{
+                'options': {
+                    'type': 'line',
+                    'stacking': False
+                },
+                'terms': {
+                    'sold_at': [
+                        'sale_qty',
+                    ]
+                }
+            }],
+            chart_options={
+                'title': {
+                    'text': 'Sales QTY per day'
+                },
+                'xAxis': {
+                    'title': {
+                        'text': 'Sale date'
+                    }
+                }
+            }
+    )
+    # end_code
+    return render_to_response('chart_code.html',
+                              {
+                                'chart_list': cht,
+                                'code': code,
+                                'title': title,
+                                'doc': doc,
+                                'sidebar_items': sidebar_items})
+
+
+@add_source_code_and_doc
+def avg_count(request, title, code, doc, sidebar_items):
+    """
+    A Basic Line Chart using Avg() and Count()
+    ------------------------------------------
+    This chart plots the average book rating in each genre
+    together with the number of books in each genre.
+    """
+
+    # start_code
+    ds = DataPool(
+            series=[{
+                'options': {
+                    'source': Book.objects.values('genre').annotate(
+                                Avg('rating'),
+                                Count('genre')
+                              )
+                },
+                'terms': [
+                    'genre__name',
+                    'rating__avg',
+                    'genre__count'
+                ]
+            }]
+    )
+
+    cht = Chart(
+            datasource=ds,
+            series_options=[{
+                'options': {
+                    'type': 'line',
+                    'stacking': False
+                },
+                'terms': {
+                    'genre__name': [
+                        'rating__avg', 'genre__count'
+                    ]
+                }
+            }],
+            chart_options={
+                'title': {
+                    'text': 'Book rating and count per Genre'
+                },
+                'xAxis': {
+                    'title': {
+                        'text': 'Genre'
                     }
                 }
             }
