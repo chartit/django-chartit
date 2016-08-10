@@ -29,21 +29,24 @@ Changelog
 =========
 
 * master
-    * Merge chartit_tests/ with demoproject/
+    * Merge ``chartit_tests/`` with ``demoproject/``
     * Load test DB with real data to use during testing
     * Add more tests
     * Update the path to demoproject.settings when building docs. Fixes
       a problem which caused some API docs to be empty
     * Fix ValueError: not enough values to unpack (expected 2, got 0)
       with PivotChart when the QuerySet returns empty data
-    * Dropped requirement on `simplejson`
+    * Dropped requirement on ``simplejson``
     * Properly handle unicode data in Pivot charts. Fixes
       `#5 <https://github.com/chartit/django-chartit/issues/5>`_
     * Demo project updated with Chart and PivotChart examples of
       rendering DateField values on the X axis
-    * Allow charting of extra() or annotate() fields. Fixes
+    * Allow charting of ``extra()`` or ``annotate()`` fields. Fixes
       `#8 <https://github.com/chartit/django-chartit/issues/8>`_ and
       `#12 <https://github.com/chartit/django-chartit/issues/12>`_
+    * Refactor ``RecursiveDefaultDict`` to allow chart objects to be
+      serialized to/from cache. Fixes
+      `#10 <https://github.com/chartit/django-chartit/issues/10>`_
 
 * 0.2.5 (August 3, 2016)
     * Workaround Python 3 vs. Python 2 list sort issue which breaks
@@ -51,7 +54,7 @@ Changelog
     * Make demoproject/ compatible with Django 1.10
 
 * 0.2.4 (August 2, 2016)
-    * Fix for `get_all_field_names()` and `get_field_by_name()` removal
+    * Fix for ``get_all_field_names()`` and ``get_field_by_name()`` removal
       in Django 1.10. Fixes
       `#39 <https://github.com/chartit/django-chartit/issues/39>`_
     * Updated for django.db.sql.query.Query.aggregates removal
