@@ -47,6 +47,8 @@ Changelog
     * Refactor ``RecursiveDefaultDict`` to allow chart objects to be
       serialized to/from cache. Fixes
       `#10 <https://github.com/chartit/django-chartit/issues/10>`_
+    * Add information about supported 3rd party JavaScript versions. Fixes
+      `#14 <https://github.com/chartit/django-chartit/issues/14>`_
 
 * 0.2.5 (August 3, 2016)
     * Workaround Python 3 vs. Python 2 list sort issue which breaks
@@ -318,8 +320,10 @@ Required JavaScript Libraries
 
 The following JavaScript Libraries are required for using Django-Chartit.
 
-- `jQuery <http://jquery.com>`_
-- `Highcharts <http://highcharts.com>`_
+- `jQuery <http://jquery.com>`_ - versions 1.6.4 and 1.7 are known
+  to work well with django-chartit.
+- `Highcharts <http://highcharts.com>`_ - versions 2.1.7 and 2.2.0 are known
+  to work well with django-chartit.
 
 .. note:: While ``Django-Chartit`` itself is licensed under the BSD license,
    ``Highcharts`` is licensed under the `Highcharts license
