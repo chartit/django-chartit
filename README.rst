@@ -28,7 +28,7 @@ pivoted by specific column(s).
 Changelog
 =========
 
-* master
+* 0.2.6 (August 16, 2016)
     * Merge ``chartit_tests/`` with ``demoproject/``
     * Load test DB with real data to use during testing
     * Add more tests
