@@ -456,7 +456,6 @@ def clean_cso(series_options, ds):
             if ds.series[sok]['_data'] != ds.series[_x_axis_term]['_data']:
                 raise APIInputError("%s and %s do not belong to the same "
                                     "table." % (sok, _x_axis_term))
-                sod['_data'] = ds.series[sok]['_data']
     elif isinstance(series_options, list):
         series_options = _convert_cso_to_dict(series_options)
         clean_cso(series_options, ds)
