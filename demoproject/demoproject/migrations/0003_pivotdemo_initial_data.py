@@ -5,7 +5,7 @@ import json
 from django.db import migrations
 
 
-def initial_data(apps, schema_editor):
+def initial_data(apps, _):
     path = os.path.abspath(os.path.dirname(__file__))
     path = os.path.join(path, 'pivotdemo.json')
 

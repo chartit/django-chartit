@@ -14,7 +14,7 @@ class BaseChart(object):
     """
         Common ancestor class for all charts to avoid code duplication.
     """
-    def __init__(self, datasource, series_options, chart_options=None):
+    def __init__(self):
         self.hcoptions = HCOptions({})
         self.PY2 = sys.version_info.major == 2
 
@@ -144,11 +144,7 @@ class Chart(BaseChart):
           corresponding datasource or if the ``series_options`` cannot be
           parsed.
         """
-        super(self.__class__, self).__init__(
-                                                datasource,
-                                                series_options,
-                                                chart_options
-                                            )
+        super(self.__class__, self).__init__()
         self.user_input = locals()
         if not isinstance(datasource, DataPool):
             raise APIInputError("%s must be an instance of DataPool."
@@ -577,11 +573,7 @@ class PivotChart(BaseChart):
           corresponding datasource or if the ``series_options`` cannot be
           parsed.
         """
-        super(self.__class__, self).__init__(
-                                                datasource,
-                                                series_options,
-                                                chart_options
-                                            )
+        super(self.__class__, self).__init__()
         self.user_input = locals()
         if not isinstance(datasource, PivotDataPool):
             raise APIInputError("%s must be an instance of PivotDataPool." %

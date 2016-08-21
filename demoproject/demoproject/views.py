@@ -5,7 +5,7 @@ from .decorators import add_source_code_and_doc
 from django.shortcuts import render_to_response
 
 
-def homepage(request):
+def homepage(_):
     ds = DataPool(
         series=[{
             'options': {
@@ -56,7 +56,7 @@ def homepage(request):
 
 
 @add_source_code_and_doc
-def demohome(request, title, code, doc, sidebar_items):
+def demohome(_, title, code, doc, sidebar_items):
     """
     Welcome to the Django-Chartit Demo. This demo has a lot of sample charts
     along with the code to help you get familiarized with the Chartit API.
@@ -70,16 +70,17 @@ def demohome(request, title, code, doc, sidebar_items):
 
     Thank you and have fun exploring!
     """
+    code = None
     return render_to_response('demohome.html',
                               {'chart_list': None,
-                               'code': None,
+                               'code': code,
                                'title': title,
                                'doc': doc,
                                'sidebar_items': sidebar_items})
 
 
 @add_source_code_and_doc
-def model_details(request, title, code, doc, sidebar_items):
+def model_details(_, title, code, doc, sidebar_items):
     """
     All the charts in this section are based on the following Models.
     Model data is available as migrations, found inside charit git

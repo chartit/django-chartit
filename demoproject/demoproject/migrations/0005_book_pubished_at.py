@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from django.db import migrations, models
 
 
-def initialize_data(apps, schema_editor):
+def initialize_data(apps, _):
     Book = apps.get_model("demoproject", "Book")
     SalesHistory = apps.get_model("demoproject", "SalesHistory")
 

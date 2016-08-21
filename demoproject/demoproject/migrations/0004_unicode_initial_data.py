@@ -4,7 +4,7 @@ from datetime import datetime
 from django.db import migrations
 
 
-def initialize_data(apps, schema_editor):
+def initialize_data(apps, _):
     """
         This migration adds some unicode data, which is displayed in
         already existing Pivot charts to address rendering of unicode

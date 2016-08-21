@@ -7,7 +7,7 @@ from .models import SalesHistory, BookStore, Book
 
 
 @add_source_code_and_doc
-def basicline(request, title, code, doc, sidebar_items):
+def basicline(_, title, code, doc, sidebar_items):
     """
     A Basic Line Chart
     ------------------
@@ -73,7 +73,7 @@ def basicline(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def basicpie(request, title, code, doc, sidebar_items):
+def basicpie(_, title, code, doc, sidebar_items):
     """
     A Basic Pie Chart
     ------------------
@@ -144,7 +144,7 @@ def basicpie(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def mapf_for_x(request, title, code, doc, sidebar_items):
+def mapf_for_x(_, title, code, doc, sidebar_items):
     """
     Mapping the x-axis
     ------------------
@@ -217,7 +217,7 @@ def mapf_for_x(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def multi_table_same_x(request, title, code, doc, sidebar_items):
+def multi_table_same_x(_, title, code, doc, sidebar_items):
     """
     Data from multiple models on same chart
     ----------------------------------------
@@ -292,7 +292,7 @@ def multi_table_same_x(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def multi_axes_and_types(request, title, code, doc, sidebar_items):
+def multi_axes_and_types(_, title, code, doc, sidebar_items):
     """
     Charts on multiple axes and multiple chart types
     -------------------------------------------------
@@ -369,7 +369,7 @@ def multi_axes_and_types(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def chart_default_options(request, title, code, doc, sidebar_items):
+def chart_default_options(_, title, code, doc, sidebar_items):
     """
     Some default options explained
     -------------------------------
@@ -429,7 +429,7 @@ def chart_default_options(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def scatter_plot(request, title, code, doc, sidebar_items):
+def scatter_plot(_, title, code, doc, sidebar_items):
     """
     Scatter Plot
     -------------
@@ -489,7 +489,7 @@ def scatter_plot(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def combination_plot(request, title, code, doc, sidebar_items):
+def combination_plot(_, title, code, doc, sidebar_items):
     """
     Combination Plot
     -----------------
@@ -566,7 +566,7 @@ def combination_plot(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def column_chart_multi_stack(request, title, code, doc, sidebar_items):
+def column_chart_multi_stack(_, title, code, doc, sidebar_items):
     """
     Column Chart
     ------------------
@@ -667,7 +667,7 @@ def column_chart_multi_stack(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def column_chart(request, title, code, doc, sidebar_items):
+def column_chart(_, title, code, doc, sidebar_items):
     """
     Column Chart
     ------------------
@@ -738,7 +738,7 @@ def column_chart(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def combination_line_pie(request, title, code, doc, sidebar_items):
+def combination_line_pie(_, title, code, doc, sidebar_items):
     """
     Combination of line and Pie charts
     -----------------------------------
@@ -812,7 +812,7 @@ def combination_line_pie(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def basicline_with_datefield(request, title, code, doc, sidebar_items):
+def basicline_with_datefield(_, title, code, doc, sidebar_items):
     """
     A Basic Line Chart with DateField
     ---------------------------------
@@ -874,7 +874,7 @@ def basicline_with_datefield(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def datetimefield_from_related_model(request, title, code, doc, sidebar_items):
+def datetimefield_from_related_model(_, title, code, doc, sidebar_items):
     """
     A Basic Line Chart with DateTimeField from related model
     --------------------------------------------------------
@@ -932,7 +932,7 @@ def datetimefield_from_related_model(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def extra_datefield(request, title, code, doc, sidebar_items):
+def extra_datefield(_, title, code, doc, sidebar_items):
     """
     A Basic Line Chart using QuerySet.extra() with DateField
     --------------------------------------------------------
@@ -998,7 +998,7 @@ def extra_datefield(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def avg_count(request, title, code, doc, sidebar_items):
+def avg_count(_, title, code, doc, sidebar_items):
     """
     A Basic Line Chart using Avg() and Count()
     ------------------------------------------

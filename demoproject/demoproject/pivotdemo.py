@@ -6,7 +6,7 @@ from .models import SalesHistory, Book
 
 
 @add_source_code_and_doc
-def simplepivot(request, title, code, doc, sidebar_items):
+def simplepivot(_, title, code, doc, sidebar_items):
     """
     A simple pivot chart.
 
@@ -41,7 +41,7 @@ def simplepivot(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def pivot_with_legend(request, title, code, doc, sidebar_items):
+def pivot_with_legend(_, title, code, doc, sidebar_items):
     """
     Pivot Chart with legend by field. This pivot chart plots total sale
     quantity of books in each city legended by the book genre name.
@@ -76,7 +76,7 @@ def pivot_with_legend(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def pivot_multi_category(request, title, code, doc, sidebar_items):
+def pivot_multi_category(_, title, code, doc, sidebar_items):
     """
     Pivot Chart with multiple categories. In this chart the total sale
     quantity is plotted with respect to state and city.
@@ -120,7 +120,7 @@ def pivot_multi_category(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def pivot_with_top_n_per_cat(request, title, code, doc, sidebar_items):
+def pivot_with_top_n_per_cat(_, title, code, doc, sidebar_items):
     """
     Pivot Chart each category limited to a select top items.
 
@@ -162,7 +162,7 @@ def pivot_with_top_n_per_cat(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def pivot_top_n(request, title, code, doc, sidebar_items):
+def pivot_top_n(_, title, code, doc, sidebar_items):
     """
     Pivot Chart limited to top few items. In this chart the sales quanity is
     plotted w.r.t state/city but the chart is limited to only top 5 cities
@@ -210,7 +210,7 @@ def pivot_top_n(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def pivot_pareto(request, title, code, doc, sidebar_items):
+def pivot_pareto(_, title, code, doc, sidebar_items):
     """
     Pivot Chart plotted as a `pareto chart
     <http://en.wikipedia.org/wiki/Pareto_chart>`_ w.r.t the total sales
@@ -251,7 +251,7 @@ def pivot_pareto(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def pivot_multi_axes(request, title, code, doc, sidebar_items):
+def pivot_multi_axes(_, title, code, doc, sidebar_items):
     """
     Pivot Chart with multiple terms on multiple axes.
 
@@ -326,7 +326,7 @@ def pivot_multi_axes(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def pivot_mapf(request, title, code, doc, sidebar_items):
+def pivot_mapf(_, title, code, doc, sidebar_items):
     """
     Pivot Chart with ``sortf_mapf_mts`` defined to map custom names for x-axis
     and to customize the x-axis sorting. In this chart we would like to plot
@@ -377,7 +377,7 @@ def pivot_mapf(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def pivot_with_datefield(request, title, code, doc, sidebar_items):
+def pivot_with_datefield(_, title, code, doc, sidebar_items):
     """
     Pivot chart with DateField
     --------------------------
@@ -417,7 +417,7 @@ def pivot_with_datefield(request, title, code, doc, sidebar_items):
 
 
 @add_source_code_and_doc
-def pivot_datetime_related(request, title, code, doc, sidebar_items):
+def pivot_datetime_related(_, title, code, doc, sidebar_items):
     """
     Pivot chart with DateTimeField from related model
     -------------------------------------------------

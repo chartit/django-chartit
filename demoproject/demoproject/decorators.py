@@ -8,8 +8,7 @@ def add_source_code_and_doc(f):
     the return parameters.
     """
     @wraps(f)
-    def f_with_source_and_doc(request, title, sidebar_items,
-                              *args, **kwargs):
+    def f_with_source_and_doc(request, title, sidebar_items):
         doc = f.__doc__
         if doc is None:
             doc = ""
