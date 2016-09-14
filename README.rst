@@ -28,6 +28,11 @@ pivoted by specific column(s).
 Changelog
 =========
 
+* 0.2.7 (September 14, 2016)
+    * Don't use ``super(self.__class__)`` b/c that breaks chart class
+      inheritance.
+      Fixes `#41 <https://github.com/chartit/django-chartit/issues/41>`_
+
 * 0.2.6 (August 16, 2016)
     * Merge ``chartit_tests/`` with ``demoproject/``
     * Load test DB with real data to use during testing

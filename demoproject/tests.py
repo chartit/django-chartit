@@ -1839,7 +1839,7 @@ class ChartitJSRelPathTests(TestCase):
     """
 
     def setUp(self):
-        super(self.__class__, self).setUp()
+        super(ChartitJSRelPathTests, self).setUp()
 
         # force chartit module to reload
         # b/c this setting is evaluated near the top
