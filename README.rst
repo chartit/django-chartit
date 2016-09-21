@@ -28,6 +28,9 @@ pivoted by specific column(s).
 Changelog
 =========
 
+* master
+    * README now tells how to execute ``demoproject/``
+
 * 0.2.7 (September 14, 2016)
     * Don't use ``super(self.__class__)`` b/c that breaks chart class
       inheritance.
@@ -310,7 +313,11 @@ Demo
 
 The above examples are just a brief taste of what you can do with
 Django-Chartit. For more examples and to look at the charts in actions, check
-out the `demo website <http://chartit.shutupandship.com/demo>`_.
+out the ``demoproject/`` directory. To execute the demo run the commands ::
+
+    cd demoproject/
+    PYTHONPATH=../ python ./manage.py migrate
+    PYTHONPATH=../ python ./manage.py runserver
 
 ===============
 Documentation
