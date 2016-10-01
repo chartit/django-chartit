@@ -4,6 +4,7 @@ before_install:
 - pip install coveralls
 env:
 - !!python/unicode '_DJANGO=1.10'
+- !!python/unicode '_DJANGO=1.10.2'
 - !!python/unicode '_DJANGO=1.8.14'
 - !!python/unicode '_DJANGO=1.8.15'
 - !!python/unicode '_DJANGO=1.9.10'
