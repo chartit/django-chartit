@@ -5,6 +5,7 @@ before_install:
 env:
 - !!python/unicode '_DJANGO=1.10'
 - !!python/unicode '_DJANGO=1.10.2'
+- !!python/unicode '_DJANGO=1.10.3'
 - !!python/unicode '_DJANGO=1.8.14'
 - !!python/unicode '_DJANGO=1.8.15'
 - !!python/unicode '_DJANGO=1.9.10'
