@@ -14,13 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from . import views, chartdemo, pivotdemo
+from . import views, chartdemo, pivotdemo, chartraw
 
 
 sort_order = {
     'Welcome': 0,
     'Charts': 1,
     'Pivot Charts': 2,
+    'Charts w/ RawQuerySet': 3,
 }
 sidebar_items = []
 
@@ -255,6 +256,66 @@ urlpatterns = [
             'sidebar_section': 'Pivot Charts',
         },
         name='pivot_chart_datetime_related',
+        ),
+
+    # chart examples with RawQuerySet
+    url(r'^demo/chart-raw/basic-line/$', chartraw.basicline,
+        {
+            'title': 'Line chart',
+            'sidebar_section': 'Charts w/ RawQuerySet',
+        },
+        name='raw_line_chart',
+        ),
+
+    url(r'^demo/chart-raw/mapf-for-x/$', chartraw.mapf_for_x,
+        {
+            'title': 'Custom names for x-axis values',
+            'sidebar_section': 'Charts w/ RawQuerySet',
+        },
+        name='raw_mapf_for_x',
+        ),
+
+
+    url(r'^demo/chart-raw/multi-table-same-x/$', chartraw.multi_table_same_x,
+        {
+            'title': 'Multiple sources on same chart',
+            'sidebar_section': 'Charts w/ RawQuerySet',
+        },
+        name='raw_multiple_models_same_chart',
+        ),
+
+    url(r'^demo/chart-raw/line-with-datefield/$',
+        chartraw.basicline_with_datefield,
+        {
+            'title': 'Line chart with DateField field',
+            'sidebar_section': 'Charts w/ RawQuerySet',
+        },
+        name='raw_line_datefield',
+        ),
+
+    url(r'^demo/chart-raw/datetime-from-related/$',
+        chartraw.datetimefield_from_related_model,
+        {
+            'title': 'DateTimeField from related model',
+            'sidebar_section': 'Charts w/ RawQuerySet',
+        },
+        name='raw_line_datetime_related',
+        ),
+
+    url(r'^demo/chart-raw/extra-datefield/$', chartraw.extra_datefield,
+        {
+            'title': 'Extra DateField in SQL',
+            'sidebar_section': 'Charts w/ RawQuerySet',
+        },
+        name='raw_line_extra_datefield',
+        ),
+
+    url(r'^demo/chart-raw/avg-count/$', chartraw.avg_count,
+        {
+            'title': 'Line chart with Avg() and Count()',
+            'sidebar_section': 'Charts w/ RawQuerySet',
+        },
+        name='raw_line_avg_count',
         ),
 ]
 

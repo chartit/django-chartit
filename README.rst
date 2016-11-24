@@ -32,10 +32,18 @@ Changelog
     * ``DataPool`` terms now supports model properties. Fixes
       `#35 <https://github.com/chartit/django-chartit/issues/35>`_.
       Model properties are **not** supported for ``PivotDataPool``!
-      **NOTE: when using model properties chartit can't make use of
-      `QuerySet.values()` internally. This means results will not be groupped
+      **WARNING: when using model properties chartit can't make use of
+      ``QuerySet.values()`` internally. This means results will not be groupped
       by the values of the fields you supplied. This may lead to unexpected
       query results/charts!**
+    * ``DataPool`` now supports ``RawQuerySet`` as data source. Fixes
+      `#44 <https://github.com/chartit/django-chartit/issues/44>`_.
+      ``RawQuerySet`` is **not** supported for ``PivotDataPool``!
+      **WARNING: when using ``RawQuerySet`` don't use double underscores
+      in field names because these are interpreted internally by chartit and
+      will cause exceptions. For example don't do this
+      ``SELECT AVG(rating) as rating__avg`` instead write it as
+      ``SELECT AVG(rating) as rating_avg``!**
     * README now tells how to execute ``demoproject/``
 
 * 0.2.7 (September 14, 2016)
@@ -81,7 +89,8 @@ Changelog
     * Merged with *django-chartit2* fork by
       `Grant McConnaughey <https://github.com/grantmcconnaughey>`_ which adds
       Python 3 and latest Django 1.8.x and 1.9.x support
-    * Allow dictionary fields in conjunction with lambda fields. Closes #26
+    * Allow dictionary fields in conjunction with lambda fields. Closes
+      `#26 <https://github.com/chartit/django-chartit/issues/26>`_
     * Documentation improvements
     * Lots of code cleanups and style improvements
 

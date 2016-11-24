@@ -3,7 +3,8 @@ import copy
 from django.db.models.aggregates import Aggregate
 from django.db.models.base import ModelBase
 from django.db.models.manager import Manager
-from django.db.models.query import QuerySet
+from django.db.models.query import QuerySet, RawQuerySet
+from django.db.models.sql.query import RawQuery
 from django.utils import six
 
 from .exceptions import APIInputError
@@ -54,6 +55,11 @@ def _validate_field_lookup_term(model, term, query):
     - APIInputError: If the term supplied is not a valid field lookup
       parameter for the model.
     """
+    # RawQuerySet can contain either columns or arbitrary DB fields
+    # it's very hard to trace those back to the model anyway
+    if isinstance(query, RawQuery):
+        return term
+
     # if this is an extra or annotated field then return
     if term in query.annotations.keys() or term in query.extra.keys():
         return term
@@ -89,8 +95,10 @@ def _clean_source(source):
         return source.all()
     elif isinstance(source, QuerySet):
         return source
-    raise APIInputError("'source' must either be a QuerySet, Model or "
-                        "Manager. Got %s of type %s instead."
+    elif isinstance(source, RawQuerySet):
+        return source
+    raise APIInputError("'source' must either be a QuerySet, RawQuerySet, "
+                        "Model or Manager. Got %s of type %s instead."
                         % (source, type(source)))
 
 
