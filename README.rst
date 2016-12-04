@@ -28,7 +28,7 @@ pivoted by specific column(s).
 Changelog
 =========
 
-* master
+* 0.2.8 (December 4, 2016)
     * ``PivotChart`` and ``PivotDataPool`` **will be deprecated soon**. Both
       are marked with deprecation warnings. There is a lot of duplication and
       special handling between those classes and the ``Chart`` and ``DataPool``
