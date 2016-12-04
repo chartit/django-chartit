@@ -1,5 +1,6 @@
 import sys
 import copy
+import warnings
 from collections import defaultdict, OrderedDict
 from itertools import groupby
 
@@ -573,6 +574,8 @@ class PivotChart(BaseChart):
           corresponding datasource or if the ``series_options`` cannot be
           parsed.
         """
+        warnings.warn('PivotChart will be deprecated soon. Use Chart instead!',
+                      DeprecationWarning)
         super(PivotChart, self).__init__()
         if not isinstance(datasource, PivotDataPool):
             raise APIInputError("%s must be an instance of PivotDataPool." %

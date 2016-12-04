@@ -29,6 +29,13 @@ Changelog
 =========
 
 * master
+    * ``PivotChart`` and ``PivotDataPool`` **will be deprecated soon**. Both
+      are marked with deprecation warnings. There is a lot of duplication and
+      special handling between those classes and the ``Chart`` and ``DataPool``
+      classes which make it harder to expand the feature set for django-chartit.
+      The next release will focus on consolidating all the functionality into
+      ``Chart`` and ``DataPool`` so that users will still be able to draw pivot
+      charts. You will have to construct your pivot charts manually though!
     * ``DataPool`` terms now supports model properties. Fixes
       `#35 <https://github.com/chartit/django-chartit/issues/35>`_.
       Model properties are **not** supported for ``PivotDataPool``!

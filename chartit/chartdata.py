@@ -1,4 +1,5 @@
 import sys
+import warnings
 from collections import defaultdict, OrderedDict
 from django.db.models.query import RawQuerySet
 from django.core.exceptions import FieldError
@@ -406,6 +407,8 @@ class PivotDataPool(DataPool):
             'terms': {
               'asia_avg_temp': Avg('temperature')}}]
         """
+        warnings.warn('PivotDataPool will be deprecated soon.'
+                      ' Use DataPool instead!', DeprecationWarning)
         self.series = clean_pdps(series)
         self.top_n_term = (top_n_term if top_n_term
                            in self.series.keys() else None)
