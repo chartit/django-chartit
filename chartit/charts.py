@@ -392,7 +392,7 @@ class Chart(BaseChart):
                                 for x_value, y_value_tuple in data:
                                     for opts, y_value in zip(y_hco_list,
                                                              y_value_tuple):
-                                        opts['data'].append((str(x_value),
+                                        opts['data'].append((unicode(x_value),
                                                              y_value))
                                 self.hcoptions['series'].extend(y_hco_list)
 
