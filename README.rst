@@ -28,6 +28,10 @@ pivoted by specific column(s).
 Changelog
 =========
 
+* master
+    * Enable pylint during testing but don't block Travis-CI on failures. Closes
+      `#42 <https://github.com/chartit/django-chartit/issues/42>`_.
+
 * 0.2.8 (December 4, 2016)
     * ``PivotChart`` and ``PivotDataPool`` **will be deprecated soon**. Both
       are marked with deprecation warnings. There is a lot of duplication and

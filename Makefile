@@ -26,6 +26,9 @@ clean-pyc:
 lint:
 	flake8 setup.py chartit demoproject
 
+pylint:
+	pylint -rn setup.py chartit demoproject/*.py demoproject/demoproject/*.py
+
 test: lint
 	python runtests.py demoproject
 

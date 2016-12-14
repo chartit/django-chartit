@@ -2,6 +2,8 @@ after_success:
 - coveralls
 before_install:
 - pip install coveralls
+- if [ -z "$_COMMAND" ]; then export _COMMAND=coverage; fi
+- if [ -z "$_DJANGO" ]; then export _DJANGO=1.10.4; fi
 env:
 - !!python/unicode '_DJANGO=1.10'
 - !!python/unicode '_DJANGO=1.10.2'
@@ -41,6 +43,10 @@ matrix:
     python: 3.3
   - env: _DJANGO=1.10.4
     python: 3.3
+  include:
+  - env: _COMMAND=pylint
+    python: 3.5
+
 notifications:
   email:
     on_failure: change
@@ -50,4 +56,4 @@ python:
 - 3.3
 - 3.4
 - 3.5
-script: make coverage
+script: make $_COMMAND
