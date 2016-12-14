@@ -4,8 +4,7 @@ import warnings
 from collections import defaultdict, OrderedDict
 from itertools import groupby
 
-from .utils import _getattr
-from .highcharts import HCOptions
+from .utils import _getattr, RecursiveDefaultDict
 from .validation import clean_pcso, clean_cso, clean_x_sortf_mapf_mts
 from .exceptions import APIInputError
 from .chartdata import PivotDataPool, DataPool
@@ -17,7 +16,7 @@ class BaseChart(object):
         Common ancestor class for all charts to avoid code duplication.
     """
     def __init__(self):
-        self.hcoptions = HCOptions({})
+        self.hcoptions = RecursiveDefaultDict({})
         self.PY2 = sys.version_info.major == 2
 
     def to_json(self):
@@ -242,7 +241,7 @@ class Chart(BaseChart):
         """
         so = self.series_options
         dss = self.datasource.series
-        self.hcoptions = HCOptions({})
+        self.hcoptions = RecursiveDefaultDict({})
         if chart_options is not None:
             self.hcoptions.update(chart_options)
         self.hcoptions['series'] = []
@@ -280,7 +279,7 @@ class Chart(BaseChart):
         y_axis_len = len(self.hcoptions['yAxis'])
         if max_x_axis >= x_axis_len:
             self.hcoptions['xAxis']\
-              .extend([HCOptions({})]*(max_x_axis+1-x_axis_len))
+              .extend([RecursiveDefaultDict({})]*(max_x_axis+1-x_axis_len))
         for i, x_axis in enumerate(self.hcoptions['xAxis']):
             if not x_axis['title']['text']:
                 axis_title = set(t[0] for t in term_x_axis if t[1] == i)
@@ -291,7 +290,7 @@ class Chart(BaseChart):
 
         if max_y_axis >= y_axis_len:
             self.hcoptions['yAxis']\
-              .extend([HCOptions({})]*(max_y_axis+1-y_axis_len))
+              .extend([RecursiveDefaultDict({})]*(max_y_axis+1-y_axis_len))
         for i, y_axis in enumerate(self.hcoptions['yAxis']):
             if not y_axis['title']['text']:
                 axis_title = set(t[0] for t in term_y_axis if t[1] == i)
@@ -343,7 +342,7 @@ class Chart(BaseChart):
                                  in y_terms]
                     y_types = [self.series_options[y_term].get('type', 'line')
                                for y_term in y_terms]
-                    y_hco_list = [HCOptions(
+                    y_hco_list = [RecursiveDefaultDict(
                                     copy.deepcopy(
                                         self.series_options[y_term])) for
                                   y_term in y_terms]
@@ -400,7 +399,7 @@ class Chart(BaseChart):
                             # all other chart types - line, area, etc.
                             hco_x_axis = self.hcoptions['xAxis']
                             if len(hco_x_axis) - 1 < x_axis_num:
-                                hco_x_axis.extend([HCOptions({})] *
+                                hco_x_axis.extend([RecursiveDefaultDict({})] *
                                                   (x_axis_num -
                                                    (len(hco_x_axis) -
                                                     1)))
@@ -439,7 +438,7 @@ class Chart(BaseChart):
                 if y_terms_multi:
                     hco_x_axis = self.hcoptions['xAxis']
                     if len(hco_x_axis) - 1 < x_axis_num:
-                        hco_x_axis.extend([HCOptions({})] *
+                        hco_x_axis.extend([RecursiveDefaultDict({})] *
                                           (x_axis_num - (len(hco_x_axis)-1)))
                     hco_x_axis[x_axis_num]['categories'] = []
 
@@ -583,14 +582,14 @@ class PivotChart(BaseChart):
         self.datasource = datasource
         self.series_options = clean_pcso(series_options, self.datasource)
         if chart_options is None:
-            chart_options = HCOptions({})
+            chart_options = RecursiveDefaultDict({})
         self.set_default_hcoptions()
         self.hcoptions.update(chart_options)
         # Now generate the plot
         self.generate_plot()
 
     def set_default_hcoptions(self):
-        self.hcoptions = HCOptions({})
+        self.hcoptions = RecursiveDefaultDict({})
         # series and terms
         dss = self.datasource.series
         terms = list(self.series_options.keys())

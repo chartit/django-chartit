@@ -1,11 +1,15 @@
+"""
+    Implements the {% load_charts %} template tag!
+"""
+
+import json
 import posixpath
+from decimal import Decimal
 
 from django import template
 from django.utils.safestring import mark_safe
 from django.utils import six
 from django.conf import settings
-from decimal import Decimal
-import json
 
 from ..charts import Chart, PivotChart
 
@@ -27,7 +31,7 @@ def json_serializer(obj):
     """
     if hasattr(obj, 'isoformat'):
         return obj.isoformat()
-    elif type(obj) == Decimal:
+    elif isinstance(obj, Decimal):
         return float(obj)
     else:
         return obj
@@ -77,7 +81,7 @@ def load_charts(chart_list=None, render_to=''):
         chart_list = [c.hcoptions for c in chart_list]
         render_to_list = [s.strip() for s in render_to.split(',')]
         for hco, render_to in six.moves.zip_longest(
-                                chart_list, render_to_list):
+                chart_list, render_to_list):
             if render_to:
                 hco['chart']['renderTo'] = render_to
         embed_script = (embed_script % (json.dumps(chart_list,

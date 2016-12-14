@@ -1,3 +1,8 @@
+# pylint: disable=protected-access
+"""
+    Validates input parameters.
+"""
+
 import copy
 
 from django.db.models.aggregates import Aggregate
@@ -64,7 +69,6 @@ def _validate_field_lookup_term(model, term, query):
     if term in query.annotations.keys() or term in query.extra.keys():
         return term
 
-    # TODO: Memoization for speed enchancements?
     terms = term.split('__')
     model_fields = get_all_field_names(model._meta)
 
@@ -148,7 +152,7 @@ def _clean_legend_by(legend_by, source):
 
 
 def _validate_top_n_per_cat(top_n_per_cat):
-    if not isinstance(top_n_per_cat,  int):
+    if not isinstance(top_n_per_cat, int):
         raise APIInputError("'top_n_per_cat' must be an int. Got %s of type "
                             "%s instead."
                             % (top_n_per_cat, type(top_n_per_cat)))

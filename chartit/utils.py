@@ -1,3 +1,7 @@
+"""
+    utility and helper functions.
+"""
+
 from functools import reduce
 
 
@@ -56,8 +60,7 @@ class RecursiveDefaultDict(dict):
     def __setitem__(self, key, item):
         if not isinstance(item, RecursiveDefaultDict):
             super(RecursiveDefaultDict, self).__setitem__(
-                                                key,
-                                                _convert_to_rdd(item))
+                key, _convert_to_rdd(item))
         else:
             super(RecursiveDefaultDict, self).__setitem__(key, item)
 

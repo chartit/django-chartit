@@ -1,3 +1,5 @@
+# pylint: disable=missing-docstring,locally-disabled
+
 import codecs
 import re
 from os import path
@@ -6,8 +8,8 @@ from setuptools import setup, find_packages
 
 def read(*parts):
     filename = path.join(path.dirname(__file__), *parts)
-    with codecs.open(filename, encoding='utf-8') as fp:
-        return fp.read()
+    with codecs.open(filename, encoding='utf-8') as _fp:
+        return _fp.read()
 
 
 def get_version(*file_paths):
