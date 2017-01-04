@@ -9,6 +9,7 @@ env:
 - !!python/unicode '_DJANGO=1.10.2'
 - !!python/unicode '_DJANGO=1.10.3'
 - !!python/unicode '_DJANGO=1.10.4'
+- !!python/unicode '_DJANGO=1.10.5'
 - !!python/unicode '_DJANGO=1.8.14'
 - !!python/unicode '_DJANGO=1.8.15'
 - !!python/unicode '_DJANGO=1.8.16'
@@ -46,7 +47,6 @@ matrix:
   include:
   - env: _COMMAND=pylint
     python: 3.5
-
 notifications:
   email:
     on_failure: change
