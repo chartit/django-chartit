@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from chartit import DataPool, Chart
 from django.db.models import Avg, Count
 from django.shortcuts import render_to_response
@@ -773,7 +775,7 @@ def combination_line_pie(_, title, code, doc, sidebar_items):
 
     def monthname(month_num):
         names = {1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun',
-                 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
+                 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: u'Дек'}
         return names[month_num]
 
     cht = Chart(
