@@ -31,6 +31,9 @@ Changelog
 * master
     * Enable pylint during testing but don't block Travis-CI on failures. Closes
       `#42 <https://github.com/chartit/django-chartit/issues/42>`_.
+    * Handle unicode data in pie and scatter plot charts under Python 2.7.
+      `PR#47 <https://github.com/chartit/django-chartit/pull/47>`_.
+
 
 * 0.2.8 (December 4, 2016)
     * ``PivotChart`` and ``PivotDataPool`` **will be deprecated soon**. Both
