@@ -11,6 +11,12 @@ from .chartdata import PivotDataPool, DataPool
 import json
 
 
+# in Python 3 the standard str type is unicode and the
+# unicode type has been removed so define the keyword here
+if sys.version_info.major >= 3:
+    unicode = str
+
+
 class BaseChart(object):
     """
         Common ancestor class for all charts to avoid code duplication.
@@ -391,7 +397,7 @@ class Chart(BaseChart):
                                 for x_value, y_value_tuple in data:
                                     for opts, y_value in zip(y_hco_list,
                                                              y_value_tuple):
-                                        opts['data'].append((str(x_value),
+                                        opts['data'].append((unicode(x_value),
                                                              y_value))
                                 self.hcoptions['series'].extend(y_hco_list)
 
