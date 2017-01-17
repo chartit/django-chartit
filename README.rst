@@ -28,7 +28,7 @@ pivoted by specific column(s).
 Changelog
 =========
 
-* master
+* 0.2.9 (January 17, 2017)
     * Enable pylint during testing but don't block Travis-CI on failures. Closes
       `#42 <https://github.com/chartit/django-chartit/issues/42>`_.
     * Handle unicode data in pie and scatter plot charts under Python 2.7.
