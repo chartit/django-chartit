@@ -28,6 +28,11 @@ pivoted by specific column(s).
 Changelog
 =========
 
+* master
+    * Add demo example of how to pass ``legendIndex`` as an option to
+      a data serie. Closes
+      `#48 <https://github.com/chartit/django-chartit/issues/48>`_.
+
 * 0.2.9 (January 17, 2017)
     * Enable pylint during testing but don't block Travis-CI on failures. Closes
       `#42 <https://github.com/chartit/django-chartit/issues/42>`_.
