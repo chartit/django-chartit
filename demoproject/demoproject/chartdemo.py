@@ -23,6 +23,7 @@ def basicline(_, title, code, doc, sidebar_items):
       are written as ``x: [y, ...]`` pairs.
     - Any valid items in the `Highcharts options object
       <http://api.highcharts.com/highcharts>`_ are valid ``chart_options``.
+    - This example also changes the default label for Houston!
     """
 
     # start_code
@@ -33,7 +34,7 @@ def basicline(_, title, code, doc, sidebar_items):
                 },
                 'terms': [
                     'month',
-                    'houston_temp',
+                    {'Temperature in Houston': 'houston_temp'},
                     'boston_temp'
                 ]
             }]
@@ -49,7 +50,7 @@ def basicline(_, title, code, doc, sidebar_items):
                 'terms': {
                     'month': [
                         'boston_temp',
-                        'houston_temp'
+                        'Temperature in Houston'
                     ]
                 }
             }],
