@@ -308,7 +308,8 @@ def multi_axes_and_types(_, title, code, doc, sidebar_items):
       ``yAxis``.
     - The ``series_options`` - ``options`` dict takes any of the values from
       `Highcharts series options
-      <http://api.highcharts.com/highcharts#Series>`_
+      <http://api.highcharts.com/highcharts#Series>`_. Here we're using
+      ``legendIndex`` to sort the legend in reverse order (Boston is last)!
     - If there are only 2 axes (0 and 1), the default behavior of Chartit is
       to display them on opposite sides. You can override this default behavior
       by setting ``{"opposite": False}`` manually. If there are more than
@@ -335,7 +336,8 @@ def multi_axes_and_types(_, title, code, doc, sidebar_items):
                     'type': 'line',
                     'xAxis': 0,
                     'yAxis': 0,
-                    'zIndex': 1
+                    'zIndex': 1,
+                    'legendIndex': 1,
                 },
                 'terms': {
                     'month': ['boston_temp']
@@ -343,7 +345,8 @@ def multi_axes_and_types(_, title, code, doc, sidebar_items):
                 'options': {
                     'type': 'area',
                     'xAxis': 1,
-                    'yAxis': 1
+                    'yAxis': 1,
+                    'legendIndex': 0,
                 },
                 'terms': {
                     'month': ['houston_temp']
