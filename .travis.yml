@@ -23,6 +23,7 @@ env:
 - !!python/unicode '_DJANGO=1.9.10'
 - !!python/unicode '_DJANGO=1.9.11'
 - !!python/unicode '_DJANGO=1.9.12'
+- !!python/unicode '_DJANGO=1.9.13'
 - !!python/unicode '_DJANGO=1.9.8'
 - !!python/unicode '_DJANGO=1.9.9'
 install:
