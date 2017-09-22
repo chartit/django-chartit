@@ -6,31 +6,32 @@ before_install:
 - if [ -z "$_DJANGO" ]; then export _DJANGO=1.10.4; fi
 cache: pip
 env:
-- !!python/unicode '_DJANGO=1.10'
-- !!python/unicode '_DJANGO=1.10.2'
-- !!python/unicode '_DJANGO=1.10.3'
-- !!python/unicode '_DJANGO=1.10.4'
-- !!python/unicode '_DJANGO=1.10.5'
-- !!python/unicode '_DJANGO=1.10.6'
-- !!python/unicode '_DJANGO=1.10.7'
-- !!python/unicode '_DJANGO=1.11'
-- !!python/unicode '_DJANGO=1.11.1'
-- !!python/unicode '_DJANGO=1.11.3'
-- !!python/unicode '_DJANGO=1.11.4'
-- !!python/unicode '_DJANGO=1.11a1'
-- !!python/unicode '_DJANGO=1.11b1'
-- !!python/unicode '_DJANGO=1.11rc1'
-- !!python/unicode '_DJANGO=1.8.14'
-- !!python/unicode '_DJANGO=1.8.15'
-- !!python/unicode '_DJANGO=1.8.16'
-- !!python/unicode '_DJANGO=1.8.17'
-- !!python/unicode '_DJANGO=1.8.18'
-- !!python/unicode '_DJANGO=1.9.10'
-- !!python/unicode '_DJANGO=1.9.11'
-- !!python/unicode '_DJANGO=1.9.12'
-- !!python/unicode '_DJANGO=1.9.13'
-- !!python/unicode '_DJANGO=1.9.8'
-- !!python/unicode '_DJANGO=1.9.9'
+- _DJANGO=1.10
+- _DJANGO=1.10.2
+- _DJANGO=1.10.3
+- _DJANGO=1.10.4
+- _DJANGO=1.10.5
+- _DJANGO=1.10.6
+- _DJANGO=1.10.7
+- _DJANGO=1.11
+- _DJANGO=1.11.1
+- _DJANGO=1.11.3
+- _DJANGO=1.11.4
+- _DJANGO=1.11a1
+- _DJANGO=1.11b1
+- _DJANGO=1.11rc1
+- _DJANGO=1.8.14
+- _DJANGO=1.8.15
+- _DJANGO=1.8.16
+- _DJANGO=1.8.17
+- _DJANGO=1.8.18
+- _DJANGO=1.9.10
+- _DJANGO=1.9.11
+- _DJANGO=1.9.12
+- _DJANGO=1.9.13
+- _DJANGO=1.9.8
+- _DJANGO=1.9.9
+- _DJANGO=2.0a1
 install:
 - pip install Django==$_DJANGO
 - pip install -e .
