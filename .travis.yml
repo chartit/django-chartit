@@ -35,6 +35,7 @@ env:
 - _DJANGO=1.9.9
 - _DJANGO=2.0a1
 - _DJANGO=2.0b1
+- _DJANGO=2.0rc1
 install:
 - pip install Django==$_DJANGO
 - pip install -e .
