@@ -36,6 +36,7 @@ env:
 - _DJANGO=1.9.8
 - _DJANGO=1.9.9
 - _DJANGO=2.0
+- _DJANGO=2.0.1
 - _DJANGO=2.0a1
 - _DJANGO=2.0b1
 - _DJANGO=2.0rc1
